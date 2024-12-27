@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Level Up]</h3>
+<p class="text">
+  In the "Level Up" tab within the "Facilities" tab, you can set the spell acquisition, MP increase, and changes in attributes when leveling up after staying at an inn.
+</p>
+<div align="center">
+<a href="img/editorLevelUp.png"><img src="img/editorLevelUp.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Max MP</span><br>
+  This specifies the maximum MP for each spell category at each level, which can increase through leveling up. The MP consumed when casting a spell is 1, so it simply becomes the number of times that spell can be used at that level. The default value is 9.
+<li><span class="item">MP Increase</span><br>
+  This specifies the formula for MP increase upon leveling up. The adventurer's data can be referenced with pc. The following can be set for each spell category:
+  <ul>
+  <li><span class="item">Minimum MP Increase per Spell</span><br>
+    The minimum MP guaranteed per spell, with a default value of 1.
+  <li><span class="item">Interval for Maximum MP Increase</span><br>
+    The interval from the level at which spells can be learned until the maximum MP starts increasing, with a default value of 4. If this value is negative, a different process will be used.
+  <li><span class="item">Maximum MP Increase per Level</span><br>
+    Specifies how much MP increases per level for the maximum MP increase due to leveling up. The default value is 1.
+  </ul>
+<br>
+  The maximum MP increase may be a bit difficult to understand, so here’s a supplementary explanation. The maximum MP increase during level up can happen due to both spell acquisition and leveling up.<br>
+  When a spell is learned, the maximum MP increases by "number of learned spells * minimum MP increase per spell". However, this is the minimum guaranteed increase, and if the current maximum MP already exceeds this, the spell acquisition will not cause an increase. When a class change is made and the level becomes 1, the maximum MP will be "number of learned spells * minimum MP increase per spell".<br>
+  After learning spells, the maximum MP will increase during level up but not immediately. When the adventurer’s level reaches "spell learnable level + interval for maximum MP increase", the maximum MP will increase by the maximum MP increase value. From then on, it will continue to increase with each level up until it reaches the maximum MP value. If the adventurer fails to learn any spells, the maximum MP will not increase during level up.<br>
+  If the value of the "Interval for Maximum MP Increase" is negative, the calculation method is different:
+  <br>
+  ((PC level - starting spell level + 1) * maximum MP increase) max (number of learned spells * minimum MP increase per spell)<br>
+  If you're unsure, setting "minimum MP increase per spell" and "maximum MP increase per level" to 1 and "interval for maximum MP increase" to -1 will make the system work like in Wiz#1.
+<li><span class="item">Spell Acquisition Rate, Spell Acquisition Rate Decrease</span><br>
+  The formula for the spell acquisition rate when leveling up can be specified. The adventurer's data can be referenced with pc.
+  <ul>
+  <li><span class="item">Spell Acquisition Rate</span><br>
+    The rate at which a spell is acquired once the spell learnable level is reached. You can set it to a fixed number like 50 or 100, or make it change based on attributes, such as 70 + pc.abi[1] * 2. You can set this for each spell category.
+  <li><span class="item">Spell Acquisition Rate Decrease</span><br>
+    After learning a spell, if there are still spells to be learned, the new acquisition rate will be "acquisition rate - acquisition rate decrease", and the acquisition check will be performed again. If you want to learn many spells at once, set the decrease value to 0, otherwise, set it to about 10-50.
+  </ul>
+<li><span class="item">Learn Spells in Order</span><br>
+  When this box is checked, spells will be learned in order from the lowest spell level, according to the order of spells available. However, if the "Main" setting has "at least one spell must be learned" checked, that will take priority, and higher-level spells will be learned even if lower-level spells are available, so be careful.
+<li><span class="item">Attributes</span><br>
+  The rate of change for attributes upon leveling up can be specified using a formula. The adventurer’s data can be referenced with pc.<br>
+  To specify different rates of change or decrease for each attribute, separate them with <>. If left unspecified or if a space is used, the first change rate will be applied to all attributes. For example, if there are four attributes such as Strength, Intelligence, Endurance, and Luck, and you set the change rate to "60<> <>20", Strength will change by 60%, Intelligence will change by 60% (since no value is specified), Endurance will change by 20%, and Luck will also change by 60% (since it’s unspecified).
+  <ul>
+  <li><span class="item">Attribute Change Rate</span><br>
+    The probability that an attribute will change. Usually, a value between 40-60 is recommended.
+  <li><span class="item">Attribute Decrease Rate</span><br>
+    The probability that an attribute will decrease. Set to 0 if you don’t want it to decrease. You can also make it change based on the adventurer's age (lifespan), for example: floor((pc.age / (pc.lifetime * 2 - pc.age)) * 100). Note that the change for attributes is always 1, and if the attribute reaches the maximum for the race, it won’t increase any further.
+  </ul>
+</ul>
+
+</body>
+</html>

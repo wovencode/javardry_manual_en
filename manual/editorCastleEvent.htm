@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin" style="margin-bottom: 700pt">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Castle Events]</h3>
+<p class="text">
+　The "Castle Events" tab within the "Facilities" tab is where you set up events that occur at the castle.
+</p>
+<div align="center">
+<a href="img/editorCastleEvent.png"><img src="img/editorCastleEvent.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">[Castle Events]</span><br>
+　This is a list of events that occur when visiting the castle. Conditions are evaluated from top to bottom, and only one event that matches the conditions will be executed. After the event is executed, the player returns to the castle town.
+	<ul>
+	<li><span class="item">Event Name</span><br>
+	　This is not used in the game. It is a name given by the scenario creator to identify each event.
+	<li><span class="item">Music</span><br>
+	　Set the music to be played during the event. If no music is to be played, set the music name to "none" or leave it blank.
+	<li><span class="item">Background Image</span><br>
+	　Set the background image to be used during the event. Write the image file in the bg directory (relative paths are acceptable), without the extension and without the "_HR" for high-quality identification. For example, if you want to display "inn.png", write "inn"; for "restInPeace.png" in the parent directory, write "../restInPeace"; for "anotherWorld.png" in the "dungeon/wall" directory, write "../dungeon/wall/anotherWorld".<br>
+	　If you do not wish to change the background (keep the castle town image), leave it blank.
+	<li><span class="item">Condition Expression</span><br>
+	　This is the condition under which the event will be triggered. If this condition evaluates to true, the event will be executed.
+	<li><span class="item"><a name="setTitle">Title Grant</a></span><br>
+	　Grants a title to all party members. There are two ways to specify this. Please note that the valid character count for titles is up to 6 characters in half-width, and due to formatting constraints, titles cannot contain half-width commas, \, [ ], &lt;&gt;.<br>
+		<ul>
+		<li><span class="item">Condition Title, Granted Title</span><br>
+		　If the party member has the condition title (if it matches), the granted title will be assigned (overwritten).<br>
+		　If the condition title is set to a half-width space, there is no condition; if set to "titleNone", it means there is no title. If the granted title is set to "titleNone", no title will be granted; if set to "titleDelete", the title will be removed.
+		　<li><span class="item">[Condition Title], Grant Position Character Count, [Granted Title]</span><br>
+		　If the title contains the condition title, it will replace part of the granted title from the specified position. The condition title and granted title should be enclosed in [ ]. The grant position character count indicates from which position to start replacing (0 means from the 1st character, 1 means from the 2nd character). For example, if an adventurer has the title [@1 A], and you process [@1],0,[@2], the result will be [@2 A]; if you use [A],3,[B], the result will be [@1 B]; if you use [@1 A],0,[&nbsp;&nbsp;&nbsp;C], the result will be [&nbsp;&nbsp;&nbsp;C].<br>
+		　If the condition title is a half-width space ([ ] not used), there is no condition; if set to "titleNone" ([ ] not used), there is no title. If the granted title is "titleNone" ([ ] not used), no title will be granted; if set to "titleDelete" ([ ] not used), the title will be removed.
+		</ul>
+	<br>
+	　These are connected with &lt;&gt;, and the evaluation will proceed from the start until a condition matches (or until the final evaluation).<br>
+	　Here is an example:<br>
+	　@1,@2&lt;&gt;titleNone,@a&lt;&gt;[@b],3,[@c]&lt;&gt;[@d],0,titleNone&lt;&gt; ,titleDelete<br>
+	　If the party has title @1, it will grant title @2 and end the title granting. If the party does not have title @1, it will proceed to the next condition. If the party has no title, title @a will be granted and the process ends. If the party has any title, it will proceed to the next condition. If the title includes @b, it will replace from the 4th character with @c and end. If the title does not include @b, it will proceed to the next step. If the title includes @d, it will remain unchanged and end. If the title does not include @d, it will proceed further and the title will be deleted unconditionally and the process will end.<br>
+	　This is quite a rough conditional branching, but it should work well enough.
+	<li><span class="item">Item Deletion</span><br>
+	　Deletes specified items that are held by the party. It is used for confiscating clear items and other cases. Items are specified by number, and multiple items can be specified using commas and hyphens for ranges (e.g., 1,5,10-14,20). For each specified item, only one instance of the item will be deleted, so if you want to delete all instances of an item you must specify the item number for the maximum number of items the party can hold.
+	<li><span class="item">Experience and Gold Gained</span><br>
+	　Specifies the amount of experience and gold to be given to all party members. The range is from 0 to 999999999999.
+	<li><span class="item">Item Gained</span><br>
+	　Specifies a single item to be gained. If there is no room in the inventory, the item will not be obtained. There will be no special message displayed for failure to obtain the item, so please use condition expressions (ItemSpace) to manage this.
+	<li><span class="item">Flag Operations</span><br>
+	　Manipulates the values of flags, special flags, wall existence flags, map exploration flags, hidden door flags, and locked door flags. Please refer to <a href="editorStart.htm#flagControl" target="_self">Flag Operations</a> for the format.
+	<li><span class="item">Text</span><br>
+	　Enter the text to be displayed during the event. By clicking the check button, the text will be displayed with actual line breaks. The display can show up to 38 half-width characters (including 2 half-width characters for line-breaking processing) * 12 lines, but multiple pages are possible. If you want to intentionally insert a page break, insert &lt;p&gt;. It is also possible to display images. For instructions on how to display images during events, see <a href="editorStart.htm#graphic" target="_self">Displaying Images in Events</a>.<br>
+	　If this text field is left blank, nothing will be displayed during the event, and the player will not even know that the event has occurred, so please be careful.
+	<li><span class="item">left, center, right</span><br>
+	　Specifies the alignment of the above text as left, center, or right.
+	</ul>
+</ul>
+
+</body>
+</html>

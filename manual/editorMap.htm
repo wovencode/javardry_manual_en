@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+
+<h3 class="title1">Editor [Map]</h3>
+<p class="text">
+  In the "Map" tab within the "Dungeon" tab, settings for each floor's map are made. Since this is part of the dungeon list, please update the dungeon list in the "Dungeon" tab after making changes.
+</p>
+<div align="center">
+<a href="img/editorMap.png"><img src="img/editorMap.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Map Editing</span><br>
+  By clicking the map editing radio button, you can edit the map.<br>
+  <ul>
+  <li><span class="item">paste</span><br>
+    Paste the map (including events), rooms, and pre-mapping data to another floor specified by the combo box.<br>
+    When executed, the dungeon list will also be updated simultaneously.
+  <li><span class="item">exchange</span><br>
+    Swap the map (including events), rooms, and pre-mapping data with another floor specified by the combo box.<br>
+    When executed, the dungeon list will also be updated simultaneously.
+  <li><span class="item">clear</span><br>
+    Clear all map (including events) data for each floor.
+  <li><span class="item">Wall Existence Flag</span><br>
+    Change the value of the wall existence flag for testing display purposes on the editor when setting the presence of walls and doors below. When the value is true, walls and doors are displayed normally, and when false, they are displayed in a dark color. The wall existence flag on the editor is shared across all maps and is not saved.<br>
+    Operations are performed by selecting one of the following options using radio buttons: "Select (show value)", "true (set value to true)", "false (set value to false)", or "Invert (invert the value)", and choosing either "ALL" or a sorting number from 0 to 511 from the combo box. If you want to change all wall existence flags at once, select "ALL".
+  <li><span class="item">MapObjectRewrite</span><br>
+    Overwrite the already set MapObject.
+  <li><span class="item">MapObject</span><br>
+    Set the MapObject such as walls and doors. After entering text, click the map screen (the grid area) to place it.
+    <ul>
+    <li><span class="item">Select</span><br>
+      Used when modifying or checking an already set MapObject. When you click on the map screen, the data of the already set MapObject will be displayed. After modification, click MapObjectRewrite.
+    <li><span class="item">Paste</span><br>
+      Used to paste an already set MapObject to another coordinate. Select this option when the MapObject is displayed, then click the location on the map screen where you want to paste it. However, events cannot be pasted here. Duplication of events is done in the "Event" tab.
+    <li><span class="item">None</span><br>
+      Used to erase an already set MapObject. Click on the map screen to erase the already set MapObject.<br>
+      If "Do not erase walls when erasing stones" is checked, the surrounding walls will remain when erasing stones.
+    <li><span class="item">Wall</span><br>
+      Place a wall. You can assign numbers from 0 to 511 for each floor (common for walls and doors), and the validity can be toggled according to the value of the <a href="editorStart.htm#wallFlag" target="_self">wall existence flag</a>. The initial value of the wall existence flag is true. If you want to set it to invalid (wall existence flag false) by default, please use <a href="editorOthers.htm#initialFlag" target="_self">initial flag operation</a>.<br>
+      When placing a wall, the ON/OFF button for outer walls becomes active. Walls placed using the outer wall button will have sorting number 0.
+    <li><span class="item">Door</span><br>
+      Place a door. You can assign numbers from 0 to 511 for each floor (common for walls and doors), and the validity can be toggled according to the value of the <a href="editorStart.htm#wallFlag" target="_self">wall existence flag</a>. The initial value of the wall existence flag is true. If you want to set it to invalid (wall existence flag false) by default, please use <a href="editorOthers.htm#initialFlag" target="_self">initial flag operation</a>.
+    <li><span class="item">Locked Door</span><br>
+      Place a locked door. Locked doors are managed with numbers from 0 to 511 for each floor. Once a door is opened, it will remain open unless the save data is reset (or the flag operation is changed). The initial value of the locked door flag is false (locked). If you want it to be unlocked (locked door flag true) by default, please use <a href="editorOthers.htm#initialFlag" target="_self">initial flag operation</a>.<br>
+      You can set the difficulty for each locked door from 0 to 9999. This difficulty is used for the unlock success rate of the locked door.
+    <li><span class="item">Hidden Door 1</span><br>
+      Place a hidden door of Wiz #1 to #3 type. You can set the difficulty for each hidden door from 0 to 9999. This difficulty is used for the discovery rate of the hidden door.
+    <li><span class="item">Hidden Door 2</span><br>
+      Place a hidden door of Wiz side story #1 to #3 type. Hidden doors are managed with numbers from 0 to 511 for each floor. Once discovered, they will remain discovered unless the save data is reset (or the flag operation is changed). The initial value of the hidden door flag is false (undiscovered). If you want it to be discovered (hidden door flag true) by default, please use <a href="editorOthers.htm#initialFlag" target="_self">initial flag operation</a>.<br>
+      You can set the difficulty for each hidden door from 0 to 9999. This difficulty is used for the discovery rate of the hidden door.<br>
+      Additionally, you can check either "Cannot discover hidden door from the west (→) or south (↑)" or "Cannot discover hidden door from the east (←) or north (↓)" to make the hidden door discoverable only from one side. This can be used to create shortcuts (like in the Etrian Odyssey series) to prevent players from having to backtrack multiple times.
+    <li><span class="item">One-way Door, Shutter</span><br>
+      Place a one-way door or shutter. The direction is changed by clicking the top/bottom or left/right of the wall section.
+    <li><span class="item">Up Stairs, Shaft</span><br>
+      Place up stairs and shafts. You can specify the number of floors to ascend (1–15), and the coordinates to go to after ascending (0*0–19*19). If you move to a floor not set in the dungeon, you will return to the surface.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Down Stairs, Shoot</span><br>
+      Place down stairs and shoots. You can specify the number of floors to descend (1–15), and the coordinates to go to after descending (0*0–19*19). If you move to a floor not set in the dungeon, you will return to the surface.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Elevator</span><br>
+      Place an elevator. Create an elevator list specifying multiple destination floors and coordinates, then place it.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Turntable</span><br>
+      Place a turntable.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Pit</span><br>
+      Place a pit. You can choose from types such as normal, invisible pits, and falling rock (invisible pits that cannot be avoided by floating spells). Specify the avoidance difficulty and damage level from 0 to 9999.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Spell Sealing</span><br>
+      Place a spell sealing trap. The duration is effective until a certain number of steps (1–1000), until the floor is moved, or until the dungeon is exited. Enter the message to be displayed during spell sealing in the text box. When you click the check button, the text with proper line breaks will be shown for testing.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Slide Floor</span><br>
+      Place a slide floor. Specify the direction of the slide and whether or not the party's orientation should change according to the slide direction. It will continuously activate unless blocked by a wall, and can be made into an infinite loop (there is no restriction on creating traps like infinite loop teleportation events).<br>
+      The slide direction can be specified as North, South, East, West, random, or based on the current direction of movement (sliding in the direction the party was moving, like an ice floor). If the party teleported, it will slide in the specified direction.<br>
+      It can also be made into an area where "Entry via teleportation is not possible."
+    <li><span class="item">Warp Zone</span><br>
+      Place a warp zone. Specify the coordinates for the destination (0*0–19*19). If the destination of the warp zone is another warp zone, it will not warp again.<br>
+      It can also be made into an area where "Entry via teleportation is not possible."
+    <li><span class="item">Return</span><br>
+      Place a return.<br>
+      It can also be made into an area where "Entry via teleportation is not possible."
+    <li><span class="item">Dark Zone</span><br>
+      Place a dark zone.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+    <li><span class="item">Stone</span><br>
+      Place stones (spaces without room for adventurers). By design, placing stones will automatically place walls around them.<br>
+      Press the "Place stones in empty spaces" button to convert all unoccupied spaces into stones. This is useful when creating a map by digging through stones.
+    <li><span class="item">Message</span><br>
+      Place a message like a signboard. Enter the message you want to display in the text box. When you click the check button, the formatted message with line breaks will be shown for testing.<br>
+      It can also be made into an area where "Entry via teleportation is not possible" or "Spells (and items) cannot be used."
+<li><span class="item">Event</span><br>
+    Various events can be placed here, but what you can input here are only the event name for identification, event display, and event map display settings. For detailed settings, please use the "Event" tab.<br>
+    Event display allows you to set whether the event frames displayed on the dungeon screen are visible or not for the top (ceiling) and bottom (floor) respectively. If checked, the event will be displayed, and by default, only the bottom is shown.<br>
+    Event map display allows you to hide the "E" displayed on the map where events are located. If the event display is checked in automatic map settings or spell effects like teleportation, unchecking the event map display will hide the "E" symbol.<br>
+    It can also be set to areas where "entrance via teleportation is not allowed" or "spells (and items) cannot be used."
+</li>
+<li><span class="item">Teleportation Entry Forbidden</span><br>
+    This sets an area where teleportation is not allowed. It has no effect if the entire floor is set as teleportation entry forbidden.<br>
+    It can also be set to areas where "spells (and items) cannot be used."
+</li>
+<li><span class="item">Spell Use Forbidden</span><br>
+    This sets an area where spell use is not allowed. You can choose from three options: spell use only forbidden, item use forbidden, or both spell and item use forbidden.<br>
+    It can also be set to areas where "teleportation entry is not allowed."
+</li>
+</ul>
+</ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorMonsterRoom.png"><img src="img/editorMonsterRoom.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Monster Room Editing</span><br>
+    By clicking the radio button for monster room editing, you can set up rooms where monsters appear. In these rooms, monsters set for the floor (depending on the monster encounter rate) will definitely appear, and upon victory, a treasure chest will appear (or items will be directly obtained).
+    <ul>
+    <li><span class="item">Non-editable Text Area at the Bottom of the Map Screen</span><br>
+        The set monster room numbers will be displayed.
+    </li>
+    <li><span class="item">Clear</span><br>
+        Clears all set monster rooms for the floor.
+    </li>
+    <li><span class="item">MapObjectRewrite</span><br>
+        Overwrites the set monster room.
+    </li>
+    <li><span class="item">Select</span><br>
+        Use this to modify or check the set monster room. When the select radio button is selected, click on the map screen, and the data for the set monster room will be displayed. After modification, click MapObjectRewrite.
+    </li>
+    <li><span class="item">None</span><br>
+        Use this to remove the set monster room. When the none radio button is selected, click on the map screen to remove the already set monster room.
+    </li>
+    <li><span class="item">Monster Room (Radio Button)</span><br>
+        Set the monster room. With the monster room radio button selected, click on the map screen to set up the monster room with the corresponding number and other settings.
+    </li>
+    <li><span class="item">Monster Room</span><br>
+        Monster rooms are managed with numbers from 0 to 99. If you want one monster room to occupy multiple spaces, use the same number for multiple spaces.
+    </li>
+    <li><span class="item">Monster Room Guard Monster</span><br>
+        If you want to spawn specific monsters in the monster room, set them here separately from the encounter monsters for the floor.
+        <ul>
+        <li><span class="item">Condition</span><br>
+            Depending on whether the condition specified here is true or false, different monsters can appear.
+        </li>
+        <li><span class="item">No Monsters</span><br>
+            If this is checked, no monsters will appear. You can use this to distinguish between when a monster room guard monster will or will not appear based on certain conditions (such as possessing a specific item or a flag being set).<br>
+            If both true and false have "No Monsters" checked, the monster room guard monster will be unconfigured and treated as a normal monster room (normal monster encounters will happen).
+        </li>
+        <li><span class="item">Monster</span><br>
+            Choose the monster that will appear. If "Normal" is selected, a monster that typically appears on that floor will appear.
+        </li>
+        <li><span class="item">Item</span><br>
+            Up to three items that the monster is holding can be specified here, separated by commas. The items specified here will be obtained directly after the battle, not from a treasure chest (items cannot be obtained if the inventory is full). If you don't want specific items and want the treasure chest to appear as usual, set it to -1. Set to -2 to prevent treasure chests from appearing.
+        </li>
+        <li><span class="item">Music</span><br>
+            Set the music to be played during battle. Enter the name of the music set in the "Main" tab [Music]. If no music is to be played, enter "none". If you want to keep the current music during battle (without changing it), enter "no change". Specific battle music for monsters will be ignored. If left blank, the normal battle music will play, and the monster-specific battle music will also be enabled.
+        </li>
+        <li><span class="item">Flag Control</span><br>
+            Set the values of flags, special flags, wall existence flags, map completion flags, hidden door flags, and locked door flags when the battle is won. For the format, see <a href="editorStart.htm#flagControl" target="_self">Flag Control</a>.
+        </li>
+        </ul>
+    </ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorMapping.png"><img src="img/editorMapping.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Pre-mapping Editing</span><br>
+    Set the spaces that are pre-mapped in the initial state. The colored parts on the map screen represent unvisited areas. To toggle between unvisited and mapped, click on each square.
+    <ul>
+    <li><span class="item">All</span><br>
+        All spaces for the floor will be marked as mapped.
+    </li>
+    <li><span class="item">Clear</span><br>
+        All spaces for the floor will be marked as unvisited.
+    </li>
+    </ul>
+</ul>
+
+</body>
+</html>

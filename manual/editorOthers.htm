@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Others]</h3>
+<p class="text">
+In the "Others" tab, you can configure checks and settings that were not included in other tabs.
+</p>
+<div align="center">
+<a href="img/editorOthers01.png"><img src="img/editorOthers01.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Item Appraisal Rate</span><br>
+Specify the success rate of adventurers appraising items using a calculation formula. You can refer to the appraising adventurer as `pc` and the item as `item`.
+<li><span class="item">Curse Avoidance Rate on Failed Appraisal</span><br>
+Specify the rate of avoiding a curse (or panic for non-cursed items) upon failing an appraisal using a calculation formula. You can refer to the appraising adventurer as `pc` and the item as `item`.
+<li><span class="item">Trap Identification Rate for Treasure Chests</span><br>
+Specify the success rate for identifying (investigating) traps in treasure chests using a calculation formula. You can refer to the identifying adventurer as `pc` and the trap difficulty per dungeon floor (or set in the item drop table or monster) as `trap.lv`. To favor thief-type characters, use thief skill levels or general modifiers.
+<li><span class="item">Trap Disarm Rate for Treasure Chests</span><br>
+Specify the success rate for disarming traps in treasure chests using a calculation formula. You can refer to the disarming adventurer as `pc` and the trap difficulty per dungeon floor (or set in the item drop table or monster) as `trap.lv`.
+<li><span class="item">Trap Activation Rate for Treasure Chests</span><br>
+Specify the rate of trap activation upon failing to disarm a trap using a calculation formula. You can refer to the disarming adventurer as `pc` and the trap difficulty per dungeon floor (or set in the item drop table or monster) as `trap.lv`.
+<li><span class="item">Pit Avoidance Rate</span><br>
+Specify the pit avoidance rate for each adventurer when stepping on a pit using a calculation formula. You can refer to the adventurer as `pc` and the pit's avoidance difficulty as `trap.lv`.
+<li><span class="item">Pit Damage</span><br>
+Specify the damage value an adventurer receives upon failing to avoid a pit using a calculation formula. You can refer to the adventurer as `pc` and the pit's damage level as `trap.lv`.
+<li><span class="item">Hidden Door Detection Rate 1</span><br>
+Specify the detection rate for Wiz #1–#3 type hidden doors using a calculation formula. You can refer to the adventurer as `pc` and the hidden door's difficulty as `trap.lv`. This type of hidden door normally appears as a wall but will be displayed as a regular door only when this check succeeds. Note that even if the door is invisible, it can still be forced open.
+<li><span class="item">Hidden Door Detection Rate 2</span><br>
+Specify the detection rate for Wiz Gaiden #1–#3 type hidden doors using a calculation formula. You can refer to the adventurer as `pc` and the hidden door's difficulty as `trap.lv`. This type of hidden door normally appears as a wall and can only be opened when found using the search command. The doors may faintly appear upon a successful check.
+<li><span class="item">Locked Door Unlock Success Rate</span><br>
+Specify the success rate for unlocking locked doors using a calculation formula. You can refer to the adventurer as `pc` and the locked door's difficulty as `trap.lv`. To favor thief-type characters, use thief skill levels.
+<li><span class="item">Panic Recovery Rate</span><br>
+Specify the recovery rate from the panic state per step taken or per turn during combat using a calculation formula. You can refer to the adventurer as `pc`. Unlike sleep, a successful check will immediately recover from panic.
+<li><span class="item">Music for Treasure Chest Appearance</span><br>
+Set the music to play when a treasure chest appears after a victorious battle. Enter the name configured in the [Music] section of the "Main" tab. Leave blank to disable music.
+<li><span class="item"><a name="initialFlag">Initial Flag Operation</a></span><br>
+Configure the values for flags, special flags, wall presence flags, map exploration flags, hidden door flags, and locked door flags during game initialization. For example, you can set the <a href="editorStart.htm#wallFlag" target="_self">wall presence flag</a> to `false` upon initialization. For details on syntax, refer to <a href="editorStart.htm#flagControl" target="_self">Flag Operations</a>.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorOthers02.png"><img src="img/editorOthers02.png" width="600" height="537"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Save</span><br>
+Configure the timing for saving within the dungeon. If checked, the game will save at these times.
+	<ul>
+	<li><span class="item">Camp</span><br>
+		Save when opening or closing the camp.
+	<li><span class="item">Floor Transition</span><br>
+		Save when moving between floors via stairs, elevators, chutes, shafts, teleports, etc. Teleporting to other dungeons is treated the same as floor transitions.
+	<li><span class="item">Combat End</span><br>
+		Save after combat ends.
+	<li><span class="item">Party Wipe</span><br>
+		Save upon a party wipe.
+	<li><span class="item">Adventure Suspension</span><br>
+		Save when suspending the adventure.<br>
+		If unchecked, adventure suspension will not be possible.
+	</ul>
+<li><span class="item">Recovery Upon Return</span><br>
+	Configure recovery processes when returning to the surface from the dungeon. If checked, these processes will execute. Poison, seal status recovery, and clearing spell effects will occur regardless of the check.
+	<ul>
+	<li><span class="item">HP, MP</span><br>
+		Recover HP and MP to their maximum values, except in cases of death or petrification.
+	<li><span class="item">Panic, Paralysis, Petrification, Death, Ash</span><br>
+		Recover from these statuses. If death or petrification recovery is checked, the above HP and MP recovery will also apply.
+	</ul>
+</ul>
+
+</body>
+</html>

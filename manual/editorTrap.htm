@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Traps]</h3>
+<p class="text">
+In the "Traps and Initial PCs" tab, you can set up a list of traps for treasure chests. You can set up to 16 traps in total.
+</p>
+<div align="center">
+<a href="img/editorTrap.png"><img src="img/editorTrap.png" width="600" height="256"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Trap Name</span><br>
+   The name of the trap. It can be up to 20 characters in half-width.
+<li><span class="item">Effect Target</span><br>
+   Select the target of the trap's effect from the following options:
+	<ul>
+	<li><span class="item">None</span><br>
+	No effect on the adventurer themselves, or the effect applies to the whole party instead of individual adventurers. This includes alarms or teleportation, for example.
+	<li><span class="item">PC who opened the treasure chest</span><br>
+	The effect applies to the single adventurer who opened the treasure chest.
+	<li><span class="item">All allies</span><br>
+	The effect applies to each adventurer in the party.
+	</ul>
+<li><span class="item">Probability</span><br>
+   The probability of the trap's effect being applied is specified using a formula. The adventurer is referenced using `pc`, and the difficulty of the trap for treasure chests on each dungeon floor (or for item drop tables or monsters) can be referenced with `trap.lv`. By using profession-based adjustments effectively, it seems possible to replicate scenarios like Mage Blasters or Priest Blasters.
+<li><span class="item">Sound Effect</span><br>
+   Set the sound effect that will play when the trap is triggered. The sound effect should be entered using the name set in the [Sound Effects] tab under the "Main" section. If no sound effect is desired, leave it blank.
+<li><span class="item">Effect</span><br>
+   Set the spell effects that will occur when the trap is triggered. Unlike using spells or items, there is no caster (user) in this case, so if the formula references the caster’s data, it will be replaced by the target’s data.
+	<ul>
+	<li><span class="item">Conditional Branch</span><br>
+	You can assign different effects based on the target’s gender or personality. Each gender and personality can be switched using radio buttons.
+	<li><span class="item">Activation Type</span><br>
+	Normally, select the activation type from the "Normal" or "Random" options. In normal mode, a single effect is triggered. In random mode, one effect is chosen randomly from several possible effects.
+	<li><span class="item">Number of Spell Effects</span><br>
+	When the activation type is "Random", select how many effects you want to set, from 2 to 10. Each effect can be switched using radio buttons.
+	<li><span class="item">Spell Effect</span><br>
+	Choose one spell effect set from the "Spell Effects" tab.<br>
+   The formula for the selected spell effect can reference the trap difficulty using `trap.lv`. Here, the trap's difficulty refers to the trap level set for the currently appearing treasure chest, which can either be set for each monster, through an item drop table, or for each dungeon floor.
+	</ul>
+</ul>
+
+</body>
+</html>

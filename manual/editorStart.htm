@@ -1,0 +1,774 @@
+<html> <head> <title>JavardryEditor</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta http-equiv="content-style-type" content="text/css"> <link rel=stylesheet type="text/css" href="main.css"> <link rel="icon" href="img/favicon_javardry.ico"> </head> <body class="bodyMargin"> <div class="topLink"><a href="../manual.htm" target="_top">top page</a></div> <h3 class="title1">Running JavardryEditor</h3> <div align="center"> <a href="img/editor.png"><img src="img/editor.png" width="600" height="578"></a>
+</div>
+
+<h4><a name="install">Install</a></h4>
+<p class="text">
+JavardryEditor does not tamper with the registry, etc. So just put it in a directory and run it, then delete it when you no longer need it.
+
+<h4><a name="boot">Boot</a></h4>
+<p class= "text">
+The program itself (class file) is JavadryEditor.jar. Please start it using one of the following methods. You can change the jar file name (do not change the extension). ).
+<ul class="text">
+<li><span class="item">Starting from the executable file (exe)</span><br>
+If you are using a Windows environment, start from JavardryEditor.exe. is possible. You can change the file names of JavardryEditor.exe and JavardryEditor.ini, but make sure to keep the names the same except for the extension (WizmodokiEditor.exe, WizmodokiEditor.ini, etc.). Also, change the file name of JavardryEditor.jar to If you have made any changes, please also modify the description in JavardryEditor.ini. <br>
+encryptGraphic.exe and encryptSound.exe are executable files with arguments set to encrypt images and music, respectively. For details on encrypting the jar file, see the -encryptGraphic and -encryptSound arguments.
+<li><span class="item">jar Launch from</span><br>
+If the jar is associated with Java, you can launch it by double-clicking JavardryEditor.jar.
+<li><span class="item">Starting from a console (command prompt, terminal)</span><br>
+You can start it by executing the following command in a console (command prompt, terminal). Yes.
+<ul>
+<li>java -jar JavardryEditor.jar
+</ul>
+If the directory where the jar file exists is not the current directory, you can use "java -jar hoge/JavardryEditor.jar" to access the jar file. Please specify the path.
+
+<li><span class="item">Encrypt Image</span><br>
+
+Launch encryptGraphic.exe or run it from the console (command prompt, terminal) with the arguments [-encryptGraphic ] to start the program and encrypt the image. For details, see the arguments below.
+
+</ul>
+</p>
+
+<h4><a name="argument">Arguments</a> </h4>
+<p class="text">
+You can specify whether or not to check data by using arguments at run time. <br>
+If you start with JavardryEditor.exe, the arguments are written in JavardryEditor.ini. Specify by: In that case, write "-jar JavardryEditor.jar -errorText -noCheck 1" etc.
+<ul class="text">
+<li><span class="item">-encoding [UTF8, SJIS, EUC_JP, etc.] </span><br>
+Specify the character code for text files handled by JavardryEditor. Character codes are specified as strings such as UTF8 for UTF-8, SJIS for Shift_JIS, and EUC_JP for EUC-JP. For more information, see "<a href="https://docs.oracle.com/javase/jp/1.5.0/guide/intl/encoding.doc.html" target="_top">Supported Encodings</a> a>". The default is "-encoding UTF8".
+<li><span class="item">-errorText</span><br>
+If you add this argument, the error message will be will be output to text files (error.txt, error.log). The output directory can be specified using the following argument.
+<li><span class="item">-noCheck [0, 1, 2]</span><br>
+Specifies whether or not to check the data when loading edited data. If 0 is specified, the data will always be checked. If you specify 1, a data check will be performed if the version of JavardryEditor and the version of the editing data are different, and if the versions are the same, no data check will be performed. If you specify 2, If this is set, data check will not be performed regardless of the version. The default value is "-noCheck 0". <br>
+Data check will be performed when the format has changed due to a version upgrade or when edited data has been changed outside JavardryEditor. If the loading process is too heavy, turning off the data check may improve things a little, but if you are editing externally, Please be aware that it may not be possible to load the file or the data may be corrupted after loading. I don't think this is likely to happen, though. -config [path]</span><br>
+Specifies the location (directory) of the configuration files (defaultMessage.txt, fontSize.txt). You can specify either an absolute path (C:\hoge\fuga, /home/hoge/fuga, etc.) or a relative path (hoge\data, hoge/fuga, etc.). The directory specified at startup does not exist or is not specified. In this case, the default value will be used. The default value is "-config data".
+
+<li><span class="item">-defaultMessageFile [file]</span><br>
+
+Display character data (defaultMessage.txt, etc. ) file name without extension. If not specified, the default value "defaultMessage" will be used. The location (directory) is specified with -config above.
+<li><span class=" -save [path]</span><br>
+Specify the base save location for edited data (txt file). The method of specification is the same as for -config. If not specified or the directory specified at startup does not exist, If you do not, the default value will be used. The default value is "-save .". <li><span class="item">-gameData [path]</span><br>
+Specify the location where the game data (gameData.dat) is saved. The method of specification is the same as for -config. Not specified, Or if the specified directory does not exist at startup, the default value will be used. The default value is "-gameData data".
+<li><span class="item">-error [path]</span><br >
+Specifies the location where the error description files (error.txt, error.log) are saved. The method of specification is the same as for -config. If not specified or the specified directory does not exist at startup, the default value will be used. The default is "-error data".
+
+<li><span class="item">-encryptGraphic [path]</span><br>
+
+When you start the program with this argument, it will be executed in the specified directory (if path is omitted, will encrypt image files (BMP, GIF, JPEG, PNG) in the graphic directory and output them to the same directory. The extension of the encrypted image files will be dat, so they can be used with files of different image formats. If a file with the same name exists, it will be overwritten. Encrypted image files can be handled in Javardry in the same way as normal image files. <br>
+Encryption only does not start the JavardryEditor itself (the editing screen is not displayed).
+< li><span class="item">-encryptSound [path]</span><br>
+When you start the program with this argument, it will extract music files (MIDI, The music files (MP3, WAVE) will be encrypted and output to the same directory. The extension of the encrypted music files will be midDat, mp3Dat, wavDat, and if a file with the same name exists, it will be overwritten. The files can be handled in Javardry in the same way as normal music and sound effect files. <br>
+The files are only encrypted, and the JavardryEditor itself will not start (the editing screen will not be displayed).
+< /ul>
+</p>
+
+<h4><a name="windowSize">Window size</a></h4>
+<p class="text">
+The window size has become a little larger since Ver.0.362. It is. If your environment has a low resolution and the window does not fit on the screen, try reducing the font size by changing the font and text size below. The size is adjusted to some extent depending on the font used. It depends on the font used, but if the font size is around 8 to 16, the display should not be significantly distorted. The standard size is 12. So if the window is too big, try changing the size to 8 or 10.
+
+</p>
+
+<h4><a name="font">Changing font and text size</a></h4 >
+<p class="text">
+
+Depending on the execution environment, fonts may differ.The display may be misaligned. Basically, it is adapted to the Windows environment, so in other cases, please specify the font in fontSize.txt in the data directory. It will not be reflected during startup, so if you rewrite fontSize.txt, please restart JavardryEditor. <br>
+The font must be a monospaced (fixed-width) font or the display will be distorted. Specify the logical font name (monospaced) or the physical font name (MS Gothic, MS Mincho, IPAGothic, IPAMincho, VL Gothic, etc.). In Linux, it seems that font specification may not work properly due to a problem with the Java settings. As a temporary measure, it is possible to directly specify a TrueType font (file with the extension ttf) in the same directory as fontSize.txt. In that case, specify the file name, such as Font = "ipag.ttf". <br>
+If you are concerned about the misalignment of the character size, try specifying an appropriate size (but a multiple of 2). <br>
+The default settings are as follows.
+
+</p>
+<p class="text" style="margin-left:10pt">
+Font = "monospaced"<br>
+FontSize:12<br>
+</p>
+<p class="text">
+Set the character code in fontSize.txt to UTF-8. If you want to use a code other than UTF-8, specify the character code in the startup arguments.
+
+</p>
+
+<h4><a name="text">Displayed characters (text)</a></h4>
+<p class="text">
+Most of the characters (text) displayed are written in English (like) in the built-in data, but if there is a defaultMessage.txt in the data directory, it will be read and the display will be changed according to its contents. If you have not made any changes, Japanese will be displayed from the beginning, but this is because a defaultMessage.txt for Japanese display is placed there. Changes to defaultMessage.txt are not reflected during startup, so if you rewrite defaultMessage.txt, restart JavardryEditor. Note that defaultMessage_eng.txt contains the same data as the built-in English (style) display. If you want to use it, replace it with defaultMessage.txt. Simply deleting defaultMessage.txt will result in the built-in English (style) display, but it is only an English-like display, so if you really want an English version, I think it's best to modify defaultMessage_eng.txt to your liking and replace it with defaultMessage.txt. <br>
+I won't go into detail about each setting item because it's too much work, but you should be able to get the gist of it by looking at the original data. <br>
+Set the character code for defaultMessage.txt to UTF-8. If you want to use something other than UTF-8, specify the character code in the startup arguments. <br>
+<br>
+There are some special items, which I'll explain below. <ul class="text">
+<li>_MAP_RULE_COLOR allows you to specify the color of the map's borders. Specify the RGB value in hexadecimal. The default is "228B22". If walls and other objects are difficult to see, a darker color such as "006400" may make them easier to see.
+</ul>
+</p>
+<h4><a name="file">File (loading and saving data, generating game data, converting save data)</a></h4>
+<p class="text">
+<ul class="text">
+<li><span class="item">New</span><br>
+Initialize the entered content and create new data (return to the state immediately after launch).
+<li><span class="item">Open</span><br>
+Loads scenario editing data (text data with the extension txt).
+<li><span class="item">Save over</span><br>
+Overwrites and saves the currently edited scenario editing data. If no edit data is specified, the following "Save As" will be used.
+<li><span class="item">Save As</span><br>
+Save the currently edited content as scenario edit data with a new name.
+<li><span class="item">Generate Game Data</span><br>
+Output the currently edited content as game data. Game data is output to a file named gameData.dat in the data directory. Please note that if a file with the same name exists, it will be overwritten. This file is the game (scenario) data that can be loaded by Javardry itself, and is used by putting it in the Javardry data directory. Game data cannot be loaded by the editor, so please leave the original edit data.
+<li><span class="item">Generate HTML5 version game data</span><br>
+Output the currently edited content as game data for the HTML5 version. Game data is output to a file named gameDataHTML5.js in the data directory. Please note that if a file with the same name exists, it will be overwritten. This file is the game (scenario) data that can be loaded by JavardryHTML5 version, and should be placed in the data directory of JavardryHTML5 version to be used. Game data cannot be loaded by the editor, so please keep the original edited data.
+<li><span class="item">Save Data Conversion (Java version -> HTML5 version)</span><br>
+Converts the save data (play data) of Javardry main body (Java version) to save data (backup data) of HTML5 version. Since the save data of HTML5 version does not include the automapping display flag, the automapping display setting of Java version will be ignored in the converted save data of HTML5 version. <br>
+The converted save data will be saved in the execution directory of JavardryEditor with the name SaveData_HTML5_conversion date and time.dat. Please load the saved save data from Recovery in Options of HTML5 version.
+<li><span class="item">Save data conversion (HTML5 version -> Java version)</span><br>
+Converts Javardry HTML5 version save data (backup data) to Java version save data (play data). Since HTML5 version save data does not include the automapping display flag, the automapping display is forcibly set to "on" in the converted Java version save data. <br>
+The converted save data will be saved in the JavardryEditor execution directory under the name SaveData_Java_conversion date and time.dat. Please place the saved save data in the Java version data directory (replace save.dat) while the Java version is not running.
+</ul>
+</p>
+
+<h4><a name="list">Edit List</a></h4>
+<div align="center">
+<a href="img/list.png"><img src="img/list.png" width="600" height="127"></a>
+</div>
+<p class="text">
+In the editor, you will be editing several lists. In the example above, the part on the left where the job names are lined up is the list. Click on the list item you want to edit (the part "0: Warrior" in a different color above) to display the contents of that list. In this example, the displayed items are the job name, abbreviation, appearance conditions, and gender, personality, and characteristic value conditions, but the displayed items vary depending on the list. List operations are performed using the following operation buttons.
+</p>
+<ul class="text">
+<li><span class="item">add</span><br>
+Adds the current input content below the selected item in the list. If required input fields such as name are blank, you may not be able to add it. Unless you update the list with add or rewrite, the current display content will not be reflected in the saved data when you save.
+<li><span class="item">rewrite</span><br>
+Overwrites the current input content to the selected list item. If the list itself is empty or no list item is selected, it will behave the same as add. Also, if required input fields such as name are blank, overwriting may not be possible. Unless you update the list with add or rewrite, the current display content will not be reflected in the saved data.
+<li><span class="item">delete</span><br>
+Deletes the selected list item.
+<li><span class="item">clear</span><br>
+Returns the corresponding input field to its initial value. Unless you then overwrite it, it will not be reflected in the saved data when you save.
+<li><span class="item">top, bottom</span><br>
+Moves the selected list item to the top if you select top, or to the end if you select bottom.
+<li><span class="item">U, D</span><br>
+U moves the selected list item up one position, D moves it down one position.
+<li><span class="item">10U, 10D</span><br>
+10U moves the selected list item up 10 positions, 10D moves it down 10 positions.
+<li><span class="item">view</span><br>
+Redisplays the contents of the selected list item.
+</ul>
+<p class="text">
+When items are rearranged in lists of characteristics, races, jobs, items, etc., by adding, deleting, top, bottom, U, D, 10U, 10D, etc., the combo box and reference value corresponding to the item are also changed accordingly.
+</p>
+
+<h4><a name="flag">Flags</a></h4>
+<p class="text">
+
+You can manage the game progress, etc. with flags from 0 to 9999. Flags can be referenced with Flag[] in conditional expressions such as event execution conditions. For information on how to change flags, see <a href="editorStart.htm#flagControl" target="_self">Flag Operations</a> below. <br>
+In addition to normal flags, there are special flags as shown below. They can be referenced with FlagS[] and operated as shown below with <a href="editorStart.htm#Please see Flag Control.
+
+<ul class="text">
+<li><span class="item">Special Flag: 0</span><br>
+This flag reverses the setting of whether adventurers with different personalities can form a party at the bar. If they cannot form a party by default, and FlagS[0] becomes true during an event during the adventure, adventurers with different personalities will be able to form a party at the bar. If FlagS[0] is false, they will not be able to form a party as per the default settings. If they can form a party by default, the opposite will apply.
+<li><span class="item">Special Flag: 1</span><br>
+This is a special flag used when [Main] "Auto Map Display with M Key" is set to anything other than "None" and "Flag" is checked. If FlagS[1] is false, the map will not be displayed even if you press the M key, and if FlagS[1] becomes true during an event during the adventure, the map can be displayed with the M key.
+</ul>
+
+<h4><a name="wallFlag">Wall existence flag, map traversal flag, hidden door flag, locked door flag</a></h4>
+<p class="text">
+The wall existence flag is a flag that switches between enabling and disabling (yes/no) walls and doors. This flag corresponds to the walls and doors numbered 0 to 511 for each floor, and is enabled when true and disabled when false. The initial value is true. <br>
+The map traversal flag is a flag to determine the coordinates that have been visited. If not reached, it is false, and if traversed (mapped), it is true. The initial value is false, but depending on the settings in the pre-mapping edit, the initial value may be true. <br>
+The hidden door flag is a flag that indicates whether hidden door 2 (a hidden door of the side story type) has been discovered. This flag corresponds to the hidden doors numbered 0 to 511 for each floor, and is discovered when true and undiscovered when false. The initial value is false. <br>
+The locked door flag indicates whether the locked door is unlocked. This flag corresponds to a locked door with a serial number from 0 to 511 for each floor. When this flag is true, the door is unlocked, and when this flag is false, the door is locked. The initial value is false. <br>
+See the <a href="editorStart.htm#flagControl" target="_self">Flag operation</a> below for how to change the flag.
+</p>
+<h4><a name="flagControl">Flag operation</a></h4>
+<p class="text">
+Flag operation can be performed during castle events, dungeon events, when entering a dungeon (floor), when defeating a monster guarding the main chamber, when items are collected from the shop, and by spell effects. The format is to separate the flag, special flag, wall existence flag, map traversal flag, hidden door flag, and locked door flag numbers and values ​​with a comma, and to specify multiple flags, separate them with <>. <br>
+For the flag number, you can write the number directly, or write f[ ] for flags, s[ ] for special flags, w[ ][ ][ ] for wall existence flags, m[ ][ ][ ][ ] for map traversal flags, h[ ][ ][ ] for hidden door flags, and l[ ][ ][ ] for locked door flags. <br>
+For wall existence flags, the first value is 0-9 for the dungeon number, the second is 0-15 for the dungeon floor (0 is the lowest floor), and the third is 0-511 for the wall/door serial number. <br>
+For the map exploration flag, the first value is 0-9 and specifies the dungeon number, the second value is 0-15 and specifies the dungeon floor (0 is the lowest floor), and the third and fourth values ​​are 0-19 and specify the coordinates (x, y). <br>
+For the hidden door flag, the first value is 0-9 and specifies the dungeon number, the second value is 0-15 and specifies the dungeon floor (0 is the lowest floor), and the third value is 0-511 and specifies the serial number of the hidden door. <br>
+For the locked door flag, the first value is 0-9 and specifies the dungeon number, the second value is 0-15 and specifies the dungeon floor (0 is the lowest floor), and the third value is 0-511 and specifies the serial number of the locked door. <br>
+These values ​​can be specified in range using hyphens. <br>
+For the flag value, 0 is false, 1 is true, and 2 is inverted. <br>
+The following is an example. <br>
+<br>
+158,0<>0-9,1<>f[10],2<>s[0-1],1<>w[2][0][1],0<>m[0-9][0-15][0-19][0-19],0<br>
+<br>
+Set flag 158 to false. <br>
+Set flags 0 to 9 to true. <br>
+Invert flag 10. <br>
+Set special flags 0 to 1 to true. <br>
+Set wall presence flag number 1 on floor 0 of dungeon 2 to false. <br>
+Set map completion flags for x coordinates 0 to 19 and y coordinates 0 to 19 on floors 0 to 15 of dungeons 0 to 9 to false. In short, set the all map exploration flag to false.
+
+</p>
+
+<h4><a name="graphic">How to display images during events, etc.</a></h4>
+
+<p class="text">
+You can display images when displaying certain text (castle events, when items are collected, messages in dungeons, messages for spell-sealing traps, the first text of dungeon events, the main text of dungeon events, and the message board of dungeon events). To display an image, use either <br>
+
+&lt;img src="image file"&gt;<br>
+
+&lt;img src="image file" width="image width (width when the original height is 100)"&gt;<br>
+Specify the image you want to display with either of the following. Images are specified with the Javardry graphic directory as the root, omitting the extension. For example, if you want to display the image test.jpg in the graphic directory, use <img src="test">, and if you want to display event01.jpg in the graphic/event/001 directory, use <img src="event/001/event01">. For information on image formats, etc., see the image explanation in <a href="start.htm#graphic" target="_self">Running Javardry</a>. <br>
+The image size is based on the Javardry window size of 300*300, and if width is not specified, it will be 100*100. The height is fixed at 100, but the width can be specified up to 200. The image will be resized when displayed as the window size changes, but the image you prepare should usually be 100*100, and high quality 200*200 as a guideline. Of course, it's a hassle to prepare two, so it's fine to just prepare one image of 400*200. I'm just afraid that it will become heavy. (※ Specify the width value when the height of the original size is 100. If the height and width are the same, there is no need to specify it, but for example, if you want to display an image of 200*100 or 400*200, set the width to 200, if it is 100*200 or 200*400, set the width to 50, and if it is 300*200 or 600*400, set the width to 150.)<br>
+Images are displayed within the message display frame. To avoid overlapping text, 10 lines will be left blank when an image is displayed. Since one page can contain up to 12 lines, only 2 lines of text can be displayed together with an image. That said, images can be displayed on a page-by-page basis, so you should only display them when necessary. <br>
+To be honest, I think it's hard to understand even for myself, so I've included an example below.
+<table align="center" style="margin-top:10pt">
+<tr>
+<td valign="top">
+<table>
+<tr>
+<td class="text" style="border:1px solid white; border-collapse: collapse; padding:5pt">
+&lt;img src="boxClose"&gt;<br>
+There is a treasure chest in front of you. <br>
+&lt;p&gt;<br>
+"Now, open it. It's not like I'm giving you treasure or anything but it's actually a mimic, you know!"<br>
+You opened the treasure chest while thinking how annoying it was. <br>
+&lt;p&gt;<br>
+&lt;img src="boxOpen"&gt;
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+<td valign="top">
+<img src="img/editorGraphic01.jpg" width="250" height="190"><br>
+<img src="img/editorGraphic02.jpg" width="250" height="190"><br>
+<img src="img/editorGraphic03.jpg" width="250" height="190">
+
+</td>
+
+</tr>
+
+</table>
+
+</p>
+
+<h4><a name="calculation">Calculation formula</a></h4>
+<p class="text">
+You can use calculation formulas for various judgment rates, etc. With some exceptions, the calculation results are corrected to integer type (-2147483648 to 2147483647). <br>
+Some reference values ​​have been written differently, but most of them can still be written in the old way. For example, the reference to the spell nullification rate has been changed from pc.spellCancel to pc.sc, but even if you write pc.spellCancel, it is internally replaced with pc.sc, so there should be no problem... I think.
+</p>
+<ul class="text">
+<li><span class="item">Available operators, etc.</span>
+<ul>
+<li><span class="item">+, -, *, /, % (e.g. a + b)</span><br>
+
+These are the four arithmetic operations. a % b is the remainder when a is divided by b.
+<li><span class="item">pow (e.g. a pow b)</span><br>
+
+This is a to the power of b.
+<li><span class="item">sqrt (e.g. sqrt a)</span><br>
+The square root of a.
+<li><span class="item">min, max (e.g. a min b)</span><br>
+
+min returns the smaller value by comparing a and b, and max returns the larger value.
+<li><span class="item">==, !=, &lt;=, &lt;, &gt;=, &gt; (e.g. a == b)</span><br>
+Comparison operators. <br>
+== returns 1 (true) if a and b are equal, and 0 (false) if they are not equal. <br>
+!= returns 1 (true) if a and b are not equal, and 0 (false) if they are equal. <br>
+&lt;= returns 1 (true) if a is less than or equal to b, and 0 (false) otherwise. <br>
+&lt; returns 1 (true) if a is less than b, and 0 (false) otherwise. <br>
+&gt;= returns 1 (true) if a is greater than or equal to b, and 0 (false) otherwise. <br>
+&gt; returns 1 (true) if a is greater than b, and 0 (false) otherwise.
+<li><span class="item">D (e.g. a D b)</span><br>
+The total value (dice roll) of a b-sided dice. a and b are rounded down to 0 if a is less than 1, and 1 if b is less than 1.
+<li><span class="item">floor, ceil, round, abs (e.g. floor a)</span><br>
+floor is the value of a rounded down, ceil is the value rounded up, and round is the rounded value. abs returns the absolute value of a.
+<li><span class="item">||, && (e.g. a || b)</span><br>
+Logical operations. || returns the result of logical sum, and && returns the result of logical product. If a or b is 0, it is considered to be 0 (false), and anything other than 0 is considered to be 1 (true).
+</ul>
+<li><span class="item">Calculation Priority</span><br>
+The above operators are calculated according to the following priority. Adjust by enclosing in parentheses as necessary. ... This may be difficult to understand, but multiplication takes precedence over addition, so for example, you would write it as (a + b) * c. That's all there is to it. <br>
+(floor, ceil, round, abs) <b>&gt;</b> D <b>&gt;</b> (min, max, ==, !=, &lt;=, &lt;, &gt;=, &gt;) <b>&gt;</b> sqrt <b>&gt;</b> pow <b>&gt;</b> (*, /, %, &&) <b>&gt;</b> (+, -, ||)
+<li><span class="item">Values ​​that can be used in calculations</span><br>
+The following values ​​(reference values) can be used in calculation formulas. Usually, numbers and logical values ​​can be used, and other values ​​will be listed when they can be used.
+<ul>
+<li><span class="item">Numbers</span><br>
+Integers and decimals can be used. The range is... well, whatever you like.
+<li><span class="item">Logical Value</span><br>
+Logical values ​​of true and false are replaced with 1 and 0, respectively.
+<li><span class="item">pc.??</span><br>
+References the adventurer's data.
+<ul>
+<li><span class="item">lv, hp, hpMax, hpMax0</span><br>
+Level, HP, Max HP. Valid range is 0-99999. <br>
+hpMax0 is the base maximum HP, and hpMax is hpMax0 plus the modifier from spell effects.
+<li><span class="item">mp[ ][ ], mpMax[ ][ ]</span><br>
+MP, Max MP. Specify the spell type with a value between 0 and 3, and the spell level with a number between 0 and 9. Valid range is 0-99. <br>
+For example, if there are two types of spells, Mag and Pri, mp[0][0] refers to the 1st level MP of Mag, and mp[1][3] refers to the 4th level MP of Pri.
+<li><span class="item">ac, ac0, ac1</span><br>
+
+AC. Valid range is -99 to 999. <br>
+
+ac0 is the base state (depending on race and class), ac1 is ac0 plus item modifiers, and ac is ac1 plus spell effect modifiers.
+<li><span class="item">spellCancel (sc), sc0, sc1</span><br>
+
+Spell cancellation rate. Valid range is 0 to 999. <br>
+
+sc0 is the base state (depending on race), sc1 is sc0 plus item modifiers, and sc is sc1 plus spell effect modifiers.
+<li><span class="item">abi[ ], abi0[ ], abi1[ ]</span><br>
+Characteristic values. Specify each characteristic value with a number between 0 and maximum characteristic value - 1. The valid range is 1 to 999. <br>
+abi0[ ] is the base value, abi1[ ] is abi0[ ] plus item modifiers, and abi[ ] is abi1[ ] plus spell modifiers.
+<li><span class="item">hit, hit0, hit1</span><br>
+Attack hit value. The valid range is -999 to 999. <br>
+hit0 is the base value (hit modifiers from characteristic values, etc. and from occupation), hit1 is hit0 plus item modifiers, and hit is hit1 plus spell modifiers.
+<li><span class="item">at, at0</span><br>
+The number of attacks. The valid range is 1 to 99. <br>
+at0 is the base value (the greater of the number of attacks due to the job and the number of attacks due to equipment), and at is the value obtained by adding the spell effect modifier to at0.
+<li><span class="item">thiefLv, age, lifetime, gold, exp, rip, marks</span><br>
+The thief skill level, age, lifespan, money, experience points, number of deaths, and number of kills. The valid range for thief skill level is -99 to 99, for age and lifespan is 1 to 999, for number of deaths is 0 to 999, and for money, experience points, and number of kills is 0 to 999999999999. However, please note that when using money, experience points, and number of kills, the calculation results are converted to integers with some exceptions.
+<li><span class="item">rank</span><br>
+The adventurer's position. If they are in the front row, it is 1, if they are in the back row, it is 2. If they are not in a party, it is 1.
+<li><span class="item">gm[ ]</span><br>
+This is a general modifier based on the occupation. Specify each value from 0 to 9.
+<li><span class="item">Sex[ ], Ali[ ], Race[ ], Class[ ]</span><br>
+This is a somewhat special data reference, and if the adventurer has the specified gender, personality, race, or occupation, it is set to 1, otherwise it is set to 0. Gender is set to 0 to 3 for male, female, both sexes, or asexual; personality is set to 0 to 2 for good, neutral, or evil; and race and occupation are set to 0 to the maximum number of races (occupations) - 1 to specify a specific race (occupation). <br>
+For example, when referencing the data of a neutral adventurer, pc.Ali[0] will be 0, pc.Ali[1] will be 1, and pc.Ali[2] will be 0.
+<li><span class="item">Item[ ]</span><br>
+If the adventurer has the specified item (specified by a number between 0 and the maximum number of items in the scenario - 1), the value will be 1, otherwise the value will be 0.
+<li><span class="item">haveItemNum[ ][ ]</span><br>
+This is the number of the specified item possessed by the adventurer. Use the first [ ] to specify the item, and the second [ ] to specify the equipment status, etc. <br>
+Items are specified by a number between 0 and the maximum number of items in the scenario - 1. <br>
+For equipment status, if it is 0, only unequipped items are counted, if it is 1, equipped items as well as unequipped items are counted, if it is 2, all specified items including cursed items are counted, if it is 3, equipped items only are counted, if it is 4, cursed items only are counted, if it is 5, equipped items and cursed items are counted. For example, if you have three "Evil Sabers" (item number 33) and one is equipped, pc.haveItemNum[33][0] will be 2, pc.haveItemNum[33][1] will be 3, pc.haveItemNum[33][2] will be 3, pc.haveItemNum[33][3] will be 1, pc.haveItemNum[33][4] will be 0, and pc.haveItemNum[33][5] will be 1. <li><span class="item">itemCommentNum[ ][ ]</span><br>
+The number of items the adventurer has that contain the specified string in their description. The first [ ] specifies the string, and the second [ ] specifies the equipment status, etc. I think it might be possible to use it to determine unique types of equipment, set equipment bonuses, or something like that. <br>
+When specifying {, }, [, ], (, ), \, in the string, please add the escape character "\". For example, to specify the string [○○ equipment], please use itemCommentNum[\[○○ equipment\]][ ]. <span class="boldWord">Due to the specifications, if you specify a reference value in the string, the internal reference value may be referenced before the reference value, so please avoid specifying a reference value. </span>Note that the specified string and description are checked after converting full-width alphanumeric characters to half-width alphanumeric characters. <br>
+Equipment status, etc. are the same as haveItemNum[ ][ ] above.
+<li><span class="item">raceCommentNum[ ]</span><br>
+If the adventurer's race description contains the specified string, the result is 1, otherwise the result is 0. <br>
+String specification is the same as itemCommentNum[ ][ ] above.
+<li><span class="item">classCommentNum[ ]</span><br>
+If the adventurer's job description contains the specified string, the result is 1, otherwise the result is 0. <br>
+String specification is the same as itemCommentNum[ ][ ] above.
+<li><span class="item">Title[ ]</span><br>
+If the adventurer has the specified title (if it matches), the result is 1, otherwise the result is 0. <br>
+To specify a title, enter the string as is, such as pc.Title[@1].
+<li><span class="item">TitleIn[ ]</span><br>
+If the titles held by the adventurer include the specified title, the value is 1, otherwise the value is 0. For example, the title "@1 #2"If the adventurer has a title, whether the specified title is "@1" or "#2", the result will be 1 since both are included. <br>
+To specify a title, enter the string directly, such as pc.Title[@1].
+<li><span class="item">Double[ ], Defense[ ]</span><br>
+If the adventurer has a double hit or defense effect against the specified monster type, the result will be 1, otherwise the result will be 0. The type is specified with a number from 0 to 14.
+<ol start="0">
+<li>Warrior
+<li>Mage
+<li>Priest
+<li>Thief
+<li>Dwarf
+<li>Giant
+<li>Mythical
+<li>Dragon
+<li>Animal
+<li>Beastman
+<li>Immortal
+<li>Demon
+<li>Insect
+<li>Magical Creature
+<li>Mysterious Creature
+</ol>
+<li><span class="item">Resist[ ], Resist0[ ], Resist1[ ]</span><br>
+If the adventurer has the specified resistance ability, it will be 1, otherwise it will be 0. <br>
+Resist0[ ] is the base state (depending on the race), Resist1[ ] is Resist0[ ] plus item modifiers, and Resist[ ] is Resist1[ ] plus spell modifiers.
+<ol start="0">
+<li>Silence
+<li>Sleep
+<li>Poison
+<li>Paralysis
+<li>Petrification
+<li>Absorb
+<li>Knockout
+<li>Critical
+<li>Instant Death Spell
+<li value="10">Fire
+<li>Cold
+<li>Electric
+<li>Holy
+<li>No Attribute
+</ol>
+<li><span class="item">BreathBarrier, breathBarrierNum</span><br>
+BreathBarrier is 1 if the adventurer has a breath barrier, 0 otherwise. breathBarrierNum is the number of breath barriers the adventurer has.
+<li><span class="item">MasteredSpell[ ][ ][ ]</span><br>
+If the adventurer has learned at least one spell in the specified range, it is 1, otherwise it is 0. The range is specified by the first 0-3 for the school, the second 0-9 for the spell level, and the third 0-5 for the spell. If omitted, it will be all schools (all spell levels, all spells). <br>
+For example, MasteredSpell[0][1][2] will specify whether or not the third spell of the first school of spell level 2 has been learned, MasteredSpell[1][4] will specify all spells of the second school of spell level 5, MasteredSpell[3] will specify all spells of all levels of the fourth school, and MasteredSpell will specify all spells of all schools of all spell levels.
+<li><span class="item">State[ ]</span><br>
+If the adventurer is in the specified state, it will be set to 1, otherwise it will be set to 0.
+<ol start="0">
+<li>Normal
+<li>Panic
+<li>Paralysis
+<li>Petrification
+<li>Death
+<li>Ash
+<li>Annihilation
+<li>Silence
+<li>Sleep
+<li>Faint
+<li>Restraint
+<li>Seal
+<li>Poison
+<li>Hide
+</ol>
+<li><span class="item">AttackAdd[ ]</span><br>
+If the adventurer has the specified attack effect, this is set to 1, otherwise it is set to 0.
+<ol start="0">
+<li>Sleep
+<li>Paralysis
+<li>Petrification
+<li>Knockout
+<li>Critical
+<li>Poison
+</ol>
+<li><span class="item">groupMemberNum</span><br>
+Returns the number of people in the adventurer's party.
+<li><span class="item">groupActionableMemberNum</span><br>
+Returns the number of adventurers in the adventurer's own party who can take action.
+<li><span class="item">groupMember</span><br>
+Returns the number of the adventurer from the head of the party (head is 0). Returns 0 if the adventurer is not in a party.
+</ul>
+
+<li><span class="item">pt.??</span><br>
+References the data of adventurers in the party who can take action. If the formula is used when a party is formed, it can be used even if it is not marked as usable.
+<ul>
+<li><span class="item">lv, maxLv, minLv</span><br>
+Average, maximum, and minimum levels.
+<li><span class="item">hp, maxHp, minHp, hpMax, maxHpMax, minHpMax, hpMax0, maxHpMax0, minHpMax0</span><br>
+Average, maximum, and minimum HP, and average, maximum, and minimum maximum HP. <br>
+hpMax0 is the base maximum HP, and hpMax is hpMax0 plus any spell effect modifiers.
+<li><span class="item">ac, maxAc, minAc, ac0, maxAc0, minAc0, ac1, maxAc1, minAc1</span><br>
+Average, maximum, and minimum AC. <br>
+ac0 is the base value (based on race and class), ac1 is ac0 plus any item modifiers, and ac is ac1 plus any spell effect modifiers.
+<li><span class="item">spellCancel, maxSpellCancel, minSpellCancel (sc, maxSc, minSc), sc0, maxSc0, minSc0, sc1, maxSc1, minSc1</span><br>
+These are the average, maximum, and minimum spell nullification rates. <br>
+Sc0 is the base value (based on race), sc1 is sc0 plus item modifiers, and sc is sc1 plus spell effect modifiers.
+<li><span class="item">abi[ ], maxAbi[ ], minAbi[ ], abi0[ ], maxAbi0[ ], minAbi0[ ], abi1[ ], maxAbi1[ ], minAbi1[ ]</span><br>
+These are the average, maximum, and minimum characteristic values. Specify each characteristic value with a number between 0 and maximum characteristic value - 1. <br>
+abi0[ ] is the original value, abi1[ ] is abi0[ ] plus item modifiers, and abi[ ] is abi1[ ] plus spell modifiers.
+<li><span class="item">age, maxAge, minAge, rip, maxRip, minRip</span><br>
+Average, maximum, and minimum values ​​for age and number of deaths.
+<li><span class="item">exp, maxExp, minExp, gold, maxGold, minGold, marks, maxMarks, minMarks</span><br>
+Average, maximum, and minimum values ​​for experience points, money, and number of kills. However, when using these, please note that with some exceptions, the calculation results will be converted to integers.
+<li><span class="item">gm[ ], maxGm[ ], minGm[ ]</span><br>
+Average, maximum, and minimum values ​​for general modifiers by occupation. Specify each value from 0 to 9.
+<li><span class="item">Sex[ ], Ali[ ], Race[ ], Class[ ]</span><br>
+Similar to PC, this is a slightly special data reference, and if there is an adventurer of the specified gender, personality, race, or occupation in the party, it will be set to 1, otherwise it will be set to 0. Gender is set to 0 to 3 for male, female, both sexes, or asexual; personality is set to 0 to 2 for good, neutral, or evil; race and occupation are set to a specific race (occupation) with a number between 0 and the maximum number of races (occupations) - 1.
+<li><span class="item">memberNum, MemberNum[ ]</span><br>
+memberNum is the number of active adventurers in the party, and is a number between 1 and 6. <br>
+MemberNum[ ] is set to 1 if it matches the number of active adventurers in the party, and is set to 0 if not. For example, if you specify pt.MemberNum[3], the number will be 1 if there are three active adventurers, and 0 otherwise.
+<li><span class="item">haveItemNum[ ][ ]</span><br>
+The number of the specified item possessed by the party (all members). The first [ ] specifies the item, and the second [ ] specifies the equipment status, etc. <br>
+Items are specified with a number between 0 and the maximum number of items in the scenario - 1. <br>
+For equipment status, etc., 0 counts only unequipped items, 1 counts equipped items in addition to unequipped items, 2 counts all specified items including cursed items, 3 counts only equipped items, 4 counts only cursed items, and 5 counts equipped items and cursed items. For example, if a party has three "Evil Sabers" with item number 33, one just has it, one is equipped (not cursed), and one is cursed, then pt.haveItemNum[33][0] will be 1, pt.haveItemNum[33][1] will be 2, pt.haveItemNum[33][2] will be 3, pt.haveItemNum[33][3] will be 1, pt.haveItemNum[33][4] will be 1, and pt.haveItemNum[33][5] will be 2.
+<li><span class="item">itemCommentNum[ ][ ]</span><br>
+This is the number of items in the party (all members) that contain the specified string in their description. The first [ ] specifies the string, and the second [ ] specifies the equipment status, etc. <br>
+When specifying {, }, [, ], (, ), \, in a string, please use the escape character "\". For example, to specify the string [XX equipment], please use itemCommentNum[\[XX equipment\]][ ]. <span class="boldWord">Due to the specifications, when a reference value is specified in a string, the internal reference value may be referenced before the reference value.Please avoid specifying a reference value as there may be cases where the specified string and description are not displayed correctly.</span>Please note that the specified string and description are checked after converting full-width alphanumeric characters to half-width alphanumeric characters.<br>
+Equipment status, etc. are the same as haveItemNum[ ][ ] above.
+<li><span class="item">raceCommentNum[ ]</span><br>
+The number of adventurers in the party (all members) whose race description contains the specified string.<br>
+The string specification is the same as itemCommentNum[ ][ ] above.
+<li><span class="item">classCommentNum[ ]</span><br>
+The number of adventurers in the party (all members) whose job description contains the specified string.<br>
+The string specification is the same as itemCommentNum[ ][ ] above.
+<li><span class="item">Resist[ ], Resist0[ ], Resist1[ ]</span><br>
+If there is an active adventurer in the party with the specified resistance ability, the value is 1, otherwise the value is 0. <br>
+Resist0[ ] is the base state (based on race), Resist1[ ] is Resist0[ ] plus item modifiers, and Resist[ ] is Resist1[ ] plus modifiers from spell effects.
+<ol start="0">
+<li>Silence
+<li>Sleep
+<li>Poison
+<li>Paralysis
+<li>Petrification
+<li>Absorb
+<li>Knockout
+<li>Critical
+<li>Instant Death Spell
+<li value="10">Fire
+<li>Cold
+<li>Electricity
+<li>Holy
+<li>No Attribute
+</ol>
+<li><span class="item">BreathBarrier</span><br>
+If an active adventurer in the party has a breath barrier, this will be 1, otherwise it will be 0.
+<li><span class="item">MasteredSpell[ ][ ][ ]</span><br>
+If an active adventurer in the party has mastered at least one spell in the specified range, this will be 1, otherwise it will be 0. The first range is 0-3 to specify the type, the second is 0-9 to specify the spell level, and the third is 0-5 to specify the spell. If omitted, it will be all systems (all spell levels, all spells). <br>
+For example, MasteredSpell[0][1][2] will indicate whether the third spell of the first system of spell level 2 has been learned, MasteredSpell[1][4] will indicate all spells of the second system of spell level 5, MasteredSpell[3] will indicate all spells of all levels of the fourth system, and MasteredSpell will indicate all spells of all systems of all levels.
+<li><span class="item">direction, Direction[ ]</span><br>
+Direction returns the direction of the party in the dungeon. If it is facing north, it is 1, if it is facing east, if it is facing south, it is 3, if it is facing west, it is 4. <br>
+Direction[ ] will be 1 if it matches the direction of the party in the dungeon, and 0 if it is not. For example, if you specify pt.Direction[3], the result will be 1 if the party is in a dungeon facing south, and 0 otherwise.
+<li><span class="item">spaceNum</span><br>
+Returns the remaining number of people who can join the party (maximum number of people who can join the party - current number of party members). If the party is a maximum of 6 people, it will return 0 if there are currently 6 people, 1 if there are 5, and 3 if there are 3.
+<li><span class="item">State[ ], stateNum[ ]</span><br>
+State[ ] will return 1 if there is an adventurer in the party who is able to act in the specified state, and 0 if not. stateNum[ ] returns the number of adventurers in the party who are able to act in the specified state.
+<ol start="0">
+<li>Normal
+<li>Panic
+<li value="7">Silence
+<li value="10">Restrain
+<li>Seal
+<li>Poison
+<li>Hide
+</ol>
+<li><span class="item">AttackAdd[ ], attackAddNum[ ]</span><br>
+AttackAdd[ ] is 1 if there is an active adventurer with the specified attack effect in the party, otherwise it is 0. attackAddNum[ ] returns the number of active adventurers with the specified attack effect in the party.
+<ol start="0">
+<li>Sleep
+<li>Paralysis
+<li>Petrification
+<li>Knockout
+<li>Critical
+<li>Poison
+</ol>
+</ul>
+
+<li><span class="item">monster.??</span><br>
+References monster data.
+<ul>
+<li><span class="item">lv, hp, hpMax, hpMax0</span><br>
+Level, HP, Max HP. <br>
+hpMax0 is the base maximum HP, and hpMax is hpMax0 plus the modifier from spell effects.
+<li><span class="item">mp[ ][ ], mpMax[ ][ ]</span><br>
+MP, Max MP. Specify the spell type with a number between 0 and 4, and the spell level with a number between 0 and 9. <br>
+For example, if there are three spell types, Mag, Pri, and Mons (monsters only), mp[0][0] refers to the 1st level MP of Mag, mp[1][3] refers to the 4th level MP of Pri, and mp[2][5] refers to the 6th level MP of Mons.
+<li><span class="item">ac, ac0, ac1</span><br>
+AC. <br>
+ac0 and ac1 are the base values, and ac is ac0 plus any spell modifiers.
+<li><span class="item">spellCancel (sc), sc0, sc1</span><br>
+Spell Cancellation rate. <br>
+sc0 and sc1 are the base values, and sc is sc0 plus any spell modifiers.
+<li><span class="item"><a name="monsterAbi">abi[ ], abi0[ ], abi1[ ]</a></span><br>
+Characteristic values. Specify each characteristic value with a number between 0 and maximum characteristic value - 1. <br>
+abi0[ ] and abi1[ ] are the base values, and abi[ ] is abi0[ ] plus any spell modifiers.
+<li><span class="item">hit, hit0, hit1</span><br>
+The hit value of the attack. <br>
+Hit0 and hit1 are the base value (hit modifiers from attributes and monster hit modifiers), and hit is hit0 plus modifiers from spell effects.
+<li><span class="item">at, at0</span><br>
+The number of attacks. The effective range is 1 to 99. <br>
+at0 is the base value, and at is at0 plus modifiers from spell effects.
+<li><span class="item">rank</span><br>
+The monster's (group) position. Ranks 1 to 4 starting from the top of the group.
+<li><span class="item">raceCommentNum[ ]</span><br>
+If the monster's description contains the specified string, the value is 1; otherwise, the value is 0. <br>
+When specifying {, }, [, ], (, ), \, in the string, please use the escape character "\". For example, to specify the string [○○ system], please use raceCommentNum[\[○○ system\]]. <span class="boldWord">Due to the specifications, if you specify a reference value in the string, the internal reference value may be referenced before the reference value, so please avoid specifying reference values.</span>Please note that the specified string and explanation text are checked after converting full-width alphanumeric characters to half-width alphanumeric characters.
+<li><span class="item">Resist[ ], Resist0[ ], Resist1[ ], WeakPoint[ ], WeakPoint0[ ], WeakPoint1[ ]</span><br>
+If the monster has the specified resistance ability or weakness, the value is 1, otherwise it is 0. <br>
+Resist0[ ] and Resist1[ ] (WeakPoint0[ ] and WeakPoint1[ ]) are the base values, and Resist[ ] (WeakPoint[ ]) is the value obtained by adding the spell effect modifier to Resist0[ ] (WeakPoint0[ ]).
+<ol start="0">
+<li>Silence
+<li>Sleep
+<li>Poison
+<li>Paralysis
+<li>Petrification
+<li value="6">Knockout
+<li>Critical
+<li>Instant Death Spell
+<li value="10">Fire
+<li>Cold
+<li>Electric
+<li>Holy
+<li>No attribute
+</ol>
+<li><span class="item">BreathBarrier, breathBarrierNum</span><br>
+BreathBarrier is 1 if the monster has a breath barrier, 0 if not. breathBarrierNum is the number of breath barriers that the monster has.
+<li><span class="item"><a name="type">Type[ ]</a></span><br>
+If the monster is of the specified type, this will be set to 1, otherwise it will be set to 0. Type is specified with a number between 0 and 14.
+<ol start="0">
+<li>Warrior
+<li>Magician
+<li>Priest
+<li>Thief
+<li>Dwarf
+<li>Giant
+<li>Mythical
+<li>Dragon
+<li>Animal
+<li>Beastman
+<li>Immortal
+<li>Demon
+<li>Insect
+<li>Magical Creature
+<li>Mysterious Creature
+</ol>
+<li><span class="item">State[ ]</span><br>
+If the monster is in the specified state, this will be set to 1, otherwise it will be set to 0.
+<ol start="0"> <li>Normal <li value="2">Paralysis <li>Petrification <li value="7">Silence <li>Sleep <li>Faint <li>Suppression
+<li value="12">Poison
+</ol>
+<li><span class="item">AttackAdd[ ]</span><br>
+If the monster has the specified attack effect, this is set to 1, otherwise it is set to 0.
+<ol start="0">
+<li>Sleep
+<li>Paralysis
+<li>Petrification
+<li>Knockout
+<li>Critical
+<li>Poison
+<li>Drain
+</ol>
+<li><span class="item">groupMemberNum</span><br>
+Returns the number of people in the group the monster belongs to (number of monsters). Monsters are designed to leave a group when they die, so only monsters that are alive (with HP not reaching 0) are counted here.
+<li><span class="item">groupActionableMemberNum</span><br>
+Returns the number of people in the group the monster belongs to (number of monsters) that can act.
+<li><span class="item">groupMember</span><br>
+Returns the number of the monster from the top of the group it belongs to (0 being the top).
+</ul>
+<li><span class="item">my.??, target.??</span><br>
+This is how to write when it is unclear whether the caster or target of a spell will be a PC or a monster. By writing my.lv, my.hp, etc., the data of the PC or monster will be referenced.
+<li><span class="item">item.??</span><br>
+References the item's data.
+<ul>
+<li><span class="item">lv</span><br>
+The item's identification level (difficulty of appraisal). The valid range is 0 to 9999.
+<li><span class="item">price</span><br>
+The price of the item. The valid range is 0 to 999999999999.
+</ul>
+<li><span class="item">trap.lv</span><br>
+This is the level of traps, etc. It is used to indicate the difficulty of avoiding traps and the strength of damage. The valid range is 0 to 9999.
+<li><span class="item">turn</span><br>
+This is the number of turns elapsed during battle. The first turn is 0, and the count starts from 1 normally, and increases by 1 with each turn that passes. The valid range is 0 to 99999. <br>
+This number of turns elapsed can be used in a formula during battle (from when you encounter a monster until you return to the dungeon movement screen) even if it is not marked as usable. This may be useful for spells whose power changes depending on the number of turns that have passed.
+<li><span class="item">ShopStock[ ]</span><br>
+This returns the number of items in stock at the store for the specified item. Items are specified by numbers between 0 and the maximum number of items in the scenario - 1. The number of items in stock is a number between 0 and 100, with 100 meaning infinite stock. Items can be used even if the word "available" is not written.
+<li><span class="item">PcSpaceNum</span><br>
+Returns the remaining number of PCs that can be registered. Depending on the scenario settings, a maximum of 36 to 120 PCs can be registered. For example, if the maximum is set to 36, if 36 PCs have already been registered, the number will be 0, and if 20 PCs have already been registered, the number will be 16.
+</ul>
+</ul>
+<h4><a name="conditional">Conditional Expression</a></h4>
+<p class="text">
+The following conditional expression is used to determine whether an event should be executed (branched). It is basically the same as the formula above, and if the result is 0, it is considered false, and if it is not 0, it is considered true. Note that the calculation result is an integer, but since decimals are also used during the calculation, values ​​such as 0.5 are treated as true rather than false during the calculation. <br>
+Previously, conditional expressions could only be used in execution judgment statements such as events, but now they can be used in most judgment rates and judgment statements. Even if they cannot be used, the result will just be 0 (should be), so just use them casually. <br>
+Similar to calculation formulas, some formatting has been changed, but in most cases the previous writing style is fine. For example, Item[ ] has been changed to AllItem[ ], PtNum[ ] to PtMemberNum[ ], and PtNumP[ ] to pt.MemberNum[ ], but they are replaced internally and the results obtained should be the same... </p>
+<ul class="text">
+<li><span class="item">Available operators, calculation priority</span><br>
+Same as calculation formulas.
+<li><span class="item">Values ​​that can be used in calculations</span><br>
+<ul>
+<li><span class="item">Numeric values, logical values</span><br>
+Same as the calculation formula.
+<li><span class="item">^</span><br>
+Negation of logical values. Returns false if true, true if false. Mainly used when you want to get the negation of the following conditional expressions. ^PtItem[0] returns false if item 0 is in your possession, and ^(PtItem[0] && ^ItemSpace) returns false if you have item 0 and there is no space in the item column.
+<li><span class="item">PtItem[ ]</span><br>
+True if a party member has the specified item, false if they do not. Specify the item with a number between 0 and the maximum number of items in the scenario - 1.
+<li><span class="item">AllItem[ ]</span><br>
+If the specified item is possessed by the entire party (including store stock), it will be true, otherwise it will be false. Specify the item with a number between 0 and the maximum number of items in the scenario -1. "All" refers to all adventurers registered in the training grounds and store stock, and is used when you want to know if someone other than the current party has acquired the item and is still holding it, or if someone has acquired it and sold it to a store (not thrown away).
+<li><span class="item">DumpItem[ ][ ]</span><br>
+If the specified item is in the items dumped at the specified location (dump stock), it will be true, otherwise it will be false. Specify the item with the first [ ], and specify the location with the second [ ]. Specify the item with a number between 0 and the maximum number of items in the scenario -1. Specifying -1 will return true if there is an item, regardless of the type of item, and false if there is none. The location can be specified as 0-9 for dungeons, -1 for the surface (bar), -2 for the surface and all dungeons. For example, DumpItem[1][0] will check if item 1 is in the stock of items discarded in dungeon 0, and DumpItem[10][-2] will check if item 10 is in the stock of items discarded regardless of location. This can be used to set conditions for obtaining a specific item when you want to limit the acquisition of one (and there is an item recovery event such as a garbage dump).
+
+<li><span class="item">ItemSpace</span><br>
+True if there is free space in the item slots for the entire party, false if the inventory is full and there is no free space.
+<li><span class="item">ItemMargin[ ]</span><br>
+True if the specified number of free spaces are available in the item slots for the entire party, false if there is not the specified number of free spaces. For example, if ItemMargin[4] is specified, true will be returned if there are four free spaces in the item slots for the entire party, false if there are not.
+<li><span class="item">Title[ ]</span><br>
+If even one party member has the specified title (if they match), the result is true; if they do not, the result is false. <br>
+To specify a title, enter the string as is, such as Title[@1].
+<li><span class="item">TitleIn[ ]</span><br>
+If the titles held by party members include the specified title, the result is true; otherwise, the result is false. For example, if a party member has the title "@1 #2", the result will be true regardless of whether the specified title is "@1" or "#2". <br>
+To specify a title, enter the string as is, such as Title[@1].
+<li><span class="item">AllTitle[ ]</span><br>
+If even one adventurer has the specified title (if they match), the result is true; if they do not, the result is false. <br>
+To specify a title, write the string as is, such as AllTitle[@1].
+<li><span class="item">AllTitleIn[ ]</span><br>
+If the titles held by all adventurers include the specified title, the result is true; otherwise, the result is false. For example, if you have the title "@1 #2", then the result will be true regardless of whether the specified title is "@1" or "#2". <br>
+To specify a title, write the string as is, such as AllTitle[@1].
+<li><span class="item">PtMemberNum[ ]</span><br>
+If the number of adventurers in the party is the specified number, the result is true; otherwise, the result is false. The number of adventurers is specified with a number from 1 to 6. For example, PtMemberNum[3] is true if the party has 3 people, and PtMemberNum[4] || PtMemberNum[5] || PtMemberNum[6] is true if the party has 4 to 6 people. <br>
+<li><span class="item">Resist[ ], Resist0[ ], Resist1[ ]</span><br>
+True if there is an adventurer in the party with the specified resistance ability, false otherwise. <br>
+Resist0[ ] is the base state (based on race), Resist1[ ] is Resist0[ ] plus item modifiers, and Resist[ ] is Resist1[ ] plus spell modifiers.
+<ol start="0">
+<li>Silence
+<li>Sleep
+<li>Poison
+<li>Paralysis
+<li>Petrification
+<li>Absorption
+<li>Knockout
+<li>Critical
+<li>Instant Death Spell
+<li value="10">Fire
+<li>Cold
+<li>Electricity
+<li>Holy attribute
+<li>None attribute
+</ol>
+<li><span class="item">BreathBarrier</span><br>
+If an adventurer in the party has a breath barrier, this is 1, otherwise it is 0.
+<li><span class="item">MasteredSpell[ ][ ][ ]</span><br>
+If an adventurer in the party has mastered at least one spell in the specified range, this is true, otherwise it is false. The first range is 0-3 to specify the type, the second is 0-9 to specify the spell level, and the third is 0-5 to specify the spell. If omitted, it will be all types (all spell levels, all spells). <br>
+For example, MasteredSpell[0][1][2] will tell you whether or not you have learned the third spell of level 2 in the first family, MasteredSpell[1][4] will tell you all spells of level 5 in the second family, MasteredSpell[3] will tell you all spells of all levels in the fourth family, and MasteredSpell will tell you all spells of all levels in all families.
+<li><span class="item">State[ ], stateNum[ ]</span><br>
+State[ ] will be 1 if there is an adventurer in the party with the specified state, and 0 if not. stateNum[ ] returns the number of adventurers in the party with the specified state.
+<ol start="0">
+<li>Normal
+<li>Panic
+<li>Paralysis
+<li>Petrification
+<li>Death
+<li>Ash
+<li>Annihilation
+<li>Silence
+<li>Sleep
+<li>Faint
+<li>Restraint
+<li>Seal
+<li>Poison
+<li>Hide
+</ol>
+<li><span class="item">AttackAdd[ ], attackAddNum[ ]</span><br>
+AttackAdd[ ] will be 1 if there is an adventurer in the party with the specified attack effect, and 0 if not. attackAddNum[ ] returns the number of adventurers in the party with the specified attack effect.
+<ol start="0">
+<li>Sleep
+<li>Paralysis
+<li>Petrification
+<li>Knockout
+<li>Critical
+<li>Poison
+</ol>
+<li><span class="item">SummonType[ ]</span><br>
+If a summon monster of the specified type is being summoned during battle, this will be 1, otherwise it will be 0. Type is specified with a number from 0 to 14.
+<ol start="-1">
+<li>All types (no type specified)
+<li>Warrior
+<li>Magician
+<li>Priest
+<li>Thief
+<li>Dwarf
+<li>Giant
+<li>Mythical
+<li>Dragon
+<li>Animal
+<li>Beastman
+<li>Immortal
+<li>Demon
+<li>Insect
+<li>Magical Creatures
+<li>Mysterious Creatures
+</ol>
+<li><span class="item">SummonState[ ]</span><br>
+If a summon monster in the specified state is being summoned during battle, the value is 1, otherwise the value is 0.
+<ol start="-1">
+<li>All Status (no status specified)
+<li>Normal
+<li value="2">Paralysis
+<li>Petrification
+<li value="7">Silence
+<li>Sleep
+<li>Stunned
+<li>Restrained
+<li value="12">Poison
+</ol>
+<li><span class="item">Fly</span><br>
+True if the party is floating, false otherwise.
+<li><span class="item">Flag[ ]</span><br>
+Returns whether the specified <a href="editorStart.htm#flag" target="_self">flag</a> is true or false. Specify the flag with a number between 0 and 9999.
+<li><span class="item">FlagS[ ]</span><br>
+Returns whether the specified special <a href="editorStart.htm#flag" target="_self">flag</a> is true or false. Specifies a special flag with a number between 0 and 1.
+<li><span class="item">Wall[ ][ ][ ]</span><br>
+Returns whether the specified <a href="editorStart.htm#wallFlag" target="_self">wall existence flag</a> is true or false. The first value is 0-9 and specifies the dungeon number, the second value is 0-15 and specifies the dungeon floor (0 is the lowest floor), and the third value is 0-511 and specifies the wall/door serial number.
+<li><span class="item">Map[ ][ ][ ][ ]</span><br>
+Returns whether the specified map completion flag is true or false. The first value is 0-9 and specifies the dungeon number, the second value is 0-15 and specifies the dungeon floor (0 is the lowest floor), and the third and fourth values ​​are 0-19 and specify the coordinates (x, y).
+<li><span class="item">Situation, Situation[ ]</span><br>
+Situation returns the current situation as one of the following numbers. Situation[ ] returns true if the situation is as shown by the following numbers, and false if not.
+<ol start="0">
+<li>During dungeon movement
+<li>Camping
+<li>During battle
+<li>When a treasure chest is found
+<li>On the ground, etc.
+</ol>
+</ul>
+</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Publishing Scenarios</h3>
+<p class="text">
+Javardry allows you to create custom scenarios using the JavardryEditor. The editor is not exactly user-friendly... to be honest, it is rather difficult to use, so it’s doubtful whether anyone would still want to create scenarios with it. However, I will still explain how to handle custom scenarios just in case.
+</p>
+
+<h4>Files for Custom Scenarios</h4>
+<p class="text">
+When you create a custom scenario using the editor, the following files are necessary to distribute:
+<ul class="text">
+<li><span class="item">Scenario Data</span><br>
+   gameData.dat is essential. Without it, the custom scenario will not function at all.
+<li><span class="item">Image Data</span><br>
+   If you add or modify title images, background images, monster images, etc., you must distribute those files. However, even if image data is missing, the game will still work, but the images will not be displayed.
+<li><span class="item">Music and Sound Effect Data</span><br>
+   If you add or modify music or sound effects, you must distribute those files. However, even if the music and sound effect data is missing, the game will still work, but there will be no sound.
+<li><span class="item">Text Data (Messages)</span><br>
+   If you change text or messages not dependent on scenario data, you must distribute defaultMessage.txt.
+<li><span class="item">Documentation (readme.txt, etc.)</span><br>
+   You must include a text file (HTML is also acceptable) that contains the scenario name, the scenario creator’s name, and contact information. If any images or music were borrowed, you should also mention this. <br>
+   Although Javardry is based on Wiz, there may still be some variations in the scenario specifications, so having a help file for the scenario could be helpful.
+</ul>
+</p>
+
+<h4>Distribution Methods</h4>
+<p class="text">
+   You can distribute the scenario however you like, but here are two possible methods:
+<ul class="text">
+<li><span class="item">Distribute with the Javardry Software</span><br>
+   This method involves distributing the Javardry software (execution files, etc.) along with the scenario files. The advantages are that it saves the player’s effort, and by renaming the Windows executable files or jars, it could appear like an original game. The disadvantages include unnecessarily increasing the file size and requiring the scenario creator to update the files every time Javardry itself is updated (which may be bug fixes). Also, if you use default background images, music, sound effects, etc., you need to check the usage terms of the distribution sites and mention the original sources where applicable.
+<li><span class="item">Distribute Only Custom Scenario Files</span><br>
+   In this method, players need to separately obtain the Javardry software, and you only distribute the custom scenario files. The advantages and disadvantages are essentially the reverse of the previous method. To prevent confusion, it’s better to distribute the files in separate directories for easy placement.
+</ul>
+</p>
+
+</body>
+</html>

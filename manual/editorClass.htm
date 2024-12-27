@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Class]</h3>
+<p class="text">
+　In the "Class" tab, you can set up the list of adventurer classes. You can configure up to 36 types.
+</p>
+<div align="center">
+<a href="img/editorClass01.png"><img src="img/editorClass01.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Class Name</span><br>
+　This is the name of the class. Up to 20 characters (half-width).
+<li><span class="item">Abbreviation</span><br>
+　This is the abbreviation of the class. Up to 4 characters (half-width).
+<li><span class="item">Appearance Conditions</span><br>
+　Write the conditions for the class to appear in a condition expression. Only classes that meet these conditions will be displayed when creating or changing classes for an adventurer. When referring to adventurer data from a PC, values like level, which are not yet determined during character creation, will all be 0. At least one class must be available, so the class at the top of the list will be displayed regardless of the condition (the condition is ignored). This can be used for special classes that become available after an event. Typically, leaving this condition as true is fine. Setting it to false and making the class only available through special power items is also an interesting option.<br>
+　A common appearance condition would be to specify a level requirement for class change. For example, to require level 13 or above, use the expression "floor(pc.lv / 13) || ^pc.lv". floor(pc.lv / 13) will return false (0) for levels under 13 and true (1 or more) for levels 13 or higher. Since this expression alone would prevent selecting the class during character creation (when level is 0), we also include ^pc.lv to use an OR condition. ^pc.lv is the negation of pc.lv, so it will return true when the level is 0 (only during creation) and false when the level is 1 or more.
+<li><span class="item">Condition: Gender</span><br>
+　This is the gender requirement for the class. The adventurer can only take this class if their gender matches one of the checked options.
+<li><span class="item">Condition: Personality</span><br>
+　This is the personality requirement for the class. The adventurer can only take this class if their personality matches one of the checked options.
+<li><span class="item">Condition: Attribute Values</span><br>
+　Specify the minimum required attribute values for the class, in the range 0 to 999. If there is no condition, set the minimum value (usually 1; use 0 for attributes with a value of 0). Clicking the set button will make all attribute values equal to the first attribute value.<br>
+　The required attribute values for class change refer to the adventurer's attributes and do not include any bonuses from items.
+<li><span class="item">AC Modification</span><br>
+　Specify the AC modification for the class using a formula. You can refer to adventurer data with pc, but due to internal calculations, pc.hit cannot be used. This modification value is added to the basic AC of the adventurer's race. For example, to lower AC based on level, use a formula like floor(pc.lv / 3) * -1.
+<li><span class="item">Hit Modification</span><br>
+　Specify the hit modification for the class using a formula. You can refer to adventurer data with pc, but pc.hit cannot be used (since it is part of the formula to determine hit). If you want the hit chance to improve as the level increases, you might use a formula like floor(pc.lv / 3) + 2.
+<li><span class="item">Attack Count</span><br>
+　Specify the maximum number of attacks that can be made in one action using a formula. You can refer to adventurer data with pc, but pc.at and pc.at0 cannot be used. The result of the attack count formula can be set between 1 and 99. For a Wizard-style calculation, use a formula like ceil(pc.lv / 5) min 10.
+<li><span class="item">Unarmed Attack Damage</span><br>
+　Specify the attack damage (a D b + c) for when no weapon is equipped. You can refer to adventurer data with pc and monster data with target, but dice rolls cannot be used in these calculations (the dice roll operator will be removed during execution). If the damage calculation results in a negative value, it will be adjusted to 0. When displaying damage values in camp or similar situations, the monster's reference value will be set to rank 1, and all other values will be 0. For a Wizard-style calculation, use 2D2, but you can also make the damage increase based on level.<br>
+　Be careful not to let the final damage value (damage calculation * attack count) exceed 99,999 (a slight overflow is fine, but it should not be too large).
+<li><span class="item">Attack Effects</span><br>
+　Specify the special effects during attacks, such as none, knockout, or critical. These effects will trigger if the attack hits and the special attack check succeeds.
+<li><span class="item">Thief Skill Level</span><br>
+　Specify the thief skill level for each class between -99 and 99. This value will be used for checks related to trap evasion, investigation, and disarming. If the value is 1 or higher, the adventurer can hide (and set ambush) during combat.
+<li><span class="item">Item Carrying Capacity</span><br>
+　Specify the number of items each class can carry, between -99 and 99. This value is added to the race's item carrying capacity and is ultimately adjusted to between 1 and 99.<br>
+　The maximum item carrying capacity (after adding the race and class values) is 8 in the Wizard-style #1 to #3 specification, but you may want to increase this for scenarios with many equipment items. You could also create classes with a higher carrying capacity for adventurers who are abandoned in taverns with names like "Item Bearer", or create classes with reduced carrying capacity for some reason. However, be careful: if you have many items and attempt to change to a class with a lower carrying capacity, it may not be possible to switch.
+<li><span class="item">Item Identification</span><br>
+　Check this option if the class can identify items. The success rate for identification is set in the "Other" tab.
+<li><span class="item">Spell Learning</span><br>
+　Set up spell learning for each class, per spell category. The starting level is the adventurer's level when they first become able to learn spells, and the level interval is the number of adventurer levels required to learn the next spell level.<br>
+　For example, with a starting level of 1 and a level interval of 4, the adventurer can learn 1st level spells at level 1 and 2nd level spells at level 5. As the adventurer's level increases by 4, they can learn higher-level spells. However, spells can only be learned if the adventurer succeeds in a learning check. This means the adventurer has the potential to learn these spells.<br>
+　Example settings for start levels and intervals are as follows:
+	<ul>
+	<li><span class="item">0,0</span><br>
+	　The adventurer cannot learn any spells.
+	<li><span class="item">4,2</span><br>
+	　The adventurer starts learning spells at level 4, and can learn higher-level spells as their level increases by 2.
+	<li><span class="item">10,0</span><br>
+	　The adventurer can learn all spell levels starting from level 10.
+	</ul>
+　Specify the range of spell levels that can be learned, between 0 and 10. For example, if the range is set from 1 to 3, the adventurer can learn spells from level 1 to 3. If set from 4 to 7, they can learn spells from level 4 to 7. If set from 1 to 10, they can learn all available spells. If the maximum spell level is less than the minimum (but still non-negative), the minimum level will be adjusted to match the maximum. If either value is 0, the adventurer cannot learn spells regardless of the start level.
+<li><span class="item">Dispel Level</span><br>
+　Specify the adventurer's level at which they can begin to dispel (remove) monster effects. Set this to 0 for classes that cannot dispel. The success rate for dispelling is set in the "Combat" tab.
+<li><span class="item">Dispel Valid Monster Types</span><br>
+　Specify the monster types that the adventurer can dispel. For Wizard-style, this is typically only undead, but you may also want to allow other types, such as demons.
+<li><span class="item">Description</span><br>
+　Enter a description for the class. Clicking the check button will test the display and show the formatted text. The maximum display size is 26 half-width characters per line, with up to 16 lines (including half-width characters for line breaking).
+<li><span class="item">HP</span><br>
+　Specify the class's HP (maximum HP) using a formula. You can refer to adventurer data with pc. Normally, the HP formula is something like 1D10 * pc.lv, where the value increases based on the adventurer's level. Here's how the HP calculation works:<br>
+　At level 1, the adventurer's maximum HP is determined by the HP formula. For example, if the formula is 1D10 * pc.lv, at level 1 the result will be between 1 and 10. When the adventurer levels up to level 2, the HP formula result becomes 1D10 * 2, with a range of 2 to 20. If this new result is greater than the current HP, the HP increases by the difference. If the new result is lower than the current HP, the HP increases by 1.
+<li><span class="item">Level Up Experience Requirement</span><br>
+　Specify the experience required for each class to level up, using a formula. You can refer to adventurer data with pc, but pc.gm[ ] cannot be used. Additionally, to remove randomness, dice rolls cannot be used in the formula.<br>
+　The formula specifies the cumulative experience required for each level, not the experience between levels. For example, if 100 experience is required to level up from level 1 to level 2, and 500 experience is required to level up from level 2 to level 3, the total experience required for level 2 will be 600.<br>
+　The experience required for the next level is calculated during level up, race change, or class change, etc.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorClass02.png"><img src="img/editorClass02.png" width="600" height="411"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">General Modifiers</span><br>
+　Specify the general modifiers for each class using a formula. You can refer to adventurer data with pc, but pc.gm[ ] cannot be used. These modifiers are named by the scenario creator to identify them, but they are not used during the game.<br>
+　These general modifiers can be used to differentiate classes. For example, you could set modifier 0 to 3 for wizards, 2 for bishops and samurai, and 1 for others. Then you can use this modifier as a multiplier for attack spell damage, changing the power of spells based on the class. You can use these modifiers in various checks involving adventurer data.
+</ul>
+
+</body>
+</html>

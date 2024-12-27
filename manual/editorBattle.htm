@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+<h3 class="title1">Editor [Battle]</h3>
+<p class="text">
+In the "Battle" tab, you can set various judgments during battle.
+</p>
+<div align="center">
+<a href="img/editorBattle01.png"><img src="img/editorBattle01.png" width="600" height="550"></a>
+</div>
+<ul class="text">
+<li><span class="item">Monster confirmation rate</span><br>
+The success rate of the monster confirmation judgment performed each turn can be specified by a formula, and monsters can be referred to as monsters, adventurer parties as pt, and enemy confirmation correction values ​​due to spell effects can be referred to as plus. If you don't need uncertain monsters, set it to 100.
+<li><span class="item">Action order determination value</span><br>
+The value for determining the action order of adventurers and monsters can be specified by a formula, and adventurers or monsters can be referred to as my. Calculate the order determination value for everyone, and act in order from the highest value. If the values ​​are the same, the adventurer can act first, and in the case of two adventurers or monsters, the order will be decided.
+<li><span class="item">Preemptive attack rate (PC)</span><br>
+The probability of a preemptive attack (surprise attack) on the PC side can be specified in the formula, and the adventurer party can be set to pt, the leading monster to monster, and the preemptive attack rate modifier due to spell effects can be referenced with plus. If both the PC and monster side are successful in the preemptive attack check, it will be a normal encounter.
+<li><span class="item">Preemptive attack rate (monster)</span><br>
+The probability of a preemptive attack (surprise attack) on the monster side can be specified in the formula, and the leading monster to monster, the adventurer party to pt, and the preemptive attack rate modifier due to spell effects can be referenced with plus. If both the PC and monster side are successful in the preemptive attack check, it will be a normal encounter.
+<li><span class="item">Unarmed attack range</span><br>
+When an adventurer attacks with their bare hands, select the attack range from normal range, short range, medium range, long range, short indirect, long indirect, or short short indirect.
+<li><span class="item">Hit check</span><br>
+
+Specify the hit rate when attacking with a formula, and refer to yourself with my and the target with target. It depends on the hit value and AC settings, but set it to 5 max (95 min ((my.hit - 3 * target.rank + target.ac) * 5)), for example.
+<li><span class="item">Accuracy modifier based on characteristics, etc.</span><br>
+
+Specify the hit modifier based on characteristics, etc. with a formula, and refer to yourself with my, but you cannot use my.hit (because it is the formula used to determine the value of my.hit). If you want to use the Wiz method, set it to 0 max (my.abi[0] - 15) + 0 min (my.abi[0] - 6).
+<li><span class="item">Monster hit modifier</span><br>
+
+Monsters do not have hit modifiers based on their occupation or items, so instead, you can set the hit modifier here if necessary. You can specify it in a formula and refer to the monster with monster, but you cannot use monster.hit.
+<li><span class="item">Additional damage based on characteristics, etc.</span><br>
+
+You can set additional damage based on characteristics, etc. You can specify it in a formula and refer to the monster itself with my, and the additional damage modifier from spell effects with plus, but you cannot use dice rolls (<span class="boldWord">the dice roll operator is cleared when the calculation is performed</span>). If you want to apply it only to adventurers or monsters, use pc and monster references. For example, if you set it to 0 max (pc.abi[0] - 15), the adventurer will receive additional damage based on the attribute value, but when calculating on the monster side, pc.abi[0] will be replaced with 0, so there will be no additional damage. <br>
+This additional damage is added to the damage of one attack with a weapon (or bare hands).
+<li><span class="item">Damage multiplier by resistance attribute</span><br>
+
+Specify the damage multiplier if the adventurer or monster has resistance ability when hit with an attack spell (fire, cold, electricity, holy, none) or breath (sleep, poison, paralysis, petrification, level drain, instant death, fire, cold, electricity, holy, none). If you want it to be halved, set it to 0.5.
+<li><span class="item">Damage multiplier for weak attributes</span><br>
+When a monster is hit with an attack spell (fire, cold, electricity, holy, neutral) or a breath (sleep, poison, paralysis, petrification, level drain, instant death, fire, cold, electricity, holy, neutral), specify the damage multiplier if the monster is a weak attribute. If it is double, set it to 2.0.
+<li><span class="item">Sleep value for sleep attacks</span><br>
+The sleep depth when hit with a sleep attack (special attack) can be specified using a formula, and the attacker can be referenced with my and the target with target. The absolute value of the value specified here becomes the sleep depth, and the monster will wake up when the depth falls below 0.
+<li><span class="item">Sleep recovery value per turn</span><br>
+When in a sleeping state, the sleep depth decreases with each turn, but you can set how much the sleep depth decreases each turn here. Specify using a formula and reference yourself with my. This value will be corrected to 1 if the calculation result is 0 or less.
+<li><span class="item">Sleep recovery value when receiving damage</span><br>
+When in a sleeping state, the depth of sleep decreases each time damage is received from an attack with a weapon or a spell attack, but you can set how much the depth of sleep decreases here. You can specify this with a calculation formula and refer to yourself with my. You can also refer to the damage value received with damage. It might be interesting to set it so that if the damage is less than 10% of the maximum HP, it does not affect the depth of sleep, for example by floor((damage / my.hpMax) * 10). <br>
+If you do not want sleep recovery due to damage received, leave this at 0. This value will be corrected to 0 if the calculation result is less than 0.
+<li><span class="item">Silence/Suppression recovery value per turn</span><br>
+This sets how much the strength of natural recovery type silence and suppression decreases each turn. You can specify this with a calculation formula and refer to yourself with my. If the calculation result is 0 or less, this value will be corrected to 1.
+<li><span class="item">Success rate of hiding</span><br>
+The success rate of the adventurer "hiding" can be specified in the formula, and the adventurer himself can be referenced as my, and the leading monster as target.
+<li><span class="item">Success rate of continuing hiding</span><br>
+The success rate of whether the adventurer can continue hiding while hiding can be specified in the formula, and the adventurer himself can be referenced as my, and the leading monster as target.
+<li><span class="item">AC correction value when defending yourself</span><br>
+The calculation formula specifies the AC correction value obtained when defending yourself during battle. In this calculation formula, you can refer to yourself as my. The AC reference value (.ac) when determining during battle (when a turn is in progress) will be the value with the correction when defending yourself added. It does not affect .ac0 and .ac1.
+<li><span class="item">Resistance modifier when defending yourself</span><br>
+You can specify the spell and breath resistance modifier you get when defending yourself in a formula, and refer to yourself with my. This modifier is used in the spell or breath resistance judgment formula by referencing parryPlus, or by referencing "spell resistance modifier + resistance modifier when defending yourself" with plus.
+<li><span class="item">AC modifier when immobilized</span><br>
+You can specify the AC modifier when you are unable to act due to sleep, paralysis, petrification, etc. in a formula. You can refer to yourself with my in this formula. The AC reference value (.ac) when making judgments during battle (when a turn is in progress) is the value with the modifier when you are unable to act added. It does not affect .ac0 and .ac1.
+<li><span class="item">Damage multiplier when immobilized</span><br>
+You specify the damage multiplier when you are attacked while unable to act due to sleep, paralysis, petrification, etc.
+<li><span class="item">Double Hit Effect</span><br>
+When attacking a monster of a specific type (depending on the item settings), specify the percentage of the original damage to be applied using a formula. In the formula, you can refer to the adventurer as PC and the monster as monster. The calculation result is valid in the range of 0 to 1000, but it is recommended to set it to around 100 to 200.
+<li><span class="item">Defensive Effect</span><br>
+When attacking a monster of a specific type (depending on the item settings), specify the percentage of the original damage to be applied using a formula. In the formula, you can refer to the adventurer as PC and the monster as monster. The calculation result is valid in the range of 0 to 1000, but it is recommended to set it to around 50 to 100.
+<li><span class="item">Damage Modification</span><br>
+Specify the formula to modify the damage value. The damage value mentioned here is the weapon (or unarmed) damage for one attack (one hit if the attack has xx hits) + additional damage from characteristics, etc. It is assumed that damage will be reduced (or increased) by AC or characteristics. In the calculation formula, the attacker is my, the defender is target, and the damage value can be referenced by damage. For example, if you want to simply reduce damage by the amount of AC, use damage - target.ac. If you do not want to make any particular modifications, use the default value of damage.Leave it as e.
+<li><span class="item">Breath Damage</span><br>
+The damage value from the breath attack can be specified by a formula, and the breath caster can be referenced by my, and the breath receiver by target. If you want to use the Wiz style, use floor(my.hp / 2) or something similar.
+<li><span class="item">Breath Resistance</span><br>
+The success rate of resisting the breath can be specified by a formula, and the breath caster can be referenced by my, the breath receiver by target, the breath resistance modifier due to spell effects by spellPlus, the modifier when defending yourself by parryPlus, and "spell resistance modifier due to spell effects + resistance modifier when defending yourself" by plus.
+<li><span class="item">Spell Nullification Rate</span><br>
+The spell nullification rate that is actually applied during combat can be specified by a formula, and the spell caster can be referenced by my, and the spell receiver by target. Normally, you would set it to something like 95 min target.spellCancel to limit the maximum value, but it would also be interesting to use it to lower the chance of the opponent's spell being nullified depending on the caster's level or attributes.
+<li><span class="item">Personality Change Rate</span><br>
+When an adventurer encounters a monster that shows a friendly reaction, you can specify the personality change rate when the adventurer responds in a way that does not match their personality in a formula, and the adventurer's own PC can refer to it.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorBattle02.png"><img src="img/editorBattle02.png" width="600" height="537"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Success rate of dispelling</span><br>
+The success rate of an adventurer dispelling a monster can be specified using a formula, and the adventurer can refer to themselves as "my" and the target monster as "target".
+<li><span class="item">Proportion of experience points gained when dispelling</span><br>
+Specify the percentage of experience points gained from a defeated monster by dispelling from 0 to 999. If you want to use the Wiz formula, set it to 0.
+<li><span class="item">Escape success rate</span><br>
+The success rate of an adventurer escaping can be specified by a formula, and the adventurer himself can be referred to as my, the leading monster as target, and the adventurer party as pt.
+<li><span class="item">Monster escape rate</span><br>
+If the monster can escape, the probability of escape can be specified by a formula, and the monster can be referred to as monster, the adventurer party as pt, and the number of turns passed as turn.
+<li><span class="item">Call success rate</span><br>
+If the monster can call allies, the probability of allies coming can be specified by a formula, and the monster can be referred to as monster, and the adventurer party as pt.
+<li><span class="item">Monster support spell usage rate</span><br>
+If the monster's behavior pattern is normal (including recovery spells), the probability of using the spell specified as a support spell can be specified by a formula, and the monster can be referred to as monster, and the number of turns passed as turn. It can be used to increase the chances of using support spells in the early turns.
+<li><span class="item">Special Attack Success Rate</span><br>
+Specify the success rate of special attacks (attack effects) using a formula. You can refer to yourself with "my" and the target with "target". You can specify the success rate of each of the following attacks individually: Poison, Sleep, Paralysis, Petrification, Knockout, Critical, Level Drain (monsters only), and HP Absorption (monsters only). Special attacks are judged to be successful once for each special attack when a normal attack hits, regardless of the number of hits.
+<li><span class="item">Show spell effects with status keys during battle</span><br>
+If this is checked, you can press the status key (default is S key) when selecting a command during battle to display the abnormal status of adventurers and monsters and the spell effects currently cast on them.
+<ul class="text">
+<li><span class="item">Show monster level</span><br>
+If this is checked, the monster's level will also be displayed when displaying spell effects, etc.
+<li><span class="item">Show Monster HP</span><br>
+If this is checked, the monster's HP and recovery value will be displayed when displaying spell effects, etc.
+</ul>
+<li><span class="item">The initial choice when reacting to friendship is determined by personality</span><br>
+If this is checked, in the case of a good party, when encountering a friendly monster, the options of "fight" and "leave" will be selected from the beginning.
+<li><span class="item">Register in Monster Catalog</span><br>
+Sets the point at which a monster is registered in the monster catalog during battle.
+<ul class="text">
+<li><span class="item">When confirmed</span><br>
+A monster is registered when it becomes confirmed.
+<li><span class="item">When encountered</span><br>
+A monster is registered when it is encountered, regardless of whether it is confirmed or unconfirmed.
+<li><span class="item">When defeated in a confirmed state</span><br>
+When a monster is defeated in a confirmed state, it is registered.
+<li><span class="item">When defeated</span><br>
+When a monster is defeated, it is registered regardless of whether it is confirmed or inconclusive.
+</ul>
+</ul>
+
+</body>
+</html>

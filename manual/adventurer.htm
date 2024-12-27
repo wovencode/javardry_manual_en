@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Home Page</a></div>
+
+<h3 class="title1">Adventurer</h3>
+<p class="text">
+　In Javardry, players create characters, known as adventurers, skilled in combat and exploration, to challenge the labyrinth. These adventurers possess the following attributes:
+</p>
+<div align="center">
+<img src="img/adventurer.gif" width="300" height="300">
+</div>
+<ul class="text">
+<li><span class="item">Name</span><br>
+　Adventurers can be assigned names up to 20 characters long in single-byte format. Names can be changed later in the training grounds, though duplicate names among adventurers are not allowed.
+<li><span class="item">Level</span><br>
+　An indicator of strength; higher values denote superior adventurers. Levels increase after sufficient experience is accumulated and a stay at the inn is completed, resulting in attribute adjustments, increased HP, and the learning of spells for eligible adventurers.
+<li><span class="item">Race</span><br>
+　Up to 36 races are available depending on the scenario. Each race has variations in lifespan, initial and maximum attribute values, and base AC. Some races also possess abilities like resistance, regeneration, spell immunity, or breath attacks. Refer to the items section for details on resistance abilities.
+<li><span class="item">Age and Lifespan</span><br>
+　Each race has a predetermined lifespan, with age set during adventurer creation. Age increases when staying at the inn or changing professions. It reflects physical age rather than chronological age. If an adventurer's age reaches their lifespan at the inn, they succumb to senescence.
+<li><span class="item">Gender</span><br>
+　Four genders exist: Male, Female, Bigender, and Neither. Gender can restrict professions and may modify initial attribute values. Certain scenarios may omit gender settings for specific races.<br>
+　While terminology may vary across scenarios, the underlying mechanics remain the same.
+<li><span class="item">Alignment (Disposition or Creed)</span><br>
+　Adventurers are categorized into three alignments, influencing profession choices. Terminology may vary across scenarios, but the mechanics are consistent.
+	<ul class="text">
+	<li><span class="item">Good</span><br>
+	　Compassionate individuals who cannot ignore those in need. In some scenarios, they cannot form parties with evil adventurers in the tavern. They refrain from fighting even monsters showing friendly behavior. Repeated attacks on friendly monsters may shift their alignment to Evil.
+	<li><span class="item">Neutral</span><br>
+	　Ordinary individuals neither good nor evil, free to form parties with adventurers of any alignment.
+	<li><span class="item">Evil</span><br>
+	　Self-serving individuals who disregard others unless it benefits them. In some scenarios, they cannot form parties with good adventurers in the tavern. They show no mercy even to friendly monsters. Repeatedly sparing friendly monsters may shift their alignment to Good.
+	</ul>
+<li><span class="item">Profession</span><br>
+　Up to 36 professions exist depending on the scenario, with restrictions based on gender, alignment, and attributes. Professions affect HP growth, experience requirements for leveling, AC adjustments, hit rate, attack frequency, unarmed damage, and item carrying limits. Some professions offer abilities such as critical strikes, knockout attacks, item appraisal, spell proficiency, curse removal, and trap detection.<br>
+　Adventurers can change professions if conditions are met, though their level, attributes, and HP may be affected by the scenario.
+<li><span class="item">HP and MP</span><br>
+　HP (Hit Points) represent durability and life force; adventurers die if this reaches zero. It decreases when attacked and recovers through healing spells, items, or resting at the inn.<br>
+　MP (Magic Points) quantify mental and magical energy. MP is categorized by spell types and levels. Casting spells reduces MP, which can be restored with items or by staying at the inn.
+<li><span class="item">AC</span><br>
+　Armor Class indicates evasiveness. In the "Wiz" system, lower values indicate better evasion, though this may vary by scenario. AC changes based on equipment and spell effects.<br>
+　The status screen displays the base value, profession adjustments, and equipment adjustments, with temporary modifications from spells shown in parentheses.
+<li><span class="item">Attributes</span><br>
+　Quantified adventurer abilities, with up to 36 types (e.g., strength, wisdom, faith) depending on the scenario. Attributes may fluctuate upon leveling and can temporarily change due to equipment or spells. A zero in any attribute typically results in senescence. Attributes determine profession eligibility and influence success in various actions.<br>
+　Adjustments from items appear in orange on the status screen.
+<li><span class="item">Experience (EXP) and Next Level Requirements (NEXT)</span><br>
+　Gained by defeating enemies, experience points allow leveling up once a set threshold for the profession is reached, provided the adventurer stays at the inn.
+<li><span class="item">Gold</span><br>
+　Measured in GP, adventurers use gold for lodging, healing, and purchasing items, acquired from treasure chests after defeating enemies.
+<li><span class="item">Death Count (RIP) and Kill Count (MARKS)</span><br>
+　Records the number of deaths and kills, primarily for documentation, though some scenarios may factor them into gameplay. To hide these metrics, set the relevant entries in `defaultMessage.txt` to "none."
+<li><span class="item">Title</span><br>
+　A six-character string, awarded for accomplishments such as completing trials or scenarios, intended for use as an adventurer-specific flag.
+<li><span class="item">Status</span><br>
+　Adventurers experience various statuses during adventures. Some naturally recover over time or with specific spells/items, while severe conditions may require temple intervention.
+	<ul class="text">
+	<li><span class="item">Normal (O.K.)</span><br>
+	　Indicates no abnormal states. HP is unaffected, so even a critically low HP adventurer may display "Normal."
+	<li><span class="item">Afraid</span><br>
+	　Paralyzed by fear, unable to use spells or appraise items. This state naturally resolves but can also be remedied with items, spells, or resting at the inn.
+	<li><span class="item">Asleep</span><br>
+	　A combat-only state rendering the adventurer immobile. AC and damage modifiers apply when attacked. Awakening may occur naturally, through spells/items, or by taking damage.
+	<li><span class="item">Fainted</span><br>
+	　A combat-only state where the adventurer is unconscious and immobile. Recovery requires spells or items.
+	<li><span class="item">Silence</span><br>
+	　Prevents spellcasting during combat. Some spells may be exempt based on the scenario. Recovery depends on the silence type, spells, or items.
+	<li><span class="item">Spell Seal</span><br>
+	　Blocks spell usage, recoverable by walking, changing floors, or exiting the dungeon, depending on the seal type.
+	<li><span class="item">Restrained</span><br>
+	　Prevents the use of breath, items, spells, and curse removal during combat. Recovery occurs naturally or with items/spells.
+	<li><span class="item">Hated</span><br>
+	　Compels targeting of a specific enemy or group for all actions in combat.
+	<li><span class="item">Poisoned</span><br>
+	　Causes damage per step or turn. Cured with spells/items or by exiting the dungeon.
+	<li><span class="item">Paralyzed</span><br>
+	　Immobilizes the adventurer, with AC and damage modifiers applying when attacked. Recovery requires temple treatment or spells/items.
+	<li><span class="item">Petrified</span><br>
+	　Similar to paralysis but considered more severe in original works. Recovery requires spells/items or temple treatment.
+	<li><span class="item">Dead</span><br>
+	　Indicates death, recoverable with resurrection spells, items, or temple rituals. Failure results in ashed status.
+	<li><span class="item">Ashed</span><br>
+	　Indicates the adventurer's body has turned to ash. Resurrection attempts may fail, resulting in lost status.
+	<li><span class="item">Lost</span><br>
+	　Indicates complete body dissolution, generally irrecoverable. However, some scenarios may provide spells or items to reverse this state.
+	</ul>
+</ul>
+
+</body>
+</html>

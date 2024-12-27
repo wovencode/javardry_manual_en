@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Transmigration]</h3>
+<p class="text">
+In the "Transmigration" tab within the "Facilities" tab, you can set the transmigration process for adventurers in the training hall.
+</p>
+<div align="center">
+<a href="img/editorTransmigrates.png"><img src="img/editorTransmigrates.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Register Transmigrated Character</span><br>
+   By checking this box, a command will appear in the training hall that allows you to register adventurers from transmigration data.
+	<ul>
+	<li><span class="item">Scenario Identifier String</span><br>
+	You will enter an identifier string for scenarios that are compatible with transmigration, separated by <>. For example, if you enter "Javardry #1<>Javardry #2", you can register adventurers from transmigration data outputted from scenarios "Javardry #1" or "Javardry #2". If you want to accept data from all scenarios, leave this field blank.
+	<li><span class="item">Race, Profession</span><br>
+	When registering a transmigrated character, the race and profession will match the original race (profession) name or abbreviation. If no match is found, the race (profession) set here will be used.
+	<li><span class="item">Gender and Personality Modifications</span><br>
+	Gender and personality are normally inherited, but if the gender or personality does not meet the profession requirements, checking this box will modify the gender and personality to match the profession requirements.<br>
+	However, gender settings are prioritized by race.
+	<li><span class="item">Age</span><br>
+	The age at the time of transmigration registration is specified by a formula. The original age can be referenced with `age`.<br>
+	You can use fixed values like 20 or random values like 13 + 1D5.
+	<li><span class="item">Level</span><br>
+	The level at the time of transmigration registration is specified by a formula. The original level can be referenced with `lv`.<br>
+	You can use fixed values like 5, or use the original level to create a formula like `lv min 10`.
+	<li><span class="item">Attributes</span><br>
+	The attributes at the time of transmigration registration are specified by a formula. The original attributes can be referenced with `abi`. If the result is negative, the race's initial value will be used.<br>
+	Attribute references are matched by the original attribute name or abbreviation, but if no match is found, the race's initial value will be used. For example, you can use `(abi min 15) max 5` to set upper and lower limits.
+	<li><span class="item">Money</span><br>
+	The amount of money at the time of transmigration registration is specified by a formula. The original money can be referenced with `gold`.<br>
+	You can use fixed values like 500, or random values like `200 + 1D300`, or use the original money with a formula like `(gold / (1D3 + 1)) min 5000`.
+	<li><span class="item">Title Grant</span><br>
+	A title will be granted upon transmigration registration. The method for specifying it is the same as in the <a href="editorCastleEvent.htm#setTitle" target="_self">Castle Event</a> section. The adventurer will retain their original title, but if no title is desired, be sure to delete it by specifying `,titleDelete`.
+	<li><span class="item">[Items]</span><br>
+	A list of items to carry over during transmigration registration. If the transmigration data is from a specified scenario and contains the specified items, those items will be carried over to the transmigrated adventurer. The items are applied in the order they appear in the list. If no items are to be carried over, leave the list blank.
+		<ul>
+		<li><span class="item">Changed Items</span><br>
+		   Select items to carry over at the time of transmigration registration.
+		<li><span class="item">Original Items</span><br>
+		   Specify the original items (and original scenarios) the adventurer had. This is done by separating the scenario identifier string and item number with <> and using newlines to specify multiple scenarios. The scenario identifier string will be compatible with all scenarios if a space is used, and multiple item numbers can be specified using commas or ranges (e.g., 1,2,10-13).<br>
+		   To specify all items for all scenarios, use `<>0-9999`. For example:<br>
+			`Javardry#1<>5`<br>
+			`Javardry#2<>1,2,10-13`<br>
+			If the transmigration data’s scenario identifier string is "Javardry#1" and it has item number 5, or if the scenario identifier string is "Javardry#2" and it has item numbers 1, 2, 10, 11, 12, or 13, the adventurer will carry over the specified changed items.
+		</ul>
+	</ul>
+<li><span class="item">Character Transmigration</span><br>
+   By checking this box, a command will appear in the training hall that allows you to output each adventurer's data for transmigration. The transmigration data will be saved in the `data` directory with the filename "ScenarioTitle_AdventurerName.chr".
+	<ul>
+	<li><span class="item">Conditions</span><br>
+	Specify whether each adventurer can undergo transmigration by using a condition formula. Since the party is not formed, party-related values cannot be referenced, but adventurer data can be referenced with `pc`. For example, if you set it to "true", all adventurers can transmigrate without condition. Alternatively, you can set a condition like `floor(pc.lv / 13) && pc.Item[100] && pc.Title[Knight] && Flag[5]`, meaning the adventurer must be level 13 or higher, have item 100, hold the "Knight" title, and have flag 5 set to true in order to transmigrate.
+	</ul>
+</ul>
+
+</body>
+</html>

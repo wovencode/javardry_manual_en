@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Class Change]</h3>
+<p class="text">
+   In the "Facilities" tab under the "PC Creation and Class Change" tab, you can configure the additional age and other settings for class changes in the training grounds.
+</p>
+<div align="center">
+<a href="img/editorClassChange.png"><img src="img/editorClassChange.png" width="600" height="230"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Enable Class Change</span><br>
+   Checking this box allows class changes at the training grounds.
+<li><span class="item">Additional Age</span><br>
+   Specifies the additional age during a class change at the training grounds using a formula. The data of the character undergoing the change (prior to the class change) can be referenced with `pc`. For example, if the age increases by 2–5 years, use `1D4 + 1`. If there is no age addition, use `0`.
+<li><span class="item">Level</span><br>
+   Specifies the level after class change at the training grounds using a formula. The data of the character undergoing the change (prior to the class change) can be referenced with `pc`. To reset to the minimum level, use `1`. To maintain the level, use `pc.lv`.
+<li><span class="item">HP</span><br>
+   Specifies the HP (maximum HP) after class change at the training grounds using a formula. The data of the character undergoing the change (prior to the class change) can be referenced with `pc`. To maintain the HP, use `pc.hpMax0`. Leaving it blank will recalculate the HP based on the stats of the post-class-change job, but since the calculation occurs only once, it may result in extremely low values depending on the job’s HP formula.
+<li><span class="item">Attributes</span><br>
+   Specifies the attributes after class change at the training grounds for each attribute using a formula. The data of the character undergoing the change (prior to the class change) can be referenced with `pc`. To maintain the attributes, use `pc.abi0[ corresponding attribute number ]`. Leaving it blank will reset to the racial base value (+gender adjustment value).
+</ul>
+
+</body>
+</html>

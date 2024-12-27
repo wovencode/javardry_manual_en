@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+
+<h3 class="title1">Editor [Items]</h3>
+<p class="text">
+  In the "Items" tab, you configure the list of items. You can set up to 9999 items. <br>
+  The "Item Drop Table" tab is a separate list from the item list.
+</p>
+<div align="center">
+<a href="img/editorItem01.png"><img src="img/editorItem01.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">search</span><br>
+  This is a search button used when there are many items in the list. It searches for item names that include the string written in the text field.
+<li><span class="item">Item name</span><br>
+  The name of the item. It can be up to 24 characters in half-width.
+<li><span class="item">Unidentified name</span><br>
+  The name displayed when the item is unidentified. It can be up to 20 characters in half-width.
+<li><span class="item">Item type</span><br>
+  Choose the item type from weapon, armor, shield, helmet, gauntlets, boots, or other. The type affects the equipment slot and the type when selling at shops.
+<li><span class="item">Identification level</span><br>
+  Set the difficulty of identifying the item. The impact of this difficulty when identifying depends on the "Item identification rate" setting in the "Other" tab.
+<li><span class="item">Price</span><br>
+  Set the price of the item as a value between 0 and 999999999999. This price is the purchase price at the shop, and items with a price of 0 will not appear in the shop.
+<li><span class="item">Stock</span><br>
+  Set the initial stock of the item in the shop. It can be a value between 0 and 99, but if set to -1, it will have infinite stock. However, items with a price of 0 will not be affected by stock settings here. Also, if the stock is set to -2, the item will not appear in the shop (even if the price is not 0), though it can still be sold.
+<li><span class="item">Equip condition</span><br>
+  Set the equipment conditions for the item. Check the box for the available jobs and races. Clicking the on/off button allows you to toggle all jobs and races at once.
+<li><span class="item">Curse condition</span><br>
+  Set the curse condition for the item. Check the boxes for the personalities and genders that will be affected by the curse.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItem02.png"><img src="img/editorItem02.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">AC</span><br>
+  Set the AC gained when the item is equipped, with values from -99 to 99.
+<li><span class="item">AC when cursed</span><br>
+  Set the AC gained when cursed, with values from -99 to 99. This value replaces the regular AC value and is not added to it.
+<li><span class="item">Weapon type</span><br>
+  Choose the type of weapon from "One-handed", "Two-handed", or "Sub-weapon".<br>
+  One-handed weapons are equipped in one hand as a main weapon, and the other hand can hold a shield or sub-weapon (dual-wielding).<br>
+  Two-handed weapons require both hands to equip and cannot hold a shield or sub-weapon (no dual-wielding). This type is suitable for large swords, spears, and bows.<br>
+  Sub-weapons can also be equipped as the main weapon, but when a one-handed weapon (or sub-weapon) is equipped in the main hand, the sub-weapon can be equipped in the other hand for dual-wielding. In dual-wielding, attacks with the sub-weapon are follow-up attacks to those with the main weapon. The damage, target count, attack type, and other properties are treated separately from the main weapon, but otherwise follow the same rules. For example, you cannot set different accuracy or attack range values for the sub-weapon alone. If a cursed weapon is equipped (the weapon's curse is active), dual-wielding is not allowed.
+<li><span class="item">Attack target count</span><br>
+  Set the number of targets that can be attacked when using the weapon, with values between 1 and 9. Normally, it is set to 1, but if set to 2 or more, it allows you to attack multiple monsters in the same group.
+<li><span class="item">Half attack count when dual-wielding</span><br>
+  If checked, the attack count of the sub-weapon will be halved (rounded up) when attacking (follow-up attack). This does not affect the main weapon. The default is checked, but uncheck it if you want to create a sub-weapon that can perform dual-wielding attacks without such a reduction.
+<li><span class="item">Damage</span><br>
+  Specify the damage formula for the weapon's attack in the format a D b + c. You can reference the adventurer's data as pc and the monster being attacked as target, but dice rolls cannot be used within the formula (the dice roll operator will be removed during calculation). If the calculation result for a D b + c (+additional damage from traits) is negative, it will be corrected to 0. Additionally, when displaying damage values during camping or similar situations where no target is present, the monster's rank will be set to 1 and all other values will be set to 0.<br>
+  Be careful not to exceed a damage value of 99,999 after multiplying by the attack count (it can go a couple of digits over, but not much).
+<li><span class="item">Attack range</span><br>
+  Set the attack range (distance) when the item is equipped. Choose from no range, normal range, short range, medium range, long range, short indirect, long indirect, or short indirect short. Normally, attack ranges are set only for weapons, but special equipment can set attack ranges for non-weapon items. For example, if you have two items, one with normal range (front/back/none) and the other with short indirect (none/front), the adventurer's attack range will be medium range (front/back/front).
+<li><span class="item">Accuracy modifier</span><br>
+  Set the accuracy modifier gained when the item is equipped, with values between -999 and 999.
+<li><span class="item">Minimum attack count</span><br>
+  Set the minimum attack count when the item is equipped. If the adventurer's attack count is lower than this value, the attack count will be set to this value. If the adventurer's attack count exceeds this value, it has no effect. However, if the value is negative, it will be added to the adventurer's attack count (decreasing the attack count). The maximum attack count is 99.
+<li><span class="item">Additional attack effects</span><br>
+  Set the special effects that occur during an attack when the item is equipped. Choose from none, sleep, paralysis, petrification, knockout, or critical.
+<li><span class="item">Poison</span><br>
+  Set the poison effect when the item is equipped. If the target is already poisoned, additional poison damage is applied. Specify the poison damage value between 0 and 99999. A value of 0 means no poison effect.
+<li><span class="item">Healing effect</span><br>
+  Set the healing effect of the item between -99999 and 99999. It is added to the healing value based on the adventurer's race. If the "Item effect applies only when equipped" box is checked in the "Main" tab, the effect will only apply when equipped; otherwise, it will apply as long as the item is held.
+<li><span class="item">Spell negation</span><br>
+  Set the percentage chance to negate spells when the item is equipped. It is added to the spell negation rate based on the adventurer's race. If the "Item effect applies only when equipped" box is checked in the "Main" tab, the effect will only apply when equipped; otherwise, it will apply as long as the item is held.
+<li><span class="item">Attack type</span><br>
+  Set the message type displayed when attacking with the weapon. It only affects the message displayed, so if there is no specific preference, you can leave it as is.
+<li><span class="item">Description</span><br>
+  Enter the description of the item. When you click the check button, the formatted description with line breaks will be displayed for testing. The description can be up to 54 half-width characters per line, with a maximum of 5 lines, though multiple pages can be set. To force a page break, insert &lt;p&gt;. By default, only the first page is displayed, but you can view all pages in the item catalog. This description will only be shown when selecting an item if the "Help comment display" checkbox is checked in the "Main" tab.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItem03.png"><img src="img/editorItem03.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Stat bonuses</span><br>
+  Set stat bonuses within the range of -999 to 999. Bonuses from multiple items are added together, but the final stat value is capped at 0 to 999.
+<li><span class="item">Double strike effect, Defense effect</span><br>
+  Set the double strike and defense effects of the item. Check the boxes for each monster type. The double strike effect increases damage when attacking a monster of the selected type (based on combat settings), and the defense effect reduces damage when attacked by a monster of the selected type (based on combat settings). If the "Item effect applies only when equipped" box is checked in the "Main" tab, the effect will only apply when equipped; otherwise, it will apply as long as the item is held.
+<li><span class="item">Resistance</span><br>
+  The item grants resistance to the following effects. If the "Item effect applies only when equipped" box is checked in the "Main" tab, the effect will only apply when equipped; otherwise, it will apply as long as the item is held.
+	<ul>
+	<li><span class="item">Fire, Cold, Lightning, Holy, Non-elemental resistance</span><br>
+	 　Reduces damage from elemental attack spells and various breath attacks.
+	<li><span class="item">Silence</span><br>
+	 　Prevents the effect of silence.
+	<li><span class="item">Sleep (stun), poison, paralysis, petrification, level drain, instant death spells</span><br>
+	 　Prevents these effects and reduces damage from breath attacks. However, sleep (stun) resistance does not prevent stun caused by knockout.
+	<li><span class="item">Critical, Knockout</span><br>
+	 　Prevents the effects of critical hits and knockout. However, knockout resistance does not prevent stun caused by the knockout spell.
+	</ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItem04.png"><img src="img/editorItem04.png" width="600" height="563"></a>
+</div>
+
+
+<ul class="text">
+<li><span class="item">Breakage Rate</span><br>
+   The breakage probability when using the item or releasing SP is specified by a formula and can be referenced by the user on PC. Typically, a value between 0 and 100 is used. For example, set it to 0 for infinite-use items, and to 100 for items that can only be used once.<br>
+   By using the reference values itemUse (1 when the item is used, 0 when SP is released) and itemSp (1 when SP is released, 0 when the item is used), you can set separate breakage rates for item usage and SP release. For example, if you set it to "10 * itemUse + 50 * itemSp", the breakage rate will be 10% when using the item, and 50% when releasing SP.
+<li><span class="item">Item Changes After Breakage</span><br>
+   Specify the item that changes after the original item breaks. If set to "none," the item will disappear after breaking.
+<li><span class="item">Combat Message</span><br>
+   If this item is a weapon, set the message displayed when selecting "Fight" during combat while the item is equipped. If not set, the default message will be shown. The string [name] is replaced with the name of the adventurer performing the action, [target] is replaced with the name of the target (the monster being attacked), and [item] is replaced with the item name. Use &lt;br&gt; for line breaks. If multiple messages are set within &lt;&gt;, one will be randomly displayed.<br>
+      <b>Example</b><br>
+   <ul>
+      <li>[name] danced a strange dance!
+      <li>[name] slammed [target] with&lt;br&gt; [item].&lt;&gt;[name] threw [item].
+   </ul>
+<li><span class="item">Disables Class-Based Attack Effects When Equipped</span><br>
+   Checking this will disable class-based attack effects (such as knockout or critical) for the equipment. For example, if a ninja class has critical ability as a class feature, equipping an item with this checked will prevent the class feature's critical ability from activating (unless the equipment itself has critical ability, in which case that will activate). For unchecked equipment, the class feature's critical ability will be active even when equipped.
+<li><span class="item">Item Effects Apply Only When Equipped</span><br>
+   When checked, the effects of the item (double damage, defense effects, resistance abilities, stat bonuses, healing effects, spell immunity) are only applied when the item is equipped. If unchecked, the effects will apply just by having the item in your possession (subject to other conditions).
+<li><span class="item">Item Effects Do Not Apply Unless Equipped by a PC Who Can Equip It</span><br>
+   This checkbox is useful only if "Item Effects Apply Only When Equipped" is unchecked. Checking it means the item's effects will not apply unless the character can equip it (meets the equipment conditions). If unchecked, the item's effects will apply regardless of whether the PC meets the equipment conditions.<br>
+   To clarify:
+   <ul>
+      <li><b>If you want item effects to apply only when equipped, not when merely carried</b><br>
+         Check "Item Effects Apply Only When Equipped." The checkbox for "Item Effects Do Not Apply Unless Equipped by a PC Who Can Equip It" is irrelevant.
+      <li><b>If you want effects to apply when carried but only if the PC can equip it</b><br>
+         Uncheck "Item Effects Apply Only When Equipped." Check "Item Effects Do Not Apply Unless Equipped by a PC Who Can Equip It."
+      <li><b>If you want effects to apply just by carrying the item, regardless of the equipment conditions</b><br>
+         Uncheck both "Item Effects Apply Only When Equipped" and "Item Effects Do Not Apply Unless Equipped by a PC Who Can Equip It."
+   </ul>
+<li><span class="item">Disables Class-Based AC Modifications When Equipped</span><br>
+   Checking this will disable class-based AC modifications. For example, if a ninja class has a feature that reduces AC as the level increases, equipping an item with this checked will prevent the class feature from affecting the AC. For unchecked items, the class feature's AC modification will apply when equipped.
+<li><span class="item">Do Not Display in Catalog</span><br>
+   Checking this will hide the item from the catalog.
+<li><span class="item">Confirmed State</span><br>
+   Normally, the state when an item is obtained is determined by the "Item is Obtained in Confirmed State" checkbox in the [Main] tab. Here, you can configure whether the item is obtained in a confirmed or unconfirmed state, regardless of the checkbox.<br>
+   When set to "Normal," if "Item is Obtained in Confirmed State" is checked, the item will be obtained in a confirmed state; if unchecked, it will be unconfirmed. Setting it to "Confirmed" will always result in the item being obtained in a confirmed state, regardless of the checkbox. Setting it to "Unconfirmed" will always result in the item being obtained in an unconfirmed state, regardless of the checkbox.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItem05.png"><img src="img/editorItem05.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Use Effect</span><br>
+   Configure the spell effects triggered when using the item.
+   <ul>
+      <li><span class="item">Cannot Be Used Unless Equipped by a PC Who Can Equip It</span><br>
+         Checking this makes the item usable only by adventurers who meet the equipment conditions, either by class or race. If the adventurer can equip it, they can use the item even if it's not equipped.
+      <li><span class="item">Usage Situation</span><br>
+         Set the conditions under which the item can be used. The options are none, camp & combat, camp, combat, or treasure chest. "Treasure chest" refers to effects during a treasure chest discovery, affecting only trap investigation and trap disarming effects.
+      <li><span class="item">Not Disabled</span><br>
+         If checked, the effect will not be disabled when used against an enemy during combat. This is used for effects like modifying enemy AC or creating effects that are not affected by the enemy's spell immunity.
+      <li><span class="item">Level Restriction</span><br>
+         Set a level range between 1 and 99999. If the character's level is lower than the specified level, the item’s effect will not activate. This is meant to restrict effects based on the character's level.
+      <li><span class="item">Conditional Branch</span><br>
+         The effect can differ based on the user's gender or personality. Each gender and personality is switched using radio buttons.
+      <li><span class="item">Activation Type</span><br>
+         Select the activation type from Normal, Selectable, or Random. For normal, one effect will activate. In selectable mode, multiple effects will be displayed as options, and one will be chosen. In random mode, one effect will be randomly selected from the available effects. In selectable or random mode, no target selection is possible.
+         <ul>
+            <li><span class="item">Number of Spell Effects</span><br>
+               When activation is selectable or random, you can select how many effects to set, from 2 to 10. Each effect is switched using radio buttons.
+            <li><span class="item">Number of Options</span><br>
+               When the activation type is selectable, this sets how many effects will appear as options. If it matches the number of spell effects, all effects will be shown. Otherwise, the effects will be randomly chosen.
+            <li><span class="item">Spell Effects</span><br>
+               Choose one of the spell effect sets configured in the "Spell Effects" tab.
+            <li><span class="item">Selection Message</span><br>
+               When activation type is selectable, enter the message displayed as an option. The message can be up to 48 characters in half-width format.
+         </ul>
+      <li><span class="item">Usage Message</span><br>
+         Set the message displayed when using the item during combat. If not set, the default message will appear. The string [name] is replaced with the name of the adventurer using the item, and [item] is replaced with the item name. Use &lt;br&gt; for line breaks. If multiple messages are set within &lt;&gt;, one will be randomly displayed.<br>
+         <b>Example</b><br>
+   <ul>
+      <li>[name] offered a prayer.
+      <li>[name] unfolded [item] and recited it aloud.&lt;&gt;[name] raised [item] high.
+   </ul>
+   </ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItem06.png"><img src="img/editorItem06.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">SP</span><br>
+   Some items may have SP (Special Power) sealed within them, which can be released during equipment changes. SP can only be released if the adventurer can equip the item.<br>
+   When releasing SP, the PC cannot be selected, so if the spell effect targets "one ally," it will be changed to "one ally (random)."
+   <ul>
+      <li><span class="item">SP</span><br>
+         If the item has SP, check this box.
+      <li><span class="item">Level Restriction</span><br>
+         Set a level range between 1 and 99999. If the character's level is lower than the specified level, the item’s effect will not activate.
+      <li><span class="item">Conditional Branch</span><br>
+         The effect can differ based on the user's gender or personality. Each gender and personality is switched using radio buttons.
+      <li><span class="item">Activation Type</span><br>
+         Select the activation type from Normal or Random. For normal, one effect will activate. For random, one effect will be randomly selected from the available effects.
+      <li><span class="item">Number of Spell Effects</span><br>
+         When activation type is random, you can set how many effects to configure, from 2 to 10. Each effect is switched using radio buttons.
+      <li><span class="item">Spell Effects</span><br>
+         Choose one of the spell effect sets configured in the "Spell Effects" tab.
+   </ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorItemDrop.png"><img src="img/editorItemDrop.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Item Drop Table</span><br>
+   Configure a list of item drop tables used by monsters' items. This list is separate from the regular item list (a standalone list).
+   <ul>
+      <li><span class="item">Name</span><br>
+         Each item drop table can be named. This is for the creator's reference and is not used in the game.
+      <li><span class="item">Discovery Rate</span><br>
+         Specify the percentage chance of discovering an item from a treasure chest.
+      <li><span class="item">Items in Possession</span><br>
+         Specify the items that may be inside the treasure chest by number. Multiple items can be specified using comma-separated values and ranges (e.g., 1,5,10-14,20), from which one will be randomly chosen. To adjust the drop rate of individual items, adjust the item settings. For example, "1-4,1-4,10,11" results in an 80% chance for items 1-4, a 10% chance for item 10, and a 10% chance for item 11.<br>
+         If "Directly Obtain Items After Combat" is checked in the [Main] or [Monster] tabs, the items will be directly obtained after combat.
+      <li><span class="item">Gold Obtained</span><br>
+         Specify the amount of gold obtained from a treasure chest using a formula. If "Directly Obtain Items After Combat" is checked in the [Main] or [Monster] tabs, the gold will be directly obtained after combat.<br>
+         This becomes effective when checked. If unchecked, the monster's specific gold settings or the dungeon's floor-specific gold settings apply.
+      <li><span class="item">Traps</span><br>
+         Specify the trap level and the numbers of traps that may be present in the treasure chest.<br>
+         The trap level is set between 0 and 9999. This level is used as the difficulty for investigating or disarming traps.<br>
+         Trap numbers are specified using comma-separated values. Use -1 for no traps. To adjust the appearance probability of individual traps, adjust the trap settings. For example, "-1,-1,0,1" results in a 50% chance for no trap, a 25% chance for trap 0, and a 25% chance for trap 1.<br>
+         This becomes effective when checked. If unchecked, the monster's specific trap settings or the dungeon's floor-specific trap settings apply.
+   </ul>
+</ul>
+
+</body>
+</html>

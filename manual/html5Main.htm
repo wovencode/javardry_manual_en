@@ -1,0 +1,299 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+
+<h3 class="title1">Introduction</h3>
+<p class="text">
+Javardry HTML5 version is a port of Javardry made with Java to HTML5 (HTML5 + CSS + JavaScript). Since it is made with JavaScript, it should be called Javardry2, but since it is a port of Javardry, I will call it Javardry HTML5 version. Use JavardryEditor to export the game data for HTML5 version and use it. The specifications are almost the same as the Java version, but there are some differences, which are explained below.
+
+</p>
+
+<h4><a name="start">Operating environment and execution method</a></h4>
+<p class="text">
+Load the HTML file for execution in your browser and execute it. It can be run locally (offline) or online (uploaded to the internet), but there is a restriction that dungeon images cannot be displayed when running locally (see <a href="html5Main.htm#localLimit">here</a> for the reason). Therefore, we recommend that you play it <span class="boldWord">online (including local server operation)</span>.
+
+<ul class="text">
+<li><span class="item">For PC (Windows, Mac OS X, Linux, etc.)</span>
+
+<ul class="text">
+<li>Operation has been confirmed on Google Chrome, Microsoft Edge, and Firefox on Windows. It does not work on Internet Explorer.
+<li>Operation has been confirmed on Firefox on Linux (Ubuntu 16.04, 22.04).
+<li>Mac not tested. Waiting for operation reports from Mac users.
+
+</ul>
+Click here for how to run it without operation restrictions in a local environment.
+
+<li><span class="item">For Android (smartphone, tablet)</span><br>
+Online operation has been confirmed on Chrome for Android 10. However, it seems that an error due to memory overuse may occur on models with low memory (around 2GB).
+
+<li><span class="item">For iOS (iPhone, iPad)</span><br>
+Online operation has been confirmed on Chrome and Safari for iPad Air 4 and iPhone 11. However, there are two issues with playing music and sound effects:
+<ul class="text">
+<li>If you don't play it once at the beginning, you can't play it during the game (it seems), so just before the title screen when starting up, or when you enable music and sound effects in the options and close the options screen, all music and sound effects are muted and played once, so you have to wait so long that it seems to freeze.
+<li>Playback may be significantly delayed or may not play at all (especially sound effects).
+</ul>
+</ul>
+</p>
+<h4><a name="localLimit">How to run without operation restrictions in a local PC environment</a></h4>
+<p class="text">
+When running in a local environment (with game-related data stored on the PC), some image processing cannot be performed on the loaded image files due to JavaScript specifications (cross-domain restrictions). Therefore, when running in a local environment and some image processing cannot be performed by actually loading image files (if it is executed internally and fails), the game is run with the restriction of "dungeon image display not possible". <br>
+However, by using the following two methods, you can run it without any restrictions even in a local environment.
+<ul class="text">
+<li><span class="item">Set up a local server (local web server, simple web server)</span><br>
+If you set up and run a local server, it will operate online, just like running something uploaded to the internet. This is probably the most reasonable way. There are several free software programs that allow you to easily set up a local server, but if you use software called <a href="https://enjalot.github.io/served/" target="_top">Served</a> (compatible with Windows, Mac OS X, and Linux), you can easily set up a local server without any knowledge. <br>
+I will briefly explain how to use Served.
+<p class="img1"><a href="img/how_to_use_the_Served01.png"><img src="img/how_to_use_the_Served01.png" width="360" height="300"></a></p>
+When you run Served, a window like the one above will appear. Drag and drop the directory (folder) containing the Javardry HTML5 version of the data, or drag and drop a file directly under the directory, or select it from Select file. For example, drag and drop the HTML file for running the game (Javardry.html, etc.).
+<p class="img1"><a href="img/how_to_use_the_Served02.png"><img src="img/how_to_use_the_Served02.png" width="360" height="300"></a></p>
+Then, a URL such as http://localhost: will be displayed, and clicking the URL will open the URL in the default browser. You can also open it in a different browser.
+<p class="img1"><a href="img/how_to_use_the_Served03.png"><img src="img/how_to_use_the_Served03.png" width="375" height="300"></a></p>
+A list of files and directories will be displayed in the browser. Click on the HTML file for execution (Javardry.html in this case) to start the game.
+<p class="img1"><a href="img/how_to_use_the_Served04.png"><img src="img/how_to_use_the_Served04.png" width="375" height="300"></a></p>
+If it is running on the local server, you should be able to select dungeon image display ([Dungeon] -> graphic) on the Options screen. <br>
+Please keep Served running while playing. If you do not click the x next to the Served URL to clear the setting, the setting will be retained the next time you start the program. <br>
+<br>
+<li><span class="item">Change your browser settings</span><br>
+By configuring your browser to avoid cross-domain restrictions, you can run the program locally without any operational restrictions. However, this is not recommended. If any problems arise, please use at your own risk. <br>
+Below are the methods that have been confirmed to work for each browser. All are Windows 64-bit versions.
+<ul class="text">
+<li><span class="item">Google Chrome</span><br>
+Confirmed with version 101.0.4951.67. This can be avoided by configuring the startup options.
+<p class="img1"><a href="img/CrossOrigin_chrome.png"><img src="img/CrossOrigin_chrome.png"" width="301" height="300"></a></p>
+
+Create a shortcut to chrome.exe, right-click to open properties, and add the following options to "Target": "<span class="lawngreen">--allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt --disable-web-security --user-data-dir="C:\Users\<span class="boldWord">(username)</span>\AppData\Local\<span class="boldWord">Google\Chrome</span>\User Data"</span>" and launch it from the shortcut. Please change the (username) part to suit your environment.
+<li><span class="item">Microsoft Edge</span><br>
+Confirmed with version 101.0.1210.53. As with Chrome, this can be avoided by setting the startup options. <br>
+Create a shortcut to msedge.exe, right-click to open properties, add the options "<span class="lawngreen">--allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt --disable-web-security --user-data-dir="C:\Users\<span class="boldWord">(user name)</span>\AppData\Local\<span class="boldWord">Microsoft\Edge</span>\User Data"</span>" to "Target", and then launch it from the shortcut. Please change the (user name) part to suit your environment.
+<li><span class="item">Firefox</span><br>
+Confirmed with version 100.0.1. This can be avoided by changing the settings in about:config (setting security.fileuri.strict_origin_policy to false). <br>
+The appearance and operation of the about:config screen may differ slightly depending on the version, but it is basically the same..
+<p class="img1"><img src="img/CrossOrigin_firefox01.png"" width="396" height="38"></p>
+Enter <span class="lawngreen">about:config</span> in the Firefox location bar (address bar) and press Enter.
+<p class="img1"><img src="img/CrossOrigin_firefox02.png"" width="650" height="300"></p>
+A warning will be displayed. Click "I accept the risks and want to continue."
+<p class="img1"><a href="img/CrossOrigin_firefox03.png"><img src="img/CrossOrigin_firefox03.png"" width="595" height="300"></a></p>
+The about:config screen will be displayed. Enter <span class="boldWord">security.fileuri.strict_Origin_policy</span> in the search box.
+<p class="img1"><img src="img/CrossOrigin_firefox04.png"" width="754" height="158"></p>
+The setting "security.fileuri.strict_Origin_policy" will be displayed. The default value is the boolean value true.
+<p class="img1"><img src="img/CrossOrigin_firefox05.png"" width="754" height="158"></p>
+Click the toggle button on the far right and change the setting to false.<br>
+After changing the value, you can close the about:config screen. There is no need to restart Firefox, and if you just load the Javardry HTML5 version, there should be no more restrictions on operation.
+
+</ul>
+</ul>
+</p>
+<h4><a name="console">Console</a></h4>
+<p class="text">
+In the HTML5 version, just like in the Java version, you can check the results of debug commands and error messages in the console. The console screen can be viewed in the developer tools, although the display will differ depending on the browser. The developer tools are generally located in the following location, although they differ depending on the browser and its version.
+</p>
+<ul class="text">
+<li><span class="item">Google Chrome</span><br>
+[Google Chrome settings] → [More Tools] → [Developer Tools]
+<li><span class="item">Microsoft Edge</span><br>
+[Settings and more] → [More Tools] → [Developer Tools]
+<li><span class="item">Firefox</span><br>
+[Tools] → [Browser Tools] → [Web Developer Tools]
+</ul>
+<p class="img1"><img src="img/consoleError01.png"" width="884" height="230" hspace="40"></p>
+<p class="text">
+When you select the developer tools, a screen like this will appear. This is the Chrome screen, but other browsers will display similarly. When you first start the developer tools, it seems that a tab other than the console, such as network, is usually selected.
+</p>
+<p class="img1"><img src="img/consoleError02.png"" width="884" height="120" hspace="40"></p>
+<p class="text">
+If you select the console, the console screen will be displayed. The results of the debug command and errors will be displayed here.
+</p>
+<p class="text">
+Mainly when running on Chrome/Edge, but depending on the execution environment, errors and warnings that do not affect operation (or are displayed due to local restrictions, etc.) may appear. <span class="boldWord">Please ignore such errors and warnings unless there is an obvious abnormality such as strange operation or freezing.</span>The following two are examples.
+</p>
+<p class="img1"><img src="img/consoleError03.png"" width="884" height="190" hspace="40"></p>
+<p class="img1"><img src="img/consoleError04.png"" width="884" height="210" hspace="40"></p>
+<p class="text">
+Also, when running on Chrome/Edge, it seems that a large number of messages are displayed stating that image and audio files could not be loaded.
+</p>
+<p class="img1"><img src="img/consoleError05.png"" width="884" height="405" hspace="40"></p>
+<p class="text">
+Like this, the message 404 (Not Found) continues in a row. The message for audio files, etc. may be displayed slightly differently, but all of them are warning messages that the file cannot be loaded. These do not affect operation, so you can ignore them, but if you find them annoying because there are too many of them, you can hide them using the method below.
+</p>
+<p class="img1"><img src="img/consoleError06.png"" width="884" height="73" hspace="40"></p>
+<p class="text">
+First, open the settings screen from the settings button (gear mark) on the far right.
+</p>
+<p class="img1"><img src="img/consoleError07.png"" width="884" height="404" hspace="40"></p>
+<p class="text">
+Check "Selected content only."
+</p>
+<p class="img1"><img src="img/consoleError08.png"" width="884" height="280" hspace="40"></p>
+<p class="text">
+Then, the 404 (Not Found) related messages will disappear. This does not mean that all unnecessary messages will disappear, but if you are using Chrome/Edge, this should make it much easier to see.
+</p>
+<h4><a name="operation">Operation Method</a></h4>
+<p class="text">
+Operations are performed using a keyboard or gamepad. <a href="operation.htm">Operation Method</a> is almost the same as for the Java version, but the initial settings for the keys and buttons are done in config.js. You can also change the key and button settings during the game in the Key Config section of Options. Check the key and button identification names in Keyname under Options.<br>
+If you are using a gamepad such as JoyToKey to operate the gamepad, select GamePad in the options. Please set it to off. <br>
+If the controller section is displayed in the settings of the HTML file for execution below, mouse (click) and touch operation is also possible. The operation method when using the mouse is as shown, but part of the game screen is operated with the Escape key and debug key. <br>
+<br>
+<img src="img/html5Operation.gif" width="348" height="500" hspace="40">
+</p>
+<h4><a name="setting">Setting the HTML file for execution</a></h4>
+<p class="text">
+There are several settings that can be made in the HTML file for execution, so I will explain them here. You can see how to write them.
+<ul class="text">
+<li><span class="item">SaveName</span><br>
+Specify the identification name when saving data to local storage. If omitted, it will be set to Javardry. Set this if you want to save separately for PC and smartphone.
+<li><span class="item">Size</span><br>
+This is the size of the game screen, but the actual display will be scaled according to the browser window size, so it means something like resolution. You can specify a value between 300 and 3000, but it is usually around 800.
+<li><span class="item">Align</span><br>
+Specify the alignment of the game screen (left, center, right) with left/center/right.
+<li><span class="item">Controller</span><br>
+Specify whether or not to display the controller part with on/off. Mainly for smartphones.
+<li><span class="item">LoadingScreen</span><br>
+Specify the type of loading screen (screen where images, etc. are loading) with a number. Basically, it is a screen display that looks like you are progressing through a wireframe dungeon, but there are the following types. <br>
+<ul>
+<li>0 (or not specified)<br>
+
+This is the type where you simply proceed straight ahead. The same pattern is displayed repeatedly.
+<li>1<br>
+This type walks around a very small dungeon somewhat randomly. An arrow is displayed to indicate the direction of progress (or the direction of change of direction).
+</ul>
+<li><span class="item">NotLoadSaveData</span><br>
+Turn on/off the setting to not load save data at startup. Turn on if previous save data is causing problems and causing startup problems. Normally leave it off.
+<li><span class="item">NoSoundAllowed</span><br>
+Turn on/off the setting to forcibly disable loading and playing music and sound effects. Turn on if your environment causes problems when loading or playing music and sound effects. If this setting is on, the SoundPrefetch setting (described below) is ignored. Normally leave it off.
+<li><span class="item">GraphicPrefetch</span><br>
+Turn on/off the setting to preload images at startup. However, basic images such as ground background images are forcibly preloaded regardless of the setting here. If you turn it on, it will be very heavy (slow startup), so we do not recommend it even for local operation.
+<li><span class="item">SoundPrefetch</span><br>
+SoundSpecify whether to preload music and sound effects with on/off. However, even if preload is off, loading will still be performed if playback is on. Setting it to off will reduce unnecessary loading, but if you don't want loading to occur during the game and you really want to load them at the beginning, set it to on.
+<li><span class="item">GraphicLimit</span><br>
+Specify whether to keep loaded images instead of deleting them with on/off. Setting it to off will cause loading to occur every time. Normally, on is fine, but on smartphones with low memory, it may be better to turn it off.
+<li><span class="item">GraphicCache, SoundCache</span><br>
+Specify whether to use the browser cache when loading data with on/off. It is unclear how effective this is, but if you can use the cache, it may reduce unnecessary loading. Set it to off if you are having problems such as not updating during debugging, etc.
+</ul>
+</p>
+
+<h4><a name="initialization">Initial settings (config.js)</a></h4>
+<p class="text">
+Initial settings, font settings, key settings (key initial settings), and spell name settings are all in config.js. The key settings and spell name settings are the same as in the Java version. <br>
+If you change the file name of config.js, please note that you will need to change the description in the HTML file for execution.
+<ul class="text">
+<li><span class="item">InitialConfigData["Bgm"]</span><br>
+Specify the initial setting for whether to play music with true/false. You can change it in Options while playing.
+<li><span class="item">InitialConfigData["Se"]</span><br>
+
+Specifies the initial setting for whether to play sound effects with true/false. Can be changed in Options during play.
+<li><span class="item">InitialConfigData["ControllerAlign"]</span><br>
+
+Specifies whether the initial display position of the controller part is to the left or right with left/right. Can be changed in Options during play.
+<li><span class="item">InitialConfigData["GamePad"]</span><br>
+
+Specifies the initial setting for whether to use a gamepad (Javardry HTML5 version function) with true/false. Can be changed in Options during play.
+<li><span class="item">InitialConfigData["Dungeon"]</span><br>
+
+Specifies whether the initial display of the dungeon is to be an image or a line drawing with graphic/wireFrame. You can change it in Options while playing.
+<li><span class="item">InitialConfigData["PerspectiveView"]</span><br>
+When displaying dungeon images, specify the initial setting for perspective display effect with true/false. You can change it in Options while playing.
+<li><span class="item">InitialConfigData["AutoMapping"]</span><br>
+Specify the initial setting for automap display (map display/number display) with true/false. You can change it on the title screen while playing.
+</ul>
+</p>
+
+<h4><a name="font">Specify font</a></h4>
+<p class="text">
+Specify font in Font in config.js. As with the Java version, the display will be distorted if the font is not monospaced (fixed width). Specify the logical font name (monospaced) or the physical font name (MS Gothic, MS Mincho, IPAGothic, IPAMincho, VL Gothic, etc.). <br>
+When specifying a font file in the data directory, etc., set the Font value to GameFont. Then, specify the font file as a web font in the style sheet section of the executable HTML file. The font file can be a TrueType (ttf) font, just like when directly specifying it in the Java version, but I think a small Web Open Font Format (woff) is better. <br>
+When playing on a smartphone, it may depend on the OS version, but even if you specify the logical font name (monospaced), it does not include a monospaced font and appears to be displayed as a proportional font. Therefore, if you are assuming operation on a smartphone, it is better to include the font file and specify that file directly.
+</p>
+
+<h4><a name="option">Option</a></h4>
+<p class="text">
+You can turn music on/off while playing.
+<ul class="text">
+<li><span class="item">Music</span><br>
+Turn music on/off. You can also adjust the playback volume.
+<li><span class="item">Se</span><br>
+Turn sound effects on/off. You can also adjust the playback volume.
+<li><span class="item">Controller Align</span><br>
+Change the display position (left/right) of the controller part.
+<li><span class="item">GamePad</span><br>
+Turn gamepad operation on/off. Normally, you should leave this on, but if you are using free software such as JoyToKey (Windows) or QJoyPad (Linux) that converts gamepad input to keyboard input, please turn this item off as it will overlap with the input from the Javardry HTML5 version.
+<li><span class="item">Dungeon</span><br>
+Changes the dungeon display (graphic/wire frame).
+<li><span class="item">Perspective</span><br>
+Changes the perspective display effect (on/off) when displaying dungeon images. Although it only makes distant areas appear slightly darker, it depends on your preference, but if you value atmosphere, turn it on, and if you value visibility, turn it off.
+<li><span class="item">Save Data</span>a<br>
+You can back up and restore save data. You can restore save data by writing save data as a file (Backup) and loading that file (Recovery).
+<li><span class="item">Key Config</span><br>
+
+Displays the current key settings. Also changes the key settings. When you cannot rewrite the key settings (initial settings) in config.js, such as when playing online, set the keys here. <a href="operation.htm#keyConfig">The setting method is the same as the Java version</a>. <br>
+
+The key settings set here are saved in local storage as option setting data. If you want to initialize the key settings, delete the option setting data and then reload (reload).
+<li><span class="item">Keyname</span><br>
+
+As with Key test in the Java version, you can display the identification name corresponding to each key on the keyboard and each button on the gamepad. Use this when setting the keys.
+<li><span class="item">Delete option data</span><br>
+
+Deletes the option setting data saved in local storage. It does not delete the game save data. <br>
+
+If you want to initialize the option settings, delete the option setting data and then reload (reload).
+</ul>
+</p>
+
+<h4><a name="face">Face Image</a></h4>
+<p class="text">
+Adventurer face images are displayed in the face directory with the same name as the adventurer, just like in the Java version, but since it is difficult for players to change the image file name when playing online (not on a local server), the HTML5 version allows you to specify an image file in the game. <br>
+Image files are specified in the training ground. In the training ground, select an adventurer in "View Character" and then "Set Face Image". A text input field will appear, so enter the URL of the image file (including the extension) and press Enter. If not set (displaying an image file with the same name as the adventurer in the face directory as before), set it to "none". <br>
+You can specify the image file with a URL starting with http or https, for example "http://hoge.example.ne.jp/hage/fuga.png", or if the image is on the same server where the game is uploaded, you can specify it in the form of "graphic/face/fighter.png" or "graphic/monster/Angel.png". If you specify a URL starting with http or https, it will be a so-called direct link, so please specify an image that you have uploaded to a server that allows direct linking, or an image for which you have permission to direct link.
+</p>
+<ul class="text">
+You may use the following two image files for testing.
+<li>https://thu.sakura.ne.jp/img/prof_mikan.jpg
+<li>https://thu.sakura.ne.jp/img/prof_miku.jpg
+</ul>
+<p class="text">
+To save the user the trouble, it may be a good idea to upload some face images to the face directory in advance and display the thumbnail and file name.
+</p>
+<h4><a name="savedata">Save data</a></h4>
+<p class="text">
+HTML5 version save data is saved in local storage. Therefore, although the notation differs depending on the browser, please note that if you delete your browsing history, cookies, or site data, your save data will also be deleted.While playing, we recommend that you back up your save data in Options at appropriate times. <br>
+When the training ground is empty (all adventurers have been deleted), you can initialize the data by executing the "Delete Character" command. In that case, the save data stored in the local storage will also be deleted, and there will be no save data until the next save. Use this if you want to delete only Javardry save data from local storage.
+</p>
+
+<h4><a name="others">Other differences from the Java version</a></h4>
+<p class="text">
+<ul class="text">
+<li><span class="item">defaultMessage.txt is now defaultMessage.js</span><br>
+The format is slightly different, but the contents are almost the same. <br>
+Please note that if you change the file name of defaultMessage.js, you will need to change the description in the executable HTML file.
+<li><span class="item">Encrypted images and music cannot be used</span><br>
+The excuse is that no one will use the encrypted file playback feature in the Java version anyway, and it is technically difficult (in terms of the creator's skills) to make it unavailable. <br>
+However, I've heard that some material creators prohibit distributing unencrypted materials together with the game itself, as this constitutes secondary distribution. In that case... it may be possible to release it for online play (uploaded to the web) rather than for distribution... but please check the terms of use of each material site carefully for details.
+<li><span class="item">No distinction between normal and high-resolution images</span><br>
+In the Java version, as a last resort to make the game run faster, you could switch between normal images (small images) and high-resolution images (large images), but in the HTML5 version, this did not seem to have much of an effect on the game's operation, so we removed the display switching feature.
+<li><span class="item">MIDI cannot be used</span><br>
+Only MP3 can be used for music (BGM). WAVE and MP3 can be used for sound effects (SE) as in the Java version. MP3 playback is smoother than in the Java version, so we recommend that you use MP3 for sound effects.
+<li><span class="item">When reincarnating a PC, the data of the original PC is not deleted</span><br>
+When reincarnating a PC in the Java version, the PC was deleted, but in the HTML5 version, files can only be exported by downloading the file, and it is not possible to check whether the reincarnated data was saved, so the PC is not deleted.
+</ul>
+</p>
+<h4><a name="distribution">Distribution method</a></h4>
+<p class="text">
+The Java version is explained in "<a href="scenario.htm">Release of the scenario</a>", but the HTML5 version can be thought of in a similar way. <br>
+For the HTML5 version, there are three possible distribution methods. The top two are the same as for the Java version.
+<ul class="text">
+<li><span class="item">Distribute the HTML5 version (js files, executable HTML files, etc.) together with your own scenario data, etc.</span>
+<li><span class="item">Distribute only your own scenario data (HTML5 version game data) and image, music, sound effect data, etc.</span>
+<li><span class="item">Upload it to the web and make it available for online play</span><br>
+This is a method of uploading the entire set of files to a random location (on the web) and having people access it and play. It's not distribution, it's publication, I guess. If you're in an environment where you don't mind data traffic, this may be the easiest way to get people to play... <br>
+If you are releasing it for online play, please include a link to an explanatory file such as readme.txt in an easy-to-find location. However, text files may be garbled when viewed on a smartphone, so it is better to use html files that allow you to specify the character code. <br>
+When playing locally with the Java or HTML5 version, file names and directory (folder) names can be in Japanese, but when playing online with the HTML5 version (uploading to the internet), <span class="boldWord">do not use Japanese in file names, etc.</span>. There are now more environments where Japanese can be read normally, but on the server, basically only <span class="boldWord">half-width alphanumeric characters and some half-width symbols</span> are valid.
+<ul>
+</p>
+
+</body>
+</html>

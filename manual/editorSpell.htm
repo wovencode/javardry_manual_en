@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Spells]</h3>
+<p class="text">
+　In the "Spells" tab, you can configure the spells used by adventurers and monsters.
+</p>
+<div align="center">
+<a href="img/editorSpell.png"><img src="img/editorSpell.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Maximum Spell Level</span><br>
+　Choose the maximum spell level between 1 and 10. The maximum spell level is common across all spell categories.
+<li><span class="item">The bottom spell category is for monsters only</span><br>
+　If you check this box, the lowest spell category will be exclusive to monsters. It is treated the same as other categories except that adventurers cannot learn or use these spells.
+<li><span class="item">[Spell Category]</span><br>
+　This list configures the spell categories, and you can set up to 5 categories. However, adventurers can only learn and use up to 4 categories, and the 5th category will be exclusive to monsters. If you use the 5th category, make sure to check the box for "The bottom spell category is for monsters only." <br>
+　A spell category refers to categories like Mage or Priest spells in the Wizardry series. Each spell category can have multiple spell levels, and for each spell level, several spells are listed. The spell levels can be switched using radio buttons.
+	<ul>
+	<li><span class="item">Spell Category Name</span><br>
+	　The name or abbreviation of the spell category. It can be up to 4 characters (half-width).
+	</ul>
+<li><span class="item">Spell Level</span><br>
+　Radio buttons to switch between spell levels. The number of spell levels can be changed using the "Maximum Spell Level" option, but the number of spell levels is the same across all categories, so be careful.
+<li><span class="item">[Spells]</span><br>
+　This list configures spells for each spell level, and you can set up to 6 spells. Updating the spell list does not automatically update the spell category list, so if you update the spell list, make sure to update the spell category list before switching to another spell category.
+	<ul>
+	<li><span class="item">move</span><br>
+	　Move the selected spell to a different level specified in the combo box. If there is no space at the destination, it will swap with the last spell in that level.
+	<li><span class="item">Spell Name</span><br>
+	　The name of the spell. It can be up to 24 characters (half-width).
+	<li><span class="item">Usage Condition</span><br>
+	　Set the conditions under which the spell can be used. Conditions include Camp & Battle, Camp, Battle, and Treasure Chest. "Treasure Chest" refers to when a treasure chest is discovered, and it only applies to the effects of trap investigation and trap解除.
+	<li><span class="item">Not Disabled</span><br>
+	　If you check this box, the spell will not be disabled when used against enemies in battle. Use this for spells that are not affected by the enemy's spell-nullifying abilities, like spells that modify the enemy's AC in Wizardry.
+	<li><span class="item">Level Restriction</span><br>
+	　Specify a level between 1 and 99999, and the spell's effect will not activate unless the character reaches that level. This is used to apply restrictions based on the character's level.
+	<li><span class="item">MP Consumption</span><br>
+	　Specify the MP consumed when casting the spell, between 0 and 99. In Javardry, MP generally refers to the number of uses, so the default consumption is 1. Change this value if you want to create spells that consume more or less MP, or if you want to create powerful spells that cost a lot of MP. However, if you do so, you may also want to adjust the maximum MP increase for spell learning and leveling up.<br>
+	　MP consumption per spell is not automatically displayed during gameplay, so if you change the MP consumption, it's recommended to include it in the spell's description.
+	<li><span class="item">Can Be Used While Silenced</span><br>
+	　If you check this box, the spell can be used even when the character is silenced during battle. Use this for spells that do not require verbal components and are not affected by silence.
+	<li><span class="item">Do Not Learn on Level Up</span><br>
+	　If you check this box, the spell will not be learned during level-up. Use this in combination with <a href="editorSpellEffect.htm#20">spells that teach spells during level-up</a>.
+	<li><span class="item">Monster Use</span><br>
+	　For each spell, you can configure whether or not monsters can use it. When monsters use it, the spell is classified as one of Attack, Support, or Healing spells.<br>
+	　Healing spells that monsters can use include HP recovery, MP recovery, and status recovery.
+	<li><span class="item">Conditional Branching</span><br>
+	　You can have different effects based on the caster's gender or personality. Gender and personality can be switched using radio buttons. Since monsters do not have gender or personality, the effects are randomized when monsters use the spell.
+	<li><span class="item">Activation Type</span><br>
+	　Choose the activation type from Normal, Selectable, or Random. In the normal case, one effect is triggered. Selectable allows several effects to be displayed as options, from which one effect will be chosen. If monsters use the spell, the effects will be random. Random means one of several effects is chosen randomly. For Selectable and Random, the target cannot be selected.
+	<li><span class="item">Number of Spell Effects</span><br>
+	　When the activation type is Selectable or Random, select how many effects you want to set, between 2 and 10. Each effect can be switched using radio buttons.
+	<li><span class="item">Number of Choices</span><br>
+	　When the activation type is Selectable, set how many effects will be displayed as options. If this number is the same as the number of spell effects, all effects will be shown as choices; otherwise, a random selection from the spell effects will be displayed. This has no effect when monsters use the spell.
+	<li><span class="item">Spell Effect</span><br>
+	　Choose one effect from the spell effect set configured in the "Spell Effect" tab.
+	<li><span class="item">Selectable Message</span><br>
+	　When the activation type is Selectable, enter the message that will be shown as an option. It can be up to 48 characters (half-width). This has no effect when monsters use the spell.
+	<li><span class="item">Description</span><br>
+	　Enter a description for each spell. When you click the check button, the text will be tested to show how it appears with line breaks. The maximum display is 54 half-width characters (including 2 half-width characters for forbidden line breaks) * 5 lines. This description will only be shown during spell selection if the "Help Comment Display" is checked in the "Main" tab.<br>
+	　If conditional branching is set, you can set different descriptions for each gender and personality.
+	</ul>
+<li><span class="item">"SpellList" Tab</span><br>
+　In this tab, the spells currently configured for each spell category (1–5) will be displayed with their spell numbers (configuration numbers). Use this to view the list of spells or to directly specify spell numbers.
+</ul>
+
+</body>
+</html>

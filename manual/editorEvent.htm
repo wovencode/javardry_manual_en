@@ -1,0 +1,170 @@
+	<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">top page</a></div>
+
+<h3 class="title1">Editor [Events]</h3>
+<p class="text">
+  In the "Events" tab under the "Dungeon" tab, you can set up the events for each floor. Since this is part of the dungeon list, please update the dungeon list in the "Dungeon" tab after making changes.
+</p>
+<div align="center">
+<a href="img/editorEvent.png"><img src="img/editorEvent.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">[Event]</span><br>
+  Events have become complicated (and unnecessarily confusing), so I'll briefly explain the overall flow here. Multiple events can be set at one coordinate, and conditions are evaluated in order from top to bottom. The first event that matches the condition will be executed. For each event, you can display Yes or No choices, and the processing will branch depending on the choice. If there are no choices, the Yes process will be executed. Additionally, you can make the player pay money, give items, or input text, and the result will branch to either Main Event 1 or 2. If there are no actions such as paying money, the process will proceed to Main Event 1. The final main event allows you to perform actions like setting flags or obtaining items.<br>
+  It may seem even more confusing, but just bear with it.
+<li><span class="item">Coordinates</span><br>
+  The coordinates of the space where the event will occur. Change this when you modify the event position or duplicate events.
+<li><span class="item">Event Name</span><br>
+  A name used to identify the event. It is not used in the game.
+<li><span class="item">[Individual Event]</span><br>
+  This is a list of events, including items like "Yes or No" and "Main Events." This list is part of the event list for each coordinate located at the top, so after updating this list, please also update the event list for each coordinate.
+	<ul>
+	<li><span class="item">Condition Expression</span><br>
+	 這 is the condition for the event to occur. The conditions are evaluated in order from the top, and only the first matching condition is executed.
+	<li><span class="item">Text</span><br>
+	 This is the message displayed first. When you click the check button, you will see the actual message with line breaks applied. The display can show up to 38 characters (including 2 half-width characters for non-breaking) * 12 lines, but multiple pages can be shown. To force a page break, insert &lt;p&gt;. Additionally, images can also be displayed. For more on displaying images, refer to <a href="editorStart.htm#graphic" target="_self">how to display images in events, etc.</a>
+	<li><span class="item">Yes/No Choices</span><br>
+	 If you want to display Yes/No choices after the initial message, check this box.
+	<li><span class="item">(Text Area)</span><br>
+	 Enter the message displayed with the Yes/No choices. When you click the check button, you will see the actual message with line breaks applied. The display can show up to 38 characters (including 2 half-width characters for non-breaking) * 12 lines. If omitted, the default message "Do you want to search?" will be displayed.
+	<li><span class="item">left, center, right</span><br>
+	 Specify the alignment of the text: left, center, or right.
+	</ul>
+<li><span class="item">Yes or No</span><br>
+  The processing will branch depending on the result of selecting Yes or No. If there are no choices, the Yes process will be executed. Here you can specify the following actions, and the result will branch to either Main Event 1 or 2.
+	<ul>
+	<li><span class="item">None</span><br>
+	 進行 no action and move to Main Event 1.
+	<li><span class="item">Pay Money</span><br>
+	 This action will involve paying money. If the specified amount is paid, the process will move to Main Event 1; if not, it will move to Main Event 2.
+	<li><span class="item">Give Item</span><br>
+	 This action will involve giving an item. You can specify multiple items using commas and hyphens for ranges (e.g., 1,5,10-14,20). The player can receive one of the items from the specified list. If the item is given, the process moves to Main Event 1; if not, it moves to Main Event 2.
+	<li><span class="item">Input Text</span><br>
+	 This action checks whether a specific sentence or word matches what the player inputs. It is typically used for riddles. You can specify multiple sentences or words to match, separated by &lt;&gt;. If the input matches the specified sentences, the process moves to Main Event 1; if it does not match, or if the input is empty, it moves to Main Event 2. Note that full-width characters are converted to half-width for comparison.
+	<li><span class="item">Select PC</span><br>
+	 This action involves selecting a PC (player character). It is used when you want to make a party member perform an action like "enter the spring" or "drink the water." If a PC is selected, the process moves to Main Event 1; if not selected (or canceled), it moves to Main Event 2. However, this is only meaningful if an event's spell effect is used.
+	</ul>
+<li><span class="item">Main Event 1 or Main Event 2</span><br>
+  The final event that is executed.
+	<ul>
+	<li><span class="item">Text</span><br>
+	 This displays a message. When you click the check button, you will see the actual message with line breaks applied. The display can show up to 38 characters (including 2 half-width characters for non-breaking) * 12 lines, but multiple pages can be shown. To force a page break, insert &lt;p&gt;. Additionally, images can also be displayed. For more on displaying images, refer to <a href="editorStart.htm#graphic" target="_self">how to display images in events, etc.</a>
+	<li><span class="item">Sound Effect</span><br>
+	 This sets the sound effect to play when the main event starts. You can specify the name of the sound effect as set in the [Sound Effects] section of the "Main" tab. Leave it blank if no sound effect should play.
+	<li><span class="item">Flag Operation</span><br>
+	 This allows you to modify the values of flags, special flags, wall existence flags, map completion flags, hidden door flags, and locked door flags. For details on the format, see <a href="editorStart.htm#flagControl" target="_self">Flag Operation</a>.
+	<li><span class="item">Event: None</span><br>
+	 No event is performed. This is used when you only want to play a sound effect or perform a flag operation.
+		<ul>
+		<li><span class="item">Run Event Again</span><br>
+		 If this is checked, the event will be re-executed after it has finished. Use this when you want to run multiple events at once. However, be cautious because if you don't set conditions for flag operations, etc., the same event will repeat endlessly.
+		</ul>
+	<li><span class="item">Event: Item Acquisition</span><br>
+	 This allows the player to obtain one specified item. If there is not enough room to hold the item, it cannot be obtained.
+		<ul>
+		<li><span class="item">Run Event Again</span><br>
+		 If this is checked, the event will be re-executed after it has finished. Use this when you want to run multiple events at once. However, be cautious because if you don't set conditions for flag operations, etc., the same event will repeat endlessly.
+		</ul>
+	<li><span class="item">Event: Teleport</span><br>
+	 This teleports the player to the specified coordinates on the specified floor. The player can teleport even if the destination is in an area where teleportation is blocked.
+	<li><span class="item">Event: Return</span><br>
+	 This returns the player to the surface.
+	<li><span class="item">Event: Monster Appearance</span><br>
+	 This causes a monster to appear. If you want different monsters to appear depending on the conditions (since only up to two monsters can be set for guard monsters), or if you want to trigger an event after combat victory, use this option.
+		<ul>
+		<li><span class="item">Run Event Again</span><br>
+		 If this is checked, the event will be re-executed after the combat victory. This can be useful for displaying victory messages. However, be cautious, as the same event will repeat endlessly unless you set conditions for flag operations, item acquisitions, or post-combat flag changes.
+		<li><span class="item">Monster</span><br>
+		 This specifies the monster that will appear. If set to "Normal," the monster that usually appears on that floor will appear.
+		<li><span class="item">Item</span><br>
+		 By specifying an item here, the player can obtain it after the battle. It will not come from a treasure chest, but will be given directly after combat (if there is room in the inventory).
+		<li><span class="item">No Treasure Chest</span><br>
+		 If the item is set to "None," this determines whether a treasure chest will appear after the battle. If checked, no treasure chest will appear; if unchecked, a treasure chest will appear.
+		<li><span class="item">Music</span><br>
+		 This sets the music that will play during combat. Specify the name of the music as set in the [Music] section of the "Main" tab. To not play music, set it to "none," or set it to "no change" if you want to keep the same music as during movement. Monster-specific combat music is ignored. Leaving it blank will play the normal combat music, and monster-specific music will be used if available.
+		<li><span class="item">Victory, Escape, and Total Defeat Flag Operations</span><br>
+		 This modifies the flag values when the player wins, escapes, or is defeated by a monster. The flag number and value should be separated by commas, and multiple flags can be specified with &lt;&gt;. Flag values are: 0 for false, 1 for true, and 2 for toggle. For example, the following would set Flag 0 to false, Flag 2 to true, and toggle Flag 4:<br>
+		 0,0&lt;&gt;2,1&lt;&gt;4,2
+		</ul>
+
+<li><span class="item">Event: Spell Effects</span><br>
+    This setting applies to spell effects that occur during an event. Unlike the use of spells or items, there is no caster (user) present, so if the caster's data is referenced in a formula, it will be replaced with the data of the target.
+    <ul>
+    <li><span class="item">Execute Event Again</span><br>
+    　Checking this will cause the event to be executed again after the first one. Use this when you want to execute multiple events at once. However, be careful as the same event may repeat endlessly unless you set up conditions, such as flag operations.
+    <li><span class="item">Probability</span><br>
+    　Specify the probability of the effect being applied in a formula, and the adventurer can be referenced by pc.
+    <li><span class="item">Effect Target</span><br>
+    　Select the target of the effect: none, all allies, or a selected PC. If you want to target each adventurer in the party, select all allies; if you want to target the party itself, select none. However, if the spell effect is originally meant for individuals, selecting "none" will randomly choose one from the party. If the target is set to "selected PC," the PC who performed actions such as "paying money," "giving an item," or "selecting a PC" will be the target.
+    <li><span class="item">Level Limitations</span><br>
+    　You can impose restrictions based on the target's level. If the target is below the specified level, the effect will not be applied.
+    <li><span class="item">Conditional Branching</span><br>
+    　You can apply different effects based on the target's gender or personality. These can be switched using radio buttons for each gender and personality.
+    <li><span class="item">Activation Type</span><br>
+    　Typically, you select the activation type from normal or random. In the normal case, a single effect is triggered. In the random case, one effect is randomly selected from several effects.
+    <li><span class="item">Number of Spell Effects</span><br>
+    　When the activation type is random, choose how many effects to set from 2 to 10. Each effect can be switched using radio buttons.
+    <li><span class="item">Spell Effect</span><br>
+    　Select one of the spell effects from the set configured in the "Spell Effects" tab.<br>
+    　In the formula for the spell effect selected here, the trap difficulty can be referenced as trap.lv. The trap difficulty here refers to the "treasure chest trap level" set for each floor of the dungeon.
+    </ul>
+<li><span class="item">Event: Bulletin Board</span><br>
+    You can set up a bulletin board list that displays different messages depending on conditions. The conditions are checked from top to bottom, and only the first message that satisfies a true condition will be displayed. Conditions are set using expressions, and the displayed text is set as text. Clicking the check button will show a test display of the text with newline formatting. The display allows up to 38 half-width characters (including 2 characters for prohibited line breaks) * 12 lines, but multiple pages can be displayed. If you want to force a page break, insert &lt;p&gt;. Images can also be displayed. For more on displaying images, refer to <a href="editorStart.htm#graphic" target="_self">how to display images in events, etc.</a>.
+    <ul>
+    <li><span class="item">Execute Event Again</span><br>
+    　Checking this will cause the event to be executed again after the first one. Use this when you want to execute multiple events at once. However, be careful as the same event may repeat endlessly unless you set up conditions, such as flag operations.
+    </ul>
+<li><span class="item">Event: Teleport to Another Dungeon</span><br>
+    Teleports to a specified coordinate on a specified floor of a specified dungeon. You can teleport even if the destination floor or area is inaccessible. Coordinates are specified normally, but unlike teleportation events, floor numbers are specified as values from 0 to 15, where 0 is the lowest floor. For example, if the lowest floor is B5F and the highest is 10F, 0 corresponds to B5F, 3 corresponds to B2F, and 10 corresponds to 6F. Be careful as 0F does not exist. The dungeon is specified by dungeon number (0-9).<br>
+    The duration of spell effects is treated similarly to floor changes.
+<li><span class="item">Event: Recover Dropped Items</span><br>
+    You can pick up items that were dropped in the tavern or during a dungeon camp. A maximum of 1000 items can be recorded, and older items will be deleted if more than 1000 are dropped.
+    <ul>
+    <li><span class="item">Execute Event Again</span><br>
+    　Checking this will cause the event to be executed again after the first one. Use this when you want to execute multiple events at once. However, be careful as the same event may repeat endlessly unless you set up conditions, such as flag operations.
+    <li><span class="item">Dungeon</span><br>
+    　Specify the dungeon number (use -1 for the surface) where the dropped items will be recovered, separated by commas. For example, if there are three dungeons, specifying "0" will recover items dropped in dungeon 0, "0,1,2" will recover from all dungeons, and "-1,0,1,2" will recover items from the surface as well as all dungeons.
+    <li><span class="item">Items</span><br>
+    　Choose from "newest," "oldest," or "random" to select which dropped item to recover. "Newest" refers to the most recently dropped item, "oldest" to the oldest dropped item, and "random" selects one randomly from all dropped items.
+    </ul>
+<li><span class="item">Event: Add PC</span><br>
+    Adds a designated adventurer as an initial PC. It is possible to add the same adventurer multiple times, so manage the conditions for events such as flags or titles accordingly.
+    <ul>
+    <li><span class="item">Execute Event Again</span><br>
+    　Checking this will cause the event to be executed again after the first one. Use this when you want to execute multiple events at once. However, be careful as the same event may repeat endlessly unless you set up conditions, such as flag operations.
+    <li><span class="item">Add to Party or Tavern</span><br>
+    　"Add to Party" will add the specified PC to the party if there is space available. If there is no space, they will be added to the tavern.<br>
+    　"Add to Tavern" will add the specified PC to the tavern.<br>
+    　In both cases, the addition will not occur if there is no available space for registration. You can check the available space for PC registration using PcSpaceNum and for the party using pt.spaceNum, and use this in event conditions for processing.
+    <li><span class="item">Place in Dungeon</span><br>
+    　Places the specified PC in a dungeon. The position is specified by "coordinates."<br>
+    　"Coordinates" are specified as four values separated by commas: dungeon number, floor number, x-coordinate, and y-coordinate. The floor number is specified as a value from 0 to 15, where 0 is the lowest floor, similar to "Teleport to Another Dungeon." If not specified, it will be random. For example, "1,2,5,7" places the PC on the 3rd floor of dungeon 1 at coordinates [5, 7], and "1,2" will randomly select a coordinate on the same floor and dungeon. Leaving the field blank will randomize the dungeon and floor as well.<br>
+    　As with adding to the party or tavern, if there is no available space for registration, placement in the dungeon will not occur.
+    <li><span class="item">Initial PC</span><br>
+    　Specify the adventurer to be added (placed) by selecting from the initial PCs by number. Multiple adventurers can be specified with <> and their states can be specified with commas.<br>
+    　The first number is the adventurer (initial PC) number, the second is the state number (from normal to disappearance), and the third is poison damage. Poison damage can be a fixed value from 1 to 99999, or from 100001 to 100100, representing a percentage of the maximum HP (rounded up).<br>
+    　For example, "3<>4,0,5<>7,2<>8,3,100010<>12,4" means PC 3 (normal), PC 4 (fixed poison damage of 5), PC 7 (paralyzed), PC 8 (petrified with poison damage equal to 10% of max HP), and PC 12 (dead).
+    	<ol start="0">
+    	<li>Normal
+    	<li>Panic
+    	<li>Paralyzed
+    	<li>Petrified
+    	<li>Dead
+    	<li>Turned to Ash
+    	<li>Disappeared
+    	</ol>
+    </ul>
+</ul>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [PC Creation]</h3>
+<p class="text">
+In the upper section of the "PC Creation and Class Change" tab within the "Facilities" tab, you can configure settings like the age of adventurers created in the training area.
+</p>
+<div align="center">
+<a href="img/editorCreatePc.png"><img src="img/editorCreatePc.png" width="600" height="322"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Maximum PC Registration</span><br>
+The maximum number of adventurers that can be registered in the training area. The default (and minimum) is 36, and it can be increased to a maximum of 120.<br>
+If you load save data (play data) from an existing scenario, increasing the maximum registration number is fine, but reducing it will result in PCs exceeding the maximum registration number (based on their order in the training area) being deleted, so proceed with caution.
+<li><span class="item">Age</span><br>
+Specify the initial age of adventurers at the time of creation using a formula. While you can reference adventurer data using `pc`, it is safest to limit references to their race, class, gender, and alignment, as the adventurer data being accessed is during creation. Ensure the calculation result is between 1 and 9,999,999.
+<li><span class="item">Initial Funds</span><br>
+Specify the initial funds for adventurers at creation using a formula. While you can reference adventurer data using `pc`, it is safest to limit references to their race, class, gender, and alignment, as the adventurer data being accessed is during creation. Ensure the calculation result is between 0 and 999,999,999,999.
+<li><span class="item">Bonus Dice</span><br>
+Specify the dice roll for determining attribute bonuses during adventurer creation in the form of `a D b + c`. Specify `a`, `b`, and `c` as formulas (dice rolls are not allowed) and reference parts of the adventurer's data (e.g., `pc.Sex[ ]`, `pc.Ali[ ]`, `pc.Race[ ]`, `pc.raceCommentNum[ ]`). To set the bonus to 0, use `0Db + 0`. If "Re-roll and add if the dice roll hits the maximum value" is checked, a re-roll occurs when the dice roll is at its maximum value, adding the result of `aDb + c` to the previous result. This repeats if the re-roll again hits the maximum value. Note, however, that the total bonus points available are limited to the maximum attribute values, making further rolls meaningless.<br>
+To align with Wizardry specifications, set the checkmark and use `1D6 + 4`. Results range from 5 to 9 as-is, but 10 triggers a re-roll since it’s the maximum value, resulting in `10 + (1D6 + 4)` (15–20). Repeating the process for further rolls hitting the maximum (e.g., 20), leads to `20 + (1D6 + 4)`, continuing indefinitely.
+<li><span class="item">Items</span><br>
+Configure the items adventurers have at creation. Use condition formulas, item possession, and equipment status separated by `<>`. Separate lines by line breaks, evaluating from the top. Successful conditions result in assigning the specified items.<br>
+Conditions use created PC's class (`pc.Class[ ]`), race (`pc.Race[ ]`), alignment (`pc.Ali[ ]`), and gender (`pc.Sex[ ]`). Specify class, race, etc., using numbers between 0 and max value - 1 inside `[ ]`.<br>
+Specify items by their ID numbers. Multiple items can be specified separated by commas, but items exceeding the maximum allowed by race or class will be ignored.<br>
+Equipment status uses `false` for unequipped and `true` for equipped items.<br>
+<b>Example</b><br>
+`pc.Class[0]<>1,46<>true`<br>
+`pc.Class[1] && pc.Race[1]<>12,43<>true`<br>
+`pc.Class[1] || pc.Class[4]<>5<>true`<br>
+`true<>6<>false`<br>
+In this case, the first line checks if the PC is a class 0 warrior. If true, the PC equips item 1 (longsword) and item 46 (breastplate). If not, the second line checks if the PC is class 1 (mage) and race 1 (elf). If true, the PC equips item 12 (glass staff) and item 43 (robe). The third line checks if the PC is either class 1 (mage) or class 4 (bishop) and equips item 5 (staff) if true. The final line is always true, so any PC not meeting the above criteria is assigned item 6 (dagger) without equipping it.
+</ul>
+
+</body>
+</html>

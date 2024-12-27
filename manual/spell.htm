@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Spells</h3>
+<p class="text">
+Adventurers can learn spells based on their class and can cast them during camp or in combat. Spells can belong to different categories and are divided into several spell levels. Each spell level has an MP cost, and as levels increase, the maximum MP for each spell level increases as well.<br>
+Monsters may also cast a variety of spells based on settings.
+</p>
+<ul class="text">
+<li><span class="item">Spell Attributes</span><br>
+Attack spells have attributes like fire, cold, lightning, holy, and void. The target of these attacks might have resistance to certain attributes, which reduces the damage (the reduction rate depends on the scenario settings). Conversely, the target may have a weakness to certain attributes, which increases the damage (the increase rate depends on the scenario settings).
+<li><span class="item">Spell Negation</span><br>
+Some adventurers or monsters have the ability to negate spells with a certain probability. If a spell is negated, it will not activate. However, some spells cannot be negated.
+<li><span class="item">Resistance to Spells</span><br>
+Some spells used in combat may be resisted. If an attack spell is resisted, the damage will be halved. Other spells will have no effect if resisted.
+</ul>
+
+<h3 class="title1">Items</h3>
+<p class="text">
+Adventurers can carry equipment like weapons, armor, shields, and items like healing potions. Items can be bought in shops or found in dungeons.<br>
+Items can be used, rearranged, or transferred among adventurers during camp. When transferring items, the recipient can be selected using the left and right movement keys.<br>
+Each item has the following data:
+</p>
+<ul class="text">
+<li><span class="item">Type</span><br>
+Items are categorized into weapons, armor, shields, helmets, gauntlets, boots, and others.
+<li><span class="item">Name, Unidentified Name</span><br>
+This is the name of the item. If obtained in an unidentified state (such as "? Sword"), the name will remain unidentified, and the true name will only be revealed after identification, but the item’s stats and effects are unchanged.
+<li><span class="item">Identification Level</span><br>
+The difficulty of identifying the item.
+<li><span class="item">Equip Conditions</span><br>
+The race and class that can equip the item.
+<li><span class="item">Curse</span><br>
+Indicates whether the item is cursed. Curses may activate depending on the adventurer’s gender and personality when equipped or upon failed identification. If cursed, the item cannot be removed, and its AC (Armor Class) might change, or special abilities like critical hits may be disabled. A failed identification will cause a curse even if the equip conditions don’t match, and the item will be cursed, preventing its removal, with its effects disabled.<br>
+To remove a curse, the item can be de-cursed in a shop or using de-cursing spells or items.
+<li><span class="item">AC, AC When Cursed</span><br>
+The AC modification gained when equipped. If cursed, the AC modification will generally be detrimental.
+<li><span class="item"><a name="attackRange">Damage, Attack Range</a></span><br>
+The damage dealt by the equipped weapon per hit, and the attack range. The attack range includes the following types:
+	<ul class="text">
+	<li><span class="item">Normal Range (Front/Back)</span><br>
+	Similar to Wizardry #1–#3, attacks reach from the front row to both the front and back rows of the opponent. In the early Wizardry games, monsters seemed to lack the concept of formations (or so it appears), so attacks from the front row would reach all four monster groups, while monster attacks would only reach the front row of the adventurers. In Javardry, the normal range means that whether the attacker is a player or a monster, attacks from the front row reach both the front and back rows of the opponent.
+	<li><span class="item">Short Range (Front/None)</span><br>
+	Attacks reach from the front row to the front row of the opponent.
+	<li><span class="item">Medium Range (Front/Back, Front)</span><br>
+	Attacks reach from the front row to both the front and back rows of the opponent, and from the back row to the front row of the opponent.
+	<li><span class="item">Long Range (Front/Back, Front/Back)</span><br>
+	Attacks reach from the front row to both the front and back rows of the opponent, and from the back row to both the front and back rows of the opponent. Essentially, this range has no restrictions.
+	<li><span class="item">Short Indirect (None/Front)</span><br>
+	Attacks reach from the back row to the front row of the opponent. This was introduced to allow for weapons used by back row characters.
+	<li><span class="item">Long Indirect (None/Front/Back)</span><br>
+	Attacks reach from the back row to both the front and back rows of the opponent. Again, this is for back row-specific weapons.
+	<li><span class="item">Short Range Short Indirect (Front/Front)</span><br>
+	Attacks reach from the front row to the front row of the opponent, and from the back row to the front row of the opponent. This is for monsters that attack only the front row, regardless of position.
+	</ul>
+<li><span class="item">Hit Modifier (HIT), Attack Count (AT)</span><br>
+The hit modifier and attack count gained when equipped. The attack count won’t decrease unless there’s a negative modifier. If the item’s base attack count exceeds the modifier, the modifier will not affect it.
+<li><span class="item">Attack Additional Effects</span><br>
+The special attack abilities gained when the item is equipped, such as critical hits.
+<li><span class="item">Double Strike Effect, Defense Effect</span><br>
+Double strike increases damage against specific types of monsters (the increase rate depends on the scenario settings), and defense reduces damage taken from specific types of monsters (the reduction rate depends on the scenario settings). Depending on the scenario, the effect may apply by simply owning the item, or it may require the item to be equipped.
+<li><span class="item">Resistance Abilities</span><br>
+Items can grant resistance abilities like the following. Depending on the scenario, these effects may apply just by owning the item or may require the item to be equipped.
+	<ul>
+	<li><span class="item">Fire, Cold, Lightning, Holy, Void Resistance</span><br>
+	Reduces damage from attribute-based attack spells and breath attacks (reduction rate depends on the scenario settings).
+	<li><span class="item">Silence</span><br>
+	Prevents the effect of silence.
+	<li><span class="item">Sleep (Fainting), Poison, Paralysis, Petrification, Level Drain, Instant Death Spells</span><br>
+	Prevents these various effects and reduces damage from breath attacks (reduction rate depends on the scenario settings). However, even with sleep (fainting) resistance, knockout-induced fainting cannot be prevented.
+	<li><span class="item">Critical, Knockout</span><br>
+	Prevents critical hits and knockouts. However, even with knockout resistance, fainting due to a knockout spell cannot be prevented.
+	</ul>
+<li><span class="item">Healing Effects</span><br>
+The HP restored per turn or step. Depending on the scenario, the effect may apply just by owning the item or may require the item to be equipped.
+<li><span class="item">Spell Negation</span><br>
+The probability that the item can negate spells. Depending on the scenario, the effect may apply just by owning the item or may require the item to be equipped.
+<li><span class="item">Usage Effects</span><br>
+The spell effects that are activated when the item is used. These can be used during camp or in combat.
+<li><span class="item">SP (Special Power)</span><br>
+The spell effects that can be activated when selecting equipment during camp.
+<li><span class="item">Breakage Rate, Post-Breakage Item Changes</span><br>
+The probability of the item breaking when used or when SP is activated, and the changes that happen to the item after it breaks. Depending on the settings, the item might disappear instead of changing.
+<li><span class="item">Price</span><br>
+The price of the item when purchased in a shop. Usually, this price determines the resale price, identification cost, and de-cursing cost in shops.
+</ul>
+
+<h3 class="title1">Identifying Unidentified Items</h3>
+<p class="text">
+Items obtained in an unidentified state (such as "? Sword") can be identified by either having them evaluated at a shop or through the identification ability of an adventurer. Once identified, the true name of the item will be revealed. Even if an item remains unidentified, its effects and capabilities remain the same, but there are drawbacks, such as the item being sold for a lower price in shops or not showing help comments.<br>
+When an adventurer performs the identification, they can identify not only their own unidentified items but also items held by other adventurers in the same party. Identifications at shops always succeed 100%, but an adventurer’s identification may fail, leading to consequences such as becoming confused, cursing the item, or in some cases, destroying the item (depending on the settings or situation). Additionally, unidentified cursed items cannot be identified while cursed.
+</p>
+
+</body>
+</html>

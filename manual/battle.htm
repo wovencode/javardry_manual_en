@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Home Page</a></div>
+
+<h3 class="title1">Combat</h3>
+<div align="center">
+<img src="img/battle.gif" width="300" height="300">
+</div>
+<p class="text">
+　While traversing corridors or entering chambers, players may encounter monsters. Typically, combat ensues immediately, but three special encounter scenarios may occur:
+</p>
+<ul class="text">
+<li><span class="item">Unaware of Your Presence</span><br>
+　The monsters are oblivious to the adventurers, allowing for a preemptive strike. Some scenarios may restrict spell usage during a preemptive attack.
+<li><span class="item">Sudden Ambush</span><br>
+　Monsters catch the adventurers off guard, launching a preemptive strike. Depending on the scenario, they might not use spells during this surprise attack.
+<li><span class="item">Friendly</span><br>
+　The monsters display a neutral demeanor, allowing adventurers to choose between engaging in battle or retreating. Misaligned choices may affect the adventurer's alignment.
+</ul>
+<p class="text">
+　Combat is turn-based and concludes when one side is entirely defeated or successfully flees.
+</p>
+
+<h4><a name="monster">Encountered Monsters</a></h4>
+<p class="text">
+　A single combat encounter may feature up to four groups of monsters, each with a maximum of nine members. The number preceding the monster's name indicates the group's size, while the number following it shows the active members in that group.<br>
+　Monsters' identities remain uncertain if not definitively identified, with placeholder names displayed instead. Their abilities are unaffected by their identified status. Successful identification checks during turns reveal their true nature. Certain spells or items may enhance identification success rates.<br>
+　In traditional "Wiz," only the identified or placeholder name is displayed. Javardry, however, displays both once identified, aiming to enhance visual imagination even without monster images.
+</p>
+
+<h4><a name="formation">Combat Formation</a></h4>
+<p class="text">
+　Javardry incorporates the concept of front and back rows (vanguard and rearguard). Typically, adventurers' first three members form the vanguard, with subsequent members in the rearguard. On the monster side, the first two groups form the vanguard, while the third and beyond are in the rearguard. Formations influence the range of normal attacks.
+</p>
+
+<h4><a name="action">Combat Actions</a></h4>
+<p class="text">
+　Available actions during combat include:
+</p>
+<ul class="text">
+<li><span class="item">Attack</span><br>
+　Perform a regular attack using weapons or bare hands. Attacks are limited to targets within range.
+<li><span class="item">Hide</span><br>
+　An action exclusive to adventurers with thievery skills, allowing them to conceal themselves from standard attacks. Success is determined by an initial check and subsequent checks each turn to maintain concealment.
+<li><span class="item">Ambush</span><br>
+　Adventurers with thievery skills can ambush from concealment. During ambushes, monsters suffer the same penalties as when immobilized (e.g., sleeping, unconscious), and attack range is unrestricted.
+<li><span class="item">Breath</span><br>
+　Certain adventurer races can perform breath attacks.
+<li><span class="item">Defend</span><br>
+　Adopt a defensive stance against attacks, improving AC and resistance to spells or breath attacks.
+<li><span class="item">Item</span><br>
+　Use an item.
+<li><span class="item">Spell</span><br>
+　Cast a spell.
+<li><span class="item">Dispel</span><br>
+　Certain professions can dispel curses on specific monster types, returning them to dust. There are no usage limits, but dispelled monsters may yield reduced or no experience points, depending on the scenario.
+<li><span class="item">Flee</span><br>
+　Cancels all other adventurer actions to attempt escape. Failure results in the entire turn being spent enduring enemy attacks. Escape success rates vary by scenario but are generally high.
+</ul>
+
+<h4><a name="spAttack">Special Attacks</a></h4>
+<p class="text">
+　Special attacks activate when regular (or ambush) attacks succeed and a corresponding check is passed. Adventurers may gain abilities like critical hits, knockouts, sleep, paralysis, petrification, or poison through their profession or items. Monsters may possess all such abilities. Resistance abilities mitigate the effects of special attacks.
+</p>
+<ul class="text">
+<li><span class="item">Critical Hit</span><br>
+　A fatal blow that kills the target regardless of remaining HP.
+<li><span class="item">Knockout</span><br>
+　Strikes a vital point, rendering the target unconscious without reducing their HP to single digits.
+<li><span class="item">Sleep, Paralysis, Petrification, Poison</span><br>
+　Inflicts various status effects.
+<li><span class="item">Level Drain (Energy Drain)</span><br>
+　Exclusive to monsters, this attack siphons vitality, lowering the adventurer's level. In traditional "Wiz," maximum HP is recalculated based on the new level. In Javardry, maximum HP is derived from the original maximum HP divided by the original level, multiplied by the new level.<br>
+　Scenarios may feature monsters with HP drain instead of level drain, recovering HP proportional to inflicted damage.
+</ul>
+
+<h4><a name="breath">Breath</a></h4>
+<p class="text">
+　Some monsters unleash breath attacks that damage the entire party without consuming MP. Damage values typically equal half the monster's HP, modifiable by scenario settings. Resistance to the breath's attribute reduces damage, with resistance checks potentially halving it further.<br>
+　Adventurer breath attacks vary by race, with attributes determining single-target, group, or area-wide effects. Each race has a fixed number of uses per battle.
+</p>
+
+<h4><a name="call">Summoning Allies</a></h4>
+<p class="text">
+　Certain monsters summon allies when their group size drops to six or fewer. Group sizes never exceed nine, and summoned allies are not guaranteed to appear despite available slots.
+</p>
+
+<h3 class="title1"><a name="box">Treasure Chests</a></h3>
+<p class="text">
+　Defeating enemies in chambers often rewards players with treasure chests containing gold or items. Most chests are trapped, necessitating identification and disarming to open safely.
+</p>
+<div align="center">
+<img src="img/box.gif" width="300" height="300">
+</div>
+<ul class="text">
+<li><span class="item">Examine</span><br>
+　Identify the trap on a treasure chest. Failure may lead to misidentification. Adventurers with high thievery skills typically excel at this task.
+<li><span class="item">Disarm</span><br>
+　Specify and disarm the trap before opening the chest. Failure leaves the chest locked, potentially triggering the trap. Incorrect trap specifications guarantee activation. High thievery skills are usually advantageous.
+<li><span class="item">Cast Spell</span><br>
+　Use spells to identify or disarm traps.
+<li><span class="item">Use Item</span><br>
+　Employ items with identification or disarming effects.
+<li><span class="item">Open</span><br>
+　Open the chest without disarming. Choose this option when confident no trap is present or willing to risk trap activation.
+<li><span class="item">Leave</span><br>
+　Abandon the chest.
+</ul>
+
+<h4><a name="trap">Treasure Chest Traps</a></h4>
+<p class="text">
+　Treasure chests may contain traps that harm the opener, the entire party, or both. Trap types vary by scenario, with common examples including:
+<ul class="text">
+<li><span class="item">Poison Needle</span><br>
+　Poisons the opener.
+<li><span class="item">Gas Bomb (Poison Gas)</span><br>
+　Poisons multiple party members.
+<li><span class="item">Stones, Crossbow Bolts</span><br>
+　Inflicts damage on the opener. Stones generally cause less damage than crossbow bolts, which refer to small crossbows (<ruby><rb>弩</rb><rp>（</rp><rt>Crossbow</rt><rp>）</rp></ruby>).
+<li><span class="item">Bomb</span><br>
+　Deals significant damage to multiple party members.
+<li><span class="item">Ghostly Hand</span><br>
+　Reduces the opener's HP to single digits.
+<li><span class="item">Ghostly Horde</span><br>
+　Reduces the HP of several party members to single digits.
+<li><span class="item">Magic Drain</span><br>
+　Randomly depletes MP from multiple party members.
+<li><span class="item">Stunner</span><br>
+　Paralyzes the opener.
+<li><span class="item">Cobra's Curse</span><br>
+　Paralyzes multiple party members.
+<li><span class="item">Demon's Eye</span><br>
+　Petrifies several party members.
+<li><span class="item">Mage Blaster, Priest Blaster</span><br>
+　Paralyzes or petrifies certain classes.
+<li><span class="item">Pandora's Box</span><br>
+　Ages the opener.
+<li><span class="item">Rainbow Gleam</span><br>
+　Inflicts random status effects like fear, paralysis, petrification, or death on multiple members.
+<li><span class="item">Counter Punch</span><br>
+　Kills the opener.
+<li><span class="item">Goddess's Kiss</span><br>
+　Increases the opener's attributes or rejuvenates them.
+<li><span class="item">Alarm</span><br>
+　Summons monsters, initiating combat.
+<li><span class="item">Teleporter</span><br>
+　Randomly relocates the party within the same floor.
+</ul>
+</p>
+
+</body>
+</html>

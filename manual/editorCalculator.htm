@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Calculator]</h3>
+<p class="text">
+　In the "Calculator" tab, you can check the results of various formulas. You can input a formula into the formula text field (or paste various formulas), and by pressing the result display button, the results will be shown.
+</p>
+<div align="center">
+<a href="img/editorCalculator.png"><img src="img/editorCalculator.png" width="600" height="550"></a>
+</div>
+<ul class="text">
+<li><span class="item">String Replacement</span><br>
+　You can set values to replace reference strings in the formula. The reference string = "value" is specified in this format, separated by commas.
+	<ul>
+	<li><span class="item">pc, monster</span><br>
+	　Data for adventurers and monsters is written as my and target, so when pc or monster appears in the formula, you specify whether to refer to my or target. For example, if pc = "my", monster = "target", then pc.lv in the formula will be replaced with my.lv, and monster.lv will be replaced with target.lv.
+	<li><span class="item">my.ac0, my.ac1, my.sc0, my.sc1, my.abi0[ ], my.abi1[ ], my.hit0, my.hit1 (same for target)</span><br>
+	　By default, these are not written and will be replaced with reference values without numbers at the end. For example, my.ac0 and my.ac1 in the formula will be replaced with my.ac, and my.abi0[3] and my.abi1[3] will be replaced with my.abi[3].<br>
+	　If necessary, you can add values like my.ac0 = "-5", my.abi1[3] = "10". In that case, the values you specifically write will take priority.
+	<li><span class="item">pt.maxLv, pt.minLv, pt.maxHp, pt.minHp, pt.maxHpMax, pt.minHpMax, pt.maxAbi[ ], pt.minAbi[ ], pt.abi0[ ], pt.maxAbi0[ ], pt.minAbi0[ ], pt.abi1[ ], pt.maxAbi1[ ], pt.minAbi1[ ], pt.maxAge, pt.minAge, pt.maxRip, pt.minRip, pt.maxExp, pt.minExp, pt.maxGold, pt.minGold, pt.maxMarks, pt.minMarks, pt.maxGm[ ], pt.minGm[ ]</span><br>
+	　By default, these are not written and will be replaced with reference values for averages, without numbers at the end. For example, pt.maxLv and pt.minLv in the formula will be replaced with pt.lv, and pt.maxAbi[3], pt.minAbi[3], pt.abi0[3], pt.maxAbi0[3], pt.minAbi0[3], pt.abi1[3], pt.maxAbi1[3], pt.minAbi1[3] will be replaced with pt.abi[3].<br>
+	　If necessary, you can add values like pt.maxLv = "13", pt.abi0[0] = "8", pt.maxAbi1[3] = "10", pt.minGm[5] = "0.8". In that case, the values you specifically write will take priority.
+	<li><span class="item">pt.MemberNum[ ]</span><br>
+	　pt.MemberNum[ ] is not written by default and is determined by pt.memberNum (the number of adventurers that can act in the party). For example, if pt.memberNum = "3", then pt.MemberNum[3] will be true, and pt.MemberNum[6] will be false.<br>
+	　You can also write pt.MemberNum[3] = "true", pt.MemberNum[6] = "false". In that case, the values you specifically write will take priority.
+	<li><span class="item">PtItem[], AllItem[], DumpItem[][], Title[]</span><br>
+	　The numbers inside [ ] in the formula (for Title[ ], it is a string) will be replaced with the set value (true or false). For example, PtItem[] = "true", DumpItem[][] = "true", Title[] = "true", then PtItem[0] and PtItem[1], DumpItem[-2][5] and DumpItem[0][7], Title[aaa] and Title[@1] will all be true.<br>
+	　If necessary, you can add PtItem[0] = "true", PtItem[5] = "false", DumpItem[-2][5] = "true", DumpItem[0][7] = "false", Title[aaa] = "true", Title[@1] = "false". In that case, the values you specifically write will take priority.
+	<li><span class="item">itemMargin (ItemSpace, ItemMargin[ ])</span><br>
+	　By specifying how many empty slots there are in the party's item list, you can set the values of ItemSpace and ItemMargin[ ] in the formula. For example, if itemMargin = "0", both ItemSpace and ItemMargin[2] in the formula will be false; if itemMargin = "1", ItemSpace will be true, and ItemMargin[2] will be false; if itemMargin = "2", both ItemSpace and ItemMargin[2] will be true.<br>
+	　You can also write ItemSpace = "true", ItemMargin[1] = "false", ItemMargin[2] = "true". In that case, the values you specifically write will take priority.
+	<li><span class="item">ptMemberNum</span><br>
+	　By specifying the number of adventurers in the party, you can set the values of PtMemberNum[ ] in the formula. For example, if ptMemberNum = "2", then PtMemberNum[2] will be true, and PtMemberNum[6] will be false; if ptMemberNum = "6", then PtMemberNum[2] will be false, and PtMemberNum[6] will be true.<br>
+	　You can also write PtMemberNum[3] = "false", PtMemberNum[6] = "true". In that case, the values you specifically write will take priority.
+	<li><span class="item">Flag[], Flag[0], Flag[1] ...</span><br>
+	　You specify the values of Flag[ ] in the formula. Unspecified flag references will be replaced with the value of Flag[]. For example, if Flag[] = "true", Flag[0] = "false", Flag[7] = "false", then Flag[0] in the formula will be false, Flag[3] will be true, and Flag[7] will be false.<br>
+	　It is recommended to set Flag[] = "false" and only set specific flags to true (by appending).
+	<li><span class="item">Other reference strings not written by default</span><br>
+	　Reference strings not written by default will be replaced with 0. If necessary, you can append values.
+	</ul>
+<li><span class="item">initialize</span><br>
+　This will initialize the contents of [String Replacement].
+<li><span class="item">Monster Set</span><br>
+　By selecting a monster and pressing the set button, the monster's data will be set to either my or target (selected by the radio button) in [String Replacement]. The data set includes level, HP, max HP, AC, spell immunity rate, special traits, and hit rate.
+</ul>
+
+</p>
+
+</body>
+</html>

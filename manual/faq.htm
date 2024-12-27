@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+<script type="text/javascript"><!--
+
+function shortcut(sel) {
+	var url = sel.options[sel.selectedIndex].value;
+	open(url, "main");
+}
+
+//-->
+</script>
+</head>
+<body class="bodyMargin" style="margin-bottom: 700pt">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">FAQ</h3>
+<p class="text">
+　Frequently asked questions and answers are provided below.
+<form action="#">
+<select onchange="shortcut(this)">
+<option value="faq.htm" selected>
+<option value="faq.htm#a0_1">[Javardry][Controls] I want to select the recipient when transferring items.
+<option value="faq.htm#a2_1">[Javardry][Specifications] The party number in the dungeon changes unexpectedly.
+<option value="faq.htm#b1_1">[JavardryHTML5][Performance] The game occasionally becomes extremely slow as if it froze.
+<option value="faq.htm#b1_2">[JavardryHTML5][Performance] Error "WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost" appears, causing display issues.
+<option value="faq.htm#b1_3">[JavardryHTML5][Performance] Music loop intervals become longer when the game is inactive.
+<option value="faq.htm#c1_1">[JavardryEditor][Performance] Loading large editing data is extremely slow.
+<option value="faq.htm#d1">[Other] I found a bug.
+</select>
+</p>
+
+<h4><a name="a0_1">[Javardry][Controls] I want to select the recipient when transferring items.</a></h4>
+<p class="text">
+　When transferring items in the tavern or during camping, you can switch the recipient using the <a href="operation.htm#shiftMoveKey" target="_self">left and right movement keys</a>.<br>
+　Previously, this was done using the left and right arrow keys, but starting from Javardry Ver.0.388, item possession limits were increased. To accommodate cases where items exceed one page, the arrow keys are now used for page navigation, and switching recipients has been assigned to the movement keys.
+</p>
+
+<h4><a name="a2_1">[Javardry][Specifications] The party number in the dungeon changes unexpectedly.</a></h4>
+<p class="text">
+　This happens when the system consolidates empty slots.<br>
+　The party number displayed during adventure continuation or in the training hall represents the assigned party number. When there are gaps (e.g., only the third and sixth parties are present), restarting or resetting the game compresses these gaps. For example, the third and sixth parties may become the first and second parties.<br>
+　This behavior is intentional and is designed to handle scenarios where the maximum number of parties is reduced. It is a deliberate specification.
+</p>
+
+<h4><a name="b1_1">[JavardryHTML5][Performance] The game occasionally becomes extremely slow as if it froze.</a></h4>
+<p class="text">
+　Sometimes the screen stops responding without displaying an error message, only to resume normal operation after 10 seconds to a minute. This does not occur in specific scenarios or actions, and no error messages are logged, making the cause unclear. While it could be due to how I programmed the game, it may also result from JavaScript or browser limitations. Please accept this as a current limitation.
+</p>
+
+<h4><a name="b1_2">[JavardryHTML5][Performance] Error "WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost" appears, causing display issues.</a></h4>
+<p class="text">
+　This may occur if the machine lacks sufficient processing power, causing the 3D rendering to fail. Reducing the resolution (e.g., setting the size to 300–400) may help. If the issue persists, switch to wireframe display mode.
+</p>
+
+<h4><a name="b1_3">[JavardryHTML5][Performance] Music loop intervals become longer when the game is inactive.</a></h4>
+<p class="text">
+　This is intentional. To reduce the processing load when the game is inactive, this behavior is by design.
+</p>
+
+<h4><a name="c1_1">[JavardryEditor][Performance] Loading large editing data is extremely slow.</a></h4>
+<p class="text">
+　Using command-line arguments for <a href="editorStart.htm#argument">JavardryEditor</a> to disable data checks during loading may improve performance slightly. If it remains slow, consider it a current limitation.
+</p>
+
+<h4><a name="d1">[Other] I found a bug.</a></h4>
+<p class="text">
+　If you discover a bug or behavior that seems like one, please report the issue, circumstances, and steps to reproduce it on the <a href="https://thu.sakura.ne.jp/cgi-bin/wforum/" target="_top">support forum</a>. If any error messages appear (especially during freezes), include them in your report to help identify the cause. Try checking for errors when you encounter suspicious behavior.<br>
+　Errors are primarily displayed in the console, but in the Java version, enabling the `-errorText` argument will log errors to `error.txt`.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Facilities]</h3>
+<p class="text">
+  In the "Facilities" tab, the "Facilities" tab allows you to set the names and usage fees of each facility.
+</p>
+<div align="center">
+<a href="img/editorFacilities.png"><img src="img/editorFacilities.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Facility Name</span><br>
+  Enter the display name of each facility (place) such as the castle town, tavern, inn, shop, temple, castle, and outskirts of town. You can enter up to 24 characters in half-width.
+<li><span class="item">[Inn]</span><br>
+  Set the charges for each room in the inn. Each room (by default, names like stable, simple bed, economy room, suite, royal suite) can be switched using radio buttons from 0 to 4.
+	<ul>
+	<li><span class="item">Room Rate</span><br>
+	 　Set the rate for staying at the inn using a formula. You can refer to the data of the adventurer staying in the inn using pc. Usually, it's a fixed price, but you could make the price change depending on the level, attributes, or job, like 10 * pc.lv.
+	<li><span class="item">Stay Duration</span><br>
+	 　Set the number of days that pass when staying at the inn, from 0 to 365. Adventurers age every 365 days.
+	<li><span class="item">HP Recovery</span><br>
+	 　Set the HP recovery amount when staying at the inn using a formula. You can refer to the data of the adventurer staying at the inn using pc. You can specify a value like 1 or 10, or use a formula like ceil(pc.hpMax / 2) to recover a percentage of maximum HP.
+	<li><span class="item">MP Recovery</span><br>
+	 　Set the MP recovery amount for each spell category and level when staying at the inn using a formula. You can refer to the data of the adventurer staying at the inn using pc. By writing mp or mpMax without the brackets, you can refer to the current MP and maximum MP for each spell category and level. For example, to recover to full MP, use pc.mpMax, for recovering by 1, use 1, to recover up to 5 MP, use 5 - pc.mp, and to recover by 1 each time with an upper limit of 5, use 1 * (((5 - pc.mp) max 0) min 1), etc.
+	<li><span class="item">Attribute Decrease Rate</span><br>
+	 　Set the probability that attributes will decrease during level-up when staying in each room, using a number from 0 to 100. When the attributes are set to decrease based on the rate specified in the "Level Up" tab, a recheck is made based on the set probability, and the attributes will decrease if the check is successful.<br>
+	 It might be a bit hard to understand from this explanation, but in short, staying in a more expensive room will reduce the chances of attribute decrease or even prevent it during level-up. To decrease as usual (according to the initial check), set it to 100, and to avoid attribute decrease, set it to 0.
+	</ul>
+<li><span class="item">Shop</span><br>
+  Set the sale prices in the shop. You can reference the item data using "item" and the adventurer’s data when selling or paying for items using "pc".
+	<ul>
+	<li><span class="item">Sale Price</span><br>
+	 　Set the price for selling an identified item using a formula. For example, if you buy it for half the price, use floor(item.price / 2). If the result is 0 or less, the item will not be bought. If the original price of the item is 0, no calculation will be performed, and the sale price will be 0 (no buy).
+	<li><span class="item">Unidentified Item Sale Price</span><br>
+	 　Set the price for selling unidentified items using a formula. If the result is 0 or less, the item will not be bought. If the original price of the item is 0, no calculation will be performed, and the sale price will be 0 (no buy).<br>
+	 Unidentified items are typically treated as being worth almost nothing, like 1 GP, because if the price were based on the item’s price, the true identity of an unidentified item would be revealed if you had access to its price data. If you want to vary the price, use something like (item.lv + 1) * 10 to determine the price based on the identification level. However, it's not really necessary to worry too much about it, so using 10% of the price or something similar is also fine.
+	<li><span class="item">Uncurse Fee</span><br>
+	 　Set the fee for uncursing an item using a formula. If you want to prioritize the above reasons, you can use the identification level for this calculation.
+	<li><span class="item">Identification Fee</span><br>
+	 　Set the fee for identifying an unidentified item using a formula. If you want to prioritize the above reasons, you can use the identification level for this calculation. However, if you’re thinking "In Wizardry, you identify items for half the price and then sell them for half the price, so you don’t make a profit while identifying them in the shop!", that’s fine too.
+	<li><span class="item">When All Items Are Collected</span><br>
+	 　Set the action to take when all items are collected in the shop. The check is made when an item is sold.
+		<ul>
+		<li><span class="item">Flag Operations</span><br>
+		 　Operate flag values, special flags, wall presence flags, map completion flags, hidden door flags, and locked door flags. For the format, refer to <a href="editorStart.htm#flagControl" target="_self">Flag Operations</a>.
+		<li><span class="item">Item</span><br>
+		 　Obtain one specified item.
+		<li><span class="item">Text</span><br>
+		 　Enter the text to display when all items are collected. When you click the check button, the test display of the text with line breaks applied will be shown. The display can show up to 38 characters (including 2 half-width characters for prohibited line breaks) * 12 lines, but multiple pages can be displayed. If you want to force a page break, insert &lt;p&gt;. Also, displaying an image is possible. For the method of displaying images, refer to <a href="editorStart.htm#graphic" target="_self">Image Display Method in Events, etc.</a><br>
+		 　If this text is left blank, a message "All items have been collected" will be displayed in the center. The specified display position will be ignored.
+		<li><span class="item">left, center, right</span><br>
+		 　Specify the alignment of the above text as left, center, or right.
+		</ul>
+	</ul>
+<li><span class="item">Temple</span><br>
+  Set the healing fees and resurrection success rates in the temple. You can refer to the data of the adventurer being treated using pc.
+	<ul>
+	<li><span class="item">Paralysis, Petrification, Death, Ash Treatment (Resurrection) Fee</span><br>
+	 　Set the donation amount required for treatment or resurrection using a formula. For example, pc.lv * 500, usually changing according to the adventurer's level. If the fee is negative, treatment will not be performed.
+	<li><span class="item">Resurrection Success Rate</span><br>
+	 　Set the success rate of resurrection from death or petrification as a percentage using a formula. For example, 50 or 100, or 35 + pc.abi[3] * 3, where success rate changes based on the attribute. Typically, set this rate higher than the resurrection spell cast by the adventurer.
+	<li><span class="item">Age Added Upon Resurrection</span><br>
+	 　Set the amount of age added upon successful resurrection using a formula. For example, if there is no age addition, use 0, or if 2–5 years are added, use 1D4 + 1.
+	<li><span class="item">No Deterioration Even if Resurrection Fails</span><br>
+	 　If checked, the state will not deteriorate (turn to ash or disappear) even if resurrection fails.
+	<li><span class="item">Full HP on Resurrection in the Temple</span><br>
+	 　If resurrection is successful, set HP to full. If unchecked, HP will be set to 1.
+	<li><span class="item">Full MP on Resurrection in the Temple</span><br>
+	 　If resurrection is successful, set MP to full. If unchecked, MP will not be restored.
+	</ul>
+<li><span class="item">Training Ground</span><br>
+	<ul>
+	<li><span class="item">Music</span><br>
+	 　Set the music to be played in the training ground. Enter the name set in the "Main" tab under [Music]. If no music is to be played, leave this blank.
+	</ul>
+</ul>
+
+</body>
+</html>

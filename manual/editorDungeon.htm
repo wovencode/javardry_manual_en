@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+</head>
+<body class="bodyMargin">
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+<h3 class="title1">Editor [Dungeon]</h3>
+<p class="text">
+In the "Dungeon" tab within the "Dungeon" tab, you can set the list of each dungeon. You can set up to 10 dungeons with a maximum of 16 levels. In the dungeon list, you will set each floor for each dungeon, but please note that the contents of the "Map" and "Event" tabs are also included in the dungeon list (after updating the map or event, you will also need to update the dungeon).
+
+</p>
+<div align="center">
+<a href="img/editorDungeon.png"><img src="img/editorDungeon.png" width="600" height="550"></a>
+
+</div>
+
+<ul class="text">
+<li><span class="item">Dungeon Name</span><br>
+The name of the dungeon. Up to 24 characters in half-width.
+<li><span class="item">Music</span><br>
+Set the music that will be mainly played in the dungeon (while moving). For the music, enter the name set in [Music] in the "Main" tab. If you do not want to play music, leave the music name "none" or leave it blank. <br>
+If you want to change the music while moving through the dungeon for an event, etc., please use the spell effects 423 and 424.
+<li><span class="item">Map size</span><br>
+Specify the size of the map (dungeon) from 1*1 to 20*20.
+<li><span class="item">Lowest floor</span><br>
+Specify the lowest floor of the dungeon from B99F to 83F.
+<li><span class="item">Condition expression</span><br>
+The conditions for each dungeon to appear. When selecting a dungeon, dungeons that are true will be displayed.
+<li><span class="item">Start floor, starting point, starting direction</span><br>
+Specify the floor, coordinates, and direction to face when entering the dungeon.
+<li><span class="item">Flag Control</span><br>
+When entering a dungeon, this controls the values ​​of flags, special flags, wall presence flags, map cleared flags, hidden door flags, and locked door flags. When this control is performed, flag control for each floor (flag control for the starting floor when entering the dungeon) is also performed. For the format, see <a href="editorStart.htm#flagControl" target="_self">Flag Control</a>.
+<li><span class="item">Settings for each floor</span><br>
+The following are the settings for each floor. This is a part of the dungeon list, so please update the dungeon list after making changes.
+<ul>
+<li><span class="item">add</span><br>
+Adds an unset (initial state) floor to the bottom floor. Up to 16 floors can be set per dungeon. <br>
+When executed, the dungeon list is also updated at the same time.
+<li><span class="item">insert</span><br>
+Inserts an unset (initial state) floor between the selected floor (and the floor above). Up to 16 floors can be set per dungeon. <br>
+When executed, the dungeon list will also be updated at the same time.
+<li><span class="item">delete</span><br>
+Deletes the selected floor. <br>
+When executed, the dungeon list will also be updated at the same time.
+<li><span class="item">paste</span><br>
+Pastes the settings of the selected floor to another floor specified in the combo box. Map settings, etc. cannot be pasted here.
+<li><span class="item">exchange</span><br>
+Exchanges the settings of the selected floor with the settings of another floor specified in the combo box. Map settings, etc. cannot be exchanged here.
+<li><span class="item">Floor name</span><br>
+You can set the name of the floor that will be displayed when the map is displayed or when selecting floors. If not set (empty), a numerical value will be displayed.
+<li><span class="item">Light</span><br>
+Checking this box will make the floor bright. It will be the same as using lighting, and you will always be able to see up to three steps ahead.
+<li><span class="item">Cannot be entered by teleportation</span><br>
+This is a floor that cannot be entered by using spells or teleportation with items. Teleportation from other floors or to the same floor is not possible on this floor, but teleportation to other floors is possible.
+<li><span class="item">Cannot be teleported</span><br>
+On floors where this box is checked, it will be impossible to use spells or items to teleport.
+<li><span class="item">No friendly monsters</span><br>
+On floors where this box is checked, friendly monsters will not appear. Even monsters that were originally set to be friendly will not be friendly on that floor.
+<li><span class="item">Entry Restrictions</span><br>
+You can set entry restrictions based on personality and gender. If there is an adventurer with the personality and gender selected here in the party, they will not be able to enter that floor.
+<li><span class="item">Flag Control</span><br>
+When entering a floor (moving to a floor), this controls the values ​​of the flag, special flag, wall presence flag, map traversal flag, hidden door flag, and locked door flag. For the format, see <a href="editorStart.htm#flagControl" target="_self">Flag Control</a>.
+<li><span class="item">Maximum Monster Encounters</span><br>
+You can set a limit on the maximum number of monsters that can appear on each floor. Groups can be set to 1-4, and monsters in each group can be set to 1-9.
+<li><span class="item">Monster Encounter Rate</span><br>
+You can specify the probability of encountering a monster (random encounter) with each step using a formula, and refer to the encounter rate correction value due to spell effects with plus. This is specified in 0.1% increments, so if you want 100%, set it to 1000. <br>
+Random encounter rates are often set low in Wizard, so a value between 1 and 5 (0.1 to 0.5%) is usually sufficient. Also, for example, if you set 2 * ^Flag[5], the encounter rate will be 0.2% while flag 5 is false, and 0% when flag 5 becomes true. It might be interesting to change the encounter rate under certain conditions (party status, items held, flags, etc.).
+<li><span class="item">Monsters to encounter</span><br>
+Specify the monsters that may be encountered (random encounter) by number. Specify multiple numbers separated by commas or ranges with hyphens (e.g. 1,5,10-14,20), and one will be selected at random. <br>
+Adjust the appearance rate of each number by entering the same number multiple times. For example, if you set it to 0,1, there is a 50% chance that it will be either 0 or 1, but if you set it to 0,0,0,1, there is a 75% chance that it will be 0 and a 25% chance that it will be 1.
+<li><span class="item">Entrance Chamber Encounter Rate</span><br>
+Specify the probability of encountering a monster in the entrance chamber using a formula. This is specified in 0.1% increments, so if you want it to be 100%, set it to 1000. If an entrance chamber guard monster is set, the probability specified here will be ignored. <br>
+Normally, 1000 (100%) is fine, but you could set it to 500 (50%) to set it so that there is a high probability of encountering a monster in the main chamber, but not necessarily. Or, for example, if you set 1000 * ^pt.haveItemNum[100][2], if the party does not have item number 100, it will be 1000 (100%), and if they do, it will be 0%. It might be interesting to change the encounter rate under certain conditions (party status, items possessed, flags, etc.).
+<li><span class="item">Treasure Chest Appearance Rate</span><br>
+Specify the treasure chest appearance rate during a random encounter with a formula. You can refer to the number of the leading monster with monsterNum[ ] (if the leading monster has the specified number, it returns 1, otherwise it returns 0. If you set monsterNum[100], it will return 1 if the leading monster is monster number 100, and 0 if it is a monster other than 100). If you have checked [Obtain item directly after winning battle] in the "Main" tab, this is the probability that the item will be obtained after the battle. Note that treasure chests will appear regardless of this setting when counting through the main chamber. <br>
+
+Normally, you should set it to 0 or 10, but if you want a treasure chest to appear only for a specific monster, set it to 100 * monsterNum[5], for example, and the treasure chest will not appear for monsters other than number 5, but will always appear for monster number 5.
+
+<li><span class="item">Treasure Chest Trap Level</span><br>
+
+Set the level of the treasure chest traps for each floor from 0 to 9999. This trap level is used as the difficulty level when examining or unlocking traps.
+
+<li><span class="item">Treasure Chest Traps</span><br>
+
+Specify the numbers of traps that may be set in treasure chests for each floor, separated by commas. Set it to -1 for no traps. If you want to adjust the probability of each trap appearing, adjust the number of traps you set. For example, if you set it to "-1,-1,0,1", there is a 50% chance that there will be no traps, a 25% chance that there will be trap number 0, and a 25% chance that there will be trap number 1.
+<li><span class="item">Amount obtained from treasure chests</span><br>
+Specify the amount of money obtained from treasure chests using a formula. In the "Main" tab, click on [Receive items after winning a battle].If you check [Acquire directly], this is the amount you will receive directly after the battle. <br>
+
+Normally, you should enter something like 1D5 * 100 + 500, but if you want to change the amount only for a specific monster, you can enter, for example, (1D100 * ^monsterNum[5]) + (99999 * monsterNum[5]), and you will receive 1D100 for monsters other than monster number 5, and 99999 for monster number 5.
+
+<li><span class="item">Music</span><br>
+
+Set the music to be played for each floor in the dungeon (while moving). When moving through the dungeon, the music set for each dungeon will play, but if you want to change the music for each floor, check this box and enter the name you set in [Music] on the "Main" tab. If you do not want to play music, check the box and leave the music name "none" or blank. <br>
+If you want to change the music played while moving through the dungeon for an event, use the spell effects 423 and 424.
+<li><span class="item">Battle Music</span><br>
+Set the music played during battle for each floor. For the music, enter the name set in [Music] in the "Main" tab. If you don't want to play any music, enter "none" or leave the music name blank. If you don't want to change the music during battle (play the music played while moving), enter "no change".
+<li><span class="item">Do not change music when camping</span><br>
+If the conditional expression specified here is true, the camping music will not play even when you enter the camping screen, and the dungeon music will continue to play. Normally this is false, but if you don't want to play the camping music, set it to true. You can also use it to change the settings using flags.
+<li><span class="item">Dungeon Image</span><br>
+When you set the dungeon to image display, you can specify the image to be displayed for each floor. Images are specified with the Javardry graphic/dungeon directory as the root, omitting the extension. Of course, you can also specify images within the directory by separating them with "/". If you do not want to display them, leave this as "none". For information on image formats, etc., see "Images" in <a href="start.htm#graphic" target="_self">Running Javardry</a>.
+<ul>
+<li><span class="item">Floor</span><br>
+Specify the image to be displayed as the floor (ground). The image specified here is an image for one block, and this image is tiled and displayed. Set this to "none" to hide it.
+<li><span class="item">Floor 2</span><br>
+If you specify an image here, it will be displayed in a grid pattern together with the floor image, and the floor image will change with each step. If you do not need it, leave this blank.
+<li><span class="item">Ceiling</span><br>
+Specify the image to be displayed as the ceiling. The image specified here is an image of one block, and this image will be tiled and displayed. If you leave it blank, the image specified as the floor will be displayed. Set it to none to hide it.
+<li><span class="item">Ceiling 2</span><br>
+If you specify an image here, it will be tiled in a grid pattern together with the ceiling image, and the ceiling image will change with each step you take. Leave it blank if you do not need it.
+<li><span class="item">Event</span><br>
+Specify the image to be displayed as the event or other event frame.
+<li><span class="item">Wall</span><br>
+Specify the image to be displayed as the wall. This image cannot be transparent or semi-transparent, and if it is transparent or semi-transparent, it will be forcibly made opaque. The wall image is the basic image for displaying the dungeon, so if there is no this image (or if none is specified), it will be forcibly displayed as a line drawing even if the dungeon image is displayed.
+<li><span class="item">Door</span><br>
+Specifies the image to be displayed as a door. When you notice the presence of a hidden door in the Wiz Gaiden version, the image specified here is displayed with transparency.
+<li><span class="item">Side of wall</span><br>
+Specifies the image to be displayed as the side (thickness) of the wall. This image cannot be transparent or semi-transparent, and if it is transparent or semi-transparent, it will be forcibly opaque. If left blank, the image specified as the wall will be displayed (shrunken to the side). If not required, make it invisible (none). The display of the specified image is somewhat special, so if you want to create your own, see "Images" under <a href="start.htm#graphic" target="_self">Javardry Execution</a>.
+<li><span class="item">Downward staircase</span><br>
+Specifies the image to be displayed as the downward staircase (hole for descending).
+<li><span class="item">Upward Stairs</span><br>
+Specify the image to be displayed as the upward stairs (holes for going up). If you leave this field blank, the image specified as the downward stairs will be displayed.
+<li><span class="item">Ladder</span><br>
+Specify the image to be displayed as a ladder on the downward stairs and upward stairs. I prepared this because I thought it would be lonely to have only the staircase image (image of the hole for going up and down), but it doesn't look very good, so if you don't need it, you can hide it (none).
+<li><span class="item">Elevator</span><br>
+Specify the image to be displayed above and below as an elevator. If you leave this field blank, the image specified as an event will be displayed above and below.
+<li><span class="item">Distant View</span><br>
+Specify the image to be displayed as a single image as the background of the dungeon. When the ceiling (or floor) image is displayed, it is almost invisible, so when using a distant view, it is better to hide the ceiling (or floor) and fill the lower (or upper) half of the image with black.
+</ul>
+</ul>
+</ul>
+
+</body>
+</html>

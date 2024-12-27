@@ -1,0 +1,275 @@
+<html> <head> <title>Javardry</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta http-equiv="content-style-type" content="text/css"> <link rel=stylesheet type="text/css" href="main.css"> <link rel="icon" href="img/favicon_javardry.ico"> </head> <body class="bodyMargin"> <div class="topLink"><a href="../manual.htm" target="_top">top page</a></div> <h3 class="title1">Running Javardry</h3> <div align="center"> <img src="img/javardry.gif" width="308" height="347"> </div> <h4><a name="install">Install</a></h4>
+<p class="text">
+Javardry does not tamper with the registry, so just put it in a directory and run it, then delete it when it's no longer needed. <br>
+Please note that you cannot play the game with just Javardry itself, so please install the scenario data (gameData.dat) you want to play before running the game.
+
+</p>
+
+<h4><a name="boot" >Start</a></h4>
+<p class="text">
+The program itself (class file) is Javadry.jar. Please start it using one of the following methods. Note that the jar file name cannot be changed. You can do so (but do not change the file extension). <br>
+On the title screen immediately after launching, you can switch the auto map display on/off (map display/number display). The default is on. <ul class="text">
+<li><span class="item">Starting from the executable file (exe)</span><br>
+If you are using a Windows environment, you can start it from Javardry.exe. Masu. You can change the file names of Javardry.exe and Javardry.ini, but make sure to use the same names except for the extension (Wizmodoki.exe, Wizmodoki.ini, etc.). Also, change the file name of Javardry.jar to If you have made any changes, please also modify the description in Javardry.ini. <br>
+When you start the game from JavardryConsole.exe, the console screen will also be launched at the same time. If you need the console screen to test play your own scenario, etc. If you don't know how to start it from the console below, or if it's too much trouble, please use this. The specifications for the ini file etc. are the same as Javardry.exe.
+<li><span class="item">From jar Launching</span><br>
+If the jar is associated with Java, you can launch it by double-clicking Javardry.jar.
+
+<li><span class="item">Console (Command Prompt, Starting from a console (command prompt, terminal)</span><br>
+You can start it by executing the following command in the console (command prompt, terminal).
+<ul>
+<li>java -jar Javardry.jar
+</ul>
+If the directory where the jar file exists is not the current directory, specify the path to the jar file, such as "java -jar hoge/Javardry.jar". Please do so.
+</ul>
+</p>
+<p class="text">
+The following problems may occur.
+<ul class="text">
+<li><span class=" item">Registry write failure warning</span><br>
+I checked on Windows 7, and when starting up, I got the message "WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(... ) returned error code 5." Since it's a warning and not an error, it doesn't seem to affect the operation, but if you create a key called Prefs in HKEY_LOCAL_MACHINE\Software\JavaSoft in the Registry Editor (regedit), the warning will disappear. will no longer appear.
+<li><span class="item">Sound is interrupted when playing a MIDI file</span><br>
+If sound is interrupted or skipped when playing a MIDI file, play it with AudioClip (use the -midiPlay argument when starting ac) may improve the situation. However, when playing MIDI files with AudioClip, please be aware of the following <a href="#ErrorheapSpace">heap space error</a>. <li><span class="item">Playing a WAVE sound effect on Linux causes the device to freeze</span><br>
+In a Linux (OpenJDK) environment, when a WAVE sound effect is played, the music stops and the next song starts. In that case, it seems that you can fix it by playing a WAVE sound effect with AudioClip (specify the argument -sePlay ac when starting). (※ In OpenJDK, if -sePlay is not specified, it will play with AudioClip.) <br>
+Also, perhaps only in the case of OpenJDK, the program freezes when playing sound effects (WAVE) with a playback time of less than 1 second. Sound effects should be at least 1 second long, for example by adding silence at the end.
+<li><span class="item"><a name="ErrorheapSpace">On Linux The program freezes when an MP3 sound effect is played continuously</a></span><br>
+In a Linux (OpenJDK only?) environment, the program freezes when an MP3 sound effect is played continuously. There is currently no prospect of a fix. Therefore, when playing on Linux, please make sure to save the sound effects as WAVE files. When playing a scenario in which the sound effects are provided in MP3 format, please leave the file name as is (except for the extension). Convert it to a WAVE file and delete (or move) the MP3 file.
+<li><span class="item"><a name="ErrorheapSpace">Heap space error</a></span><br>
+Scenario with the error "java.lang.OutOfMemoryError: Java heap space" It seems that it sometimes stops during loading. I confirmed this when playing a MIDI file with AudioClip (specifying the argument -midiPlay ac at startup). It seems that there is not enough memory allocated to JavaVM, It seems that you can increase the maximum heap space with -Xmx.
+<ul> <li>java -jar -Xmx1024m Javardry.jar -midiPlay ac
+</ul>
+</ul>
+</p>
+<h4>< a name="argument">Argument</a></h4>
+<p class="text">
+You can specify the window size at launch by using the arguments at run time. <br>
+The arguments are Javardry If launching with .exe, specify it by writing in Javardry.ini. In that case, write "-jar Javardry.jar -errorText -size 800 -bgm on -se on" etc.
+<ul class="text">
+<li><span class="item">-?, - help</span><br>
+Help for arguments will be displayed in the console (command prompt, terminal). This is only useful if the command is started from a console (command prompt, terminal).
+<li><span class="item ">-size [300, 450, 600, 800, etc.]</span><br>
+Specify the window size. You can specify any size over 300. The default is "-size 300".
+< li><span class="item">-sizeList [size list]</span><br>
+Specify the size list to be displayed in the window size setting of the option. [size list] is any size over 300. Enter the values ​​separated by commas. The default value is "-sizeList 300,450,600,800".
+<li><span class="item">-bgm [on, off]</span><br>
+Turn music (BGM) on or off. The default is "-bgm on".
+<li ><span class="item">-se [on, off]</span><br>
+Specifies whether sound effects (SE) are on or off. The default is "-se on".
+<li> <span class="item">-cg [normal(n), highReso(h), off]</span><br>
+Specifies how images are displayed. normal is normal, highReso is high quality (high size). The default value is "-cg n".
+<li><span class="item">-dungeon [wireFrame(w), graphic(g), graphicHighReso(h)]</span><br>
+About dungeon display Specify. wireFrame is line drawing display, graphic is image display, and graphicHighReso is high quality image display. The default is "-dungeon w".
+<li><span class="item">-perspectiveView [on, off]</span><br>
+
+Specifies whether the perspective display effect is on or off when displaying dungeon images. The default is "-perspectiveView on". .
+<li><span class="item">-alias [on, off]</span><br>
+Specify anti-aliasing on/off. The default is "-alias on".
+<li> <span class="item">-textAlias ​​[on, off]</span><br>
+
+Turn on/off text anti-aliasing. The default is "-textAlias ​​off".
+
+<li><span class ="item">-render [quality(q), speed(s)]</span><br>
+Rendering settings. Sets whether to prioritize image quality or speed. The default is "-render s".
+<li><span class="item">-gamepad [on, off, none]</span><br>
+
+<a href="operation.htm#gamepadOperation">Gamepad operation</a> on/off Specify. The default is "-gamepad on". <br>
+
+Set to nonewill not acquire gamepad information. If the gamepad driver is not installed or if the shared library is not set up on Linux, an error will occur when gamepad information cannot be acquired, so please use this if the error is bothersome.
+<li><span class="item">-mouse [on, off]</span><br>
+<a href="operation.htm#mouseOperation">Specifies whether mouse operation</a> is on or off. The default is "-mouse off".
+<li><span class="item">-mouseOnColor [on, off]</span><br>
+<a href="operation.htm#mouseOperation">Specifies whether the color change is on or off when the mouse is placed over the click area during mouse operation</a>. The default is "-mouseOnColor on".
+<li><span class="item">-mouseRuledLine [on, off]</span><br>
+
+<a href="operation.htm#mouseOperation">Specifies whether to turn on or off the ruled line that indicates the click range when using the mouse. The default is "-mouseRuledLine off".
+
+<li><span class="item">-encoding [UTF8, SJIS, EUC_JP, etc.]</span><br>
+
+Specifies the character code of the text file handled by Javardry. The character code is specified as a string such as UTF8 for UTF-8, SJIS for Shift_JIS, and EUC_JP for EUC-JP. For details, see "<a href="https://docs.oracle.com/javase/jp/1.5.0/guide/intl/encoding.doc.html" target="_top">Supported Encodings</a>". The default is "-encoding UTF8".
+<li><span class="item">-errorText</span><br>
+If you add this argument, an error message will be output to a text file (error.txt, error.log) when an error occurs. The output directory can be specified with the following argument.
+<li><span class="item">-dir [path]</span><br>
+Specifies the location (directory) of the game data (gameData.dat, etc.) and the storage location (directory) of files created during the game (settings file, save data, reincarnation data, error description file). Either an absolute path (C:\hoge\fuga, /home/hoge/fuga, etc.) or a relative path (hoge\data, hoge/fuga, etc.) can be specified. If not specified or the directory specified at startup does not exist, the default value will be used. The default value is "-dir data". <br>
+If you want to specify individually, use the following argument.
+<ul class="text">
+<li><span class="item">-gameData [path]</span><br>
+Specifies the location of game data (gameData.dat, etc.). The method of specification is the same as for -dir. If not specified or the directory specified at startup does not exist, the same directory as specified with -dir will be used.
+<li><span class="item">-config [path]</span><br>
+Specifies the save location of the configuration file (config.ini) created during the game. The method of specification is the same as for -dir. If not specified or the directory specified at startup does not exist, the same directory as specified with -dir will be used.
+<li><span class="item">-save [path]</span><br>
+Specifies the save location of save data (save.dat, save.bak, etc.) created during the game. The method of specification is the same as for -dir. If not specified or the directory specified at startup does not exist, the same directory as specified with -dir will be used.
+<li><span class="item">-character [path], -chr [path]</span><br>
+Specifies the save location of the reincarnation data (files with the extension chr) created during the game. The method of specification is the same as -dir. If not specified or the directory specified at startup does not exist, the same directory as specified with -dir will be used.
+<li><span class="item">-error [path]</span><br>
+Specifies the save location of the error description files (error.txt, error.log) created during the game. The method of specification is the same as -dir. If not specified or the directory specified at startup does not exist, the same directory as specified with -dir will be used.
+</ul>
+<li><span class="item">-otherConfig [path]</span><br>
+Specifies the location of other configuration files (defaultMessage.txt, font.txt, keyConfig.txt, spell.txt). The method of specification is the same as -dir, but if not specified or the directory specified at startup does not exist, the default value will be used. The default is "-otherConfig data".
+<li><span class="item">-gameDataFile [file]</span><br>
+Specify the file name of the game data (gameData.dat, etc.) without an extension. If not specified, the default will be "gameData". The location (directory) can be specified with -dir or -gameData above.
+<li><span class="item">-defaultMessageFile [file]</span><br>
+Specify the file name of the notation text data (defaultMessage.txt, etc.) without an extension. If not specified, the default will be "defaultMessage". The location (directory) can be specified with -otherConfig above.
+<li><span class="item">-midiPlay [sequencer(s), ac, acNone]</span><br>
+Specify the playback method for the MIDI file. If set to s, it will be played with Sequencer, and if set to ac, it will be played with AudioClip. When ac is specified, the MIDI file is pre-read, so it takes time to start up. Also, when playing AudioClip, a <a href="#ErrorheapSpace">heap space error</a> may occur. Specify acNone to load each time without pre-loading. <br>
+If not specified, it will be played with Sequencer.
+<li><span class="item">-sePlay [clip(c), ac]</span><br>
+Specify the playback method for sound effects (WAVE files). Set to c to play with Clip, and set to ac to play with AudioClip. <br>
+If not specified, it will usually be played with Clip, but if running with OpenJDK, it may freeze, so it is played with AudioClip.
+</ul>
+</p>
+<h4><a name="option">Option</a></h4>
+<p class="text">
+You can change the window size etc. while the game is running.
+<ul class="text">
+<li><span class="item">Size [Adjust, 300*300, 450*450, 600*600, 800*800]</span><br>
+Changes the window size to the specified size. The list of sizes that can be specified here can be changed using the <a href="start.htm#argument" target="_self">argument</a> (-sizeList) at startup. Adjust adjusts windows that have become vertically or horizontally long.
+<li><span class="item">Render [Graphic: Normal, High-Reso]</span><br>
+Toggles between hiding background images, monster images, etc., displaying them normally, and displaying them in high quality (high size).
+<li><span class="item">Render [Dungeon: Wire Frame, Graphic, Graphic High-Reso]</span><br>
+Select and switch between wireframe, normal, and high-resolution (high-size) image display for the dungeon.
+<li><span class="item">Render [Dungeon graphic: Perspective view]</span><br>
+Toggles the perspective effect when displaying dungeon images.
+<li><span class="item">Render [AntiAlias]</span><br>
+Toggles anti-aliasing on/off.
+<li><span class="item">Render [TextAntiAlias]</span><br>
+Toggles text anti-aliasing on/off.
+<li><span class="item">Render [Render: Quality, Speed]</span><br>
+Select and switch between quality priority and speed priority for the rendering settings.
+<li><span class="item">Sound [Bgm]</span><br>
+Turns music (BGM) on/off.
+<li><span class="item">Sound [Se]</span><br>
+Turns sound effects (SE) on/off.
+<li><span class="item">Operation [Key Config]</span><br>
+Displays the currently set <a href="operation.htm#keyConfig">key settings</a>. This is only displayed for confirmation, and settings cannot be changed.
+<li><span class="item">Operation [Gamepad]</span><br>
+Turns <a href="operation.htm#gamepadOperation">gamepad operation</a> on/off.
+<li><span class="item">Operation [Mouse]</span><br>
+Toggles mouse operation on/off.
+<li><span class="item">Operation [Mouse: on color]</span><br>
+Toggles the color change when the mouse is placed over the click area during mouse operation on/off.
+<li><span class="item">Operationration [Mouse: ruled line]</span><br>
+Toggles the on/off of the ruled line that indicates the click range when using the mouse.
+<li><span class="item"><a name="keyTest">Key test</a></span><br>
+Check this box to display the identification name for each key on the keyboard or each button on the gamepad. Use this when configuring key settings. Game operations will not work while this box is checked, so uncheck it when you want to return to the game.
+</ul>
+</p>
+<h4><a name="font">Change font</a></h4>
+<p class="text">
+Depending on the execution environment, the display may be misaligned due to differences in fonts. Basically, it is set to match the Windows environment, so in other cases, specify the font in font.txt in the data directory. It will not be reflected during startup, so if you change font.txt, restart Javardry. <br>
+The font must be a monospaced (fixed-width) font or the display will be distorted. Specify the logical font name (monospaced) or the physical font name (MS Gothic, MS Mincho, IPAGothic, IPAMincho, VL Gothic, etc.). In Linux, it seems that font specification may not work properly due to a problem with the Java settings. As a temporary measure, you can directly specify a TrueType font (a file with the extension ttf) in the same directory as font.txt. In that case, specify the file name, such as Font = "ipag.ttf". <br>
+The default setting is Font = "monospaced". <br>
+The character code of font.txt should be set to UTF-8. If you want to use a code other than UTF-8, specify the character code in the startup arguments.
+</p>
+
+<h4><a name="scenario">Scenario data</a></h4>
+<p class="text">
+Scenarios are executed by reading gameData.dat in the data directory. If this data is old (created with an older version of the editor than the editor that is compatible with the launched Javardry main body), a consistency check is performed when loading, so the loading time is slightly longer than usual (or significantly longer depending on the size of the scenario data and the environment). If the old data is successfully loaded, the old data is renamed to gameData.bak, and the corrected scenario data is written as a new gameData.dat. The consistency check is skipped when launching the program for the second time or later, so the loading time is the normal time. The slow loading time is by design.
+
+<h4><a name="text">Notation characters (text)</a></h4>
+<p class="text">
+Most characters (text) that do not depend on the scenario data are written in English (like) in the built-in data, but if there is defaultMessage.txt in the data directory, it will be read and changed to the notation according to its contents. If you haven't changed anything, Japanese will be displayed from the beginning, but that's because the Japanese version of defaultMessage.txt is there. Changes to defaultMessage.txt are not reflected during startup, so if you rewrite defaultMessage.txt, restart Javardry. Note that defaultMessage_eng.txt is the same data as the built-in English (style) display. If you want to use it, replace defaultMessage.txt with it. Even if you just delete defaultMessage.txt, it will be the built-in English (style) display, but it's only an English-like display, so if you really want an English version, I think it's best to modify defaultMessage_eng.txt to your liking and replace it with defaultMessage.txt. <br>
+I won't go into detail about each setting because it's too much hassle, but I hope you can get the gist of it by looking at the original data. Even if you rewrite defaultMessage.txt, the names of races, jobs, items, monsters, etc. will not change because they depend on the scenario data. Therefore, it is better for the creator of the scenario data, not the player, to change the atmosphere of the text to suit their own scenario, or to use all English. <br>
+Please set the character code of defaultMessage.txt to UTF-8. If you want to use a code other than UTF-8, specify the character code as an argument at startup. <br>
+<br>
+There are some special items, which are explained below.
+<ul class="text">
+<li>If some items (RIP, MARKS) are set to "none", the corresponding items in the game will be hidden.
+<li>If _STATUS_COLOR is set to "on" (default is "off"), adventurers with abnormal conditions will be displayed in color when the status is displayed. The color can be specified for each abnormal condition in the _STATUS_COLOR_???? item. Specify the RGB value in hexadecimal.
+<li>You can specify the selection color for the options in _SELECT_COLOR. Specify the RGB value in hexadecimal. The default is "FF0000".
+
+<li>You can hide the face image on the status screen by setting _FACE_GRAPHIC_STATUS to "off" (default is "on").
+
+<li>You can hide the face image when selecting commands during battle by setting _FACE_GRAPHIC_BATTLE to "off" (default is "on").
+
+</ul>
+
+</p>
+
+<h4></h4>
+<h4><a name="spellCasting">Changing spell names</a></h4>
+
+<p class="text">
+
+Spell names are set in the scenario data, but players can change them to their own spell names by rewriting spell.txt in the data directory. This will not be reflected during startup, so if you rewrite spell.txt, please restart Javardry.
+
+<br>
+
+To specify, specify the spell type from 0 to 3, the spell level from 0 to 9, and each spell from 0 to 5, and do it randomly using the following as a reference. The spell name can be up to 24 characters long. </p>
+<p class="text" style="margin-left:10pt">
+SPELL0_0_0 = "Spell name" (first spell of 1st level, first spell of the first spell family)<br>
+SPELL1_6_3 = "Spell name" (fourth spell of 7th level, second spell family)<br>
+SPELL3_9_5 = "Spell name" (sixth spell of 10th level, fourth spell family)<br>
+</p>
+<p class="text">
+The character code of spell.txt should be set to UTF-8. If you want to use a code other than UTF-8, specify the character code as an argument when starting the program.
+</p>
+
+<h4><a name="graphic">Images, Music, and Sound Effects</a></h4>
+<ul class="text">
+<li><span class="item">Images</span><br>
+Image data is in the graphic directory and can be replaced as desired. Available formats are BMP, GIF, JPEG, PNG, and each of these encrypted with JavardryEditor (extension dat). As a last resort to make the operation lighter, two types of images are provided: normal images (small size images) and high quality (large size images). For high quality images, add "_HR" to the end of the file name. If you select Normal in cg under Option, the normal image (high quality image if there is no normal image) will be displayed, and if you select highReso, the high quality image (normal image if there is no high quality image) will be displayed. There is no problem with operation even if there are no image files or only normal images. <br>
+Below are the approximate image sizes for each, but they will be resized (enlarged or reduced) to fit the game window size when displayed, so there is no need to force them to fit (it is better to match the aspect ratio). If an image is too large, it will run very slowly on a low-power machine, so these are just guidelines determined by the creators. If you simply want to display a beautiful image (you don't want to enlarge a small image), ignore the guidelines and prepare a large image.
+<ul>
+<li><span class="item">icon.gif</span><br>
+This is an image for the icon that will be displayed in the upper left corner of the Javardry window (next to the game title). This image should only be in GIF format and 16*16 in size. High-resolution images are not necessary.
+<li><span class="item">boxClose, boxOpen</span><br>
+These are images of the treasure chest in its closed and open state that are displayed when you discover a treasure chest after a battle. The standard image size is 100*100, and the high-resolution image size is approximately 200*200.
+<li><span class="item">restInPeace</span><br>
+This is the image displayed when all characters are wiped out. The standard image size is 70*70, and the high-resolution image size is approximately 140*140.
+<li><span class="item">[bg]</span><br>
+The images in the bg directory are background images. The standard image size is 220*210, and the high-resolution image size is approximately 440*420. However, images for the training ground (trainingGround) are displayed over the entire window, so the standard size is 300*300, and the high-resolution image size is approximately 600*600.
+<li><span class="item">[dungeon]</span><br>
+The images in the dungeon directory are images for dungeons. The image sizes for floors and ceilings are usually 200*200, high quality 400*400, distant views are usually 220*210, high quality 440*420, and everything else is usually 150*150, high quality 300*300.
+<ul>
+<li><b>Side of wall</b><br>
+The side of a wall is also usually 150*150, high quality 300*300, but the way it is displayed is a bit special, so we will explain it here. <br>
+The image specified as the side of a wall is displayed with the left edge of the image cropped vertically. The width of the crop is 1/15 of the width of the image. The part other than the cropped part will not be used, so there is no problem if you fill it in.I feel like I should have prepared a 15*150 image from the beginning, but I made it this way to accommodate other dungeon image processing. I don't regret it. <br>
+<br>
+<img src="img/wallSide_a01.png" width="154" height="148" hspace="40"><img src="img/wallSide_a02.jpg" width="10" height="148"><img src="img/wallSide_c.jpg" width="34" height="148" hspace="10"><img src="img/wallSide_a03.jpg" width="44" height="148" hspace="30"><br>
+<br>
+If the side of the wall is not specified (left blank), the image specified as the wall is displayed scaled down to 1/15 horizontally instead of being cut. Because the image was originally prepared as a wall, I was unable to decide where to cut it out, and it seemed better to just shrink it and display it rather than cropping it poorly, so I decided to shrink it and display it instead of cropping it. <br>
+<br>
+<img src="img/wallSide_b01.png" width="154" height="148" hspace="40"><img src="img/wallSide_b02.jpg" width="10" height="148"><img src="img/wallSide_c.jpg" width="34" height="148" hspace="10"><img src="img/wallSide_b03.jpg" width="44" height="148" hspace="30"><br>
+<br>
+<li><b>Ladder</b><br>
+Ladder images are usually 150*150, high resolution 300*300, but compared to wall images, the display area is smaller, so the roughness may be more noticeable... or maybe not. If you are concerned about this, it is better to use 300*300 for normal, 600*600 for high resolution. <br>
+This image will be displayed over the staircase image (the image of the hole for going up and down), so please make it a transparent image. Only the ladder for going down is prepared, and this image is rotated 180 degrees for the ladder for going up.
+</ul>
+<li><span class="item"><a name="graphicFace">[face]</a></span><br>
+If necessary, place a face image for the adventurer in the face directory. An image file with the same name as the adventurer's name will be displayed on the status screen and when selecting commands during battle. For example, if you prepare a JPEG image (of course, GIF or PNG is also fine), an adventurer named Fighter will have the file name Fighter.jpg (Fighter_HR.jpg for high quality), and an adventurer named Warrior will have the file name Warrior.jpg (Warrior_HR.jpg for high quality). If you change the adventurer's name, you will need to change the image file name manually. <br>
+The image size should be around 60*60 for normal use and 120*120 for high quality.
+<li><span class="item">[monster]</span><br>
+The images in the monster directory are for monsters. The image size is usually 150*150, and high quality is about 300*300, but it is troublesome to prepare two types of monster images, one for normal and one for high quality, so it is enough to prepare images of about 150*150 to 300*300 for normal use.
+</ul>
+<li><span class="item">Music (BGM)</span><br>
+Music files are placed in the music directory. Supported formats are MIDI and MP3, and those encrypted by JavardryEditor (extensions midDat and mp3Dat).
+<li><span class="item">Sound effects (SE)</span><br>
+Sound effect files are placed in the sound directory. The formats supported are WAVE and MP3, as well as those encrypted with JavardryEditor (extensions: wavDat, mp3Dat). However, depending on the CPU, memory, and other runtime environment, MP3 playback can be heavy, so it may be better to use WAVE for sound effects that are played continuously. <br>
+If you are using OpenJDK on Linux, playing a WAVE file sound effect with a playback time of less than 1 second seems to stop the sound or freeze the game. The default sound effect has been modified to more than 1 second, but if you are creating your own sound effect, please make the playback time more than 1 second by adding silent time, etc. <br>
+If you play an MP3 file sound effect continuously on Linux (only for OpenJDK?), the game will freeze. There is no prospect of a fix at the moment, so when playing on Linux, please use WAVE files for sound effects.
+
+</ul>
+
+<h4><a name="save">Save play data</a></h4>
+<p class="text">
+
+Play data is automatically saved during play. The timing of auto-save is as follows. Saving within the dungeon (camping, moving to a new floor, ending a battle, being wiped out, or when the adventure is interrupted) may be turned off depending on the scenario settings.
+</p>
+<ul class="text">
+<li>When leaving each facility in the castle town
+<li>When leaving the dungeon (when returning to the surface)
+<li>When opening and closing the camp
+<li>When moving to a new floor (same as when teleporting to another dungeon)
+<li>When ending a battle and returning to the movement screen
+<li>When being wiped out
+<li>When the adventure is interrupted
+</ul>
+<p class="text">
+Save data is saved in the data directory under the name save.dat. Each scenario data is set with an identification string for the scenario, which is reflected in the save data. Therefore, save data cannot be read except in scenarios with matching identification strings. <br>
+In addition, a backup file called save.bak is created every 10 minutes for save data, save0.bak if the scenario identification string does not match, and save1.bak if loading of other save data fails. Replace save.dat with this file if necessary.
+
+</p>
+
+</body>
+
+</html>

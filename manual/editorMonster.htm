@@ -1,0 +1,252 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Monster]</h3>
+<p class="text">
+　The "Monster" tab is where you set up the list of monsters. You can set up to 9999 monsters.
+</p>
+<div align="center">
+<a href="img/editorMonster01.png"><img src="img/editorMonster01.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">search</span><br>
+　This is the search button to use when there are many items in the list. It searches for monster names that include the string written in the text field.
+<li><span class="item">Monster Name</span><br>
+　This is the name of the monster. It is limited to 24 characters in half-width.
+<li><span class="item">Uncertain Name</span><br>
+　This is the name displayed when the monster is uncertain. It is limited to 20 characters in half-width.
+<li><span class="item">Plural Monster Name, Uncertain Name</span><br>
+　This is the plural name displayed when there are multiple monsters, and the plural name for uncertain monsters. Leave it blank if not needed.
+<li><span class="item">Monster Type</span><br>
+　Select the monster's type. The monster's type affects critical hits, defense effects, etc.
+<li><span class="item">Invincible</span><br>
+　If checked, the monster becomes invincible and cannot take damage.
+<li><span class="item">Lv</span><br>
+　This specifies the monster's level using a formula, and allows referencing the adventurer party's pt and the difficulty of traps in treasure chests by dungeon floor using trap.lv. trap.lv does not directly affect the monster, but it is assumed that it changes as the dungeon floor increases, so it can be used for scaling the difficulty of the same monster at deeper floors. This value is determined upon encounter and is not recalculated during combat. The maximum value is 99,999.
+<li><span class="item">Exp</span><br>
+　This specifies the monster's experience points using a formula, and allows referencing the monster's level as monster.lv, type as monster.Type[ ] (<a href="editorStart.htm#type">reference</a>), and its attributes as monster.abi0[ ] (<a href="editorStart.htm#monsterAbi">reference</a>). When combat ends, the total experience points of defeated monsters are divided by the number of adventurers in the party who can move, giving each adventurer their share of experience. This value is determined upon encounter and is not recalculated during combat. The maximum value is 999,999,999,999.
+<li><span class="item">HP</span><br>
+　This specifies the monster's HP using a formula, and allows referencing the monster's level as monster.lv, type as monster.Type[ ] (<a href="editorStart.htm#type">reference</a>), and its attributes as monster.abi0[ ] (<a href="editorStart.htm#monsterAbi">reference</a>). This HP is both the maximum HP and initial HP of the monster. This value is determined upon encounter and is not recalculated during combat. The maximum value is 999,999,999.
+<li><span class="item">MP</span><br>
+　This specifies the monster's MP using a formula, and allows referencing the monster's level as monster.lv, type as monster.Type[ ] (<a href="editorStart.htm#type">reference</a>), and its attributes as monster.abi0[ ] (<a href="editorStart.htm#monsterAbi">reference</a>). This MP refers to the monster's maximum MP for each magic type and level, as well as initial MP. This value is determined upon encounter and is not recalculated during combat. The maximum value is 99.
+<li><span class="item">AC</span><br>
+　This specifies the monster's AC using a formula, and can be referenced by monster. However, monster.ac cannot be used. This value is determined upon encounter and is not recalculated during combat. The range is -99 to 999.
+<li><span class="item">Attributes</span><br>
+　Specify the monster's attributes from 0 to 999. Clicking the set button will set all attributes to the value of the first attribute.
+<li><span class="item">Attack Range</span><br>
+　Select the monster's <a href="spell.htm#attackRange">attack range</a>: normal range, short range, medium range, long range, short indirect, long indirect, or short-distance short-indirect.
+<li><span class="item">Double Attack</span><br>
+　Monsters with this checked will be able to perform a double attack. Double attack here refers to making two direct attacks on one or more targets (even the same target).
+<li><span class="item">Damage</span><br>
+　This specifies the damage dealt during an attack using a formula, and allows referencing the monster as monster and the target adventurer as target. If the calculation results in a negative value, it will be corrected to 0. Please be careful that the final damage value (damage formula * number of attacks) does not exceed 99,999 by a large amount (a few digits above 99,999 is fine).
+<li><span class="item">Attack Frequency</span><br>
+　This specifies how many attacks the monster can make in one action. The calculation result can be set from 1 to 99.
+<li><span class="item">Attack Additional Effects</span><br>
+　Set the special effects that may occur when the attack is successful. The activation rate is set in the "Combat" tab's "Special Attack Success Rate".
+	<ul>
+	<li><span class="item">Sleep, Paralysis, Petrification</span><br>
+	　These will put adventurers into sleep, paralysis, or petrification. However, a petrified adventurer cannot become paralyzed, for example.
+	<li><span class="item">Knockout, Critical</span><br>
+	　Knockout makes the adventurer faint, and Critical instantly kills the adventurer.
+	<li><span class="item">Poison</span><br>
+	　This poisons the adventurer. If the adventurer is already poisoned, additional poison damage is applied. The poison damage value can be set from 0 to 99999. If set to 0, no poison effect occurs.
+	<li><span class="item">Level Drain</span><br>
+	　This reduces the adventurer's level. Adventurers whose level becomes 0 or below due to level drain are lost. The amount of level drained can be specified from 0 to 999. If set to 0, no level drain effect occurs.
+	<li><span class="item">HP Drain</span><br>
+	　If you check "Drain is HP Absorption Effect," the drain effect will absorb HP instead of level. The resistance and other factors are the same as for level drain, but the special attack success rate is set separately. <br>
+	　The amount of damage absorbed (healed) is specified by the level drain value, as a multiplier in 0.1 units. If set to 0, no special effect occurs, 5 means half of the damage is absorbed, 10 means the full amount, and 20 means double the damage is absorbed.
+	</ul>
+<li><span class="item">Attack Type</span><br>
+　This specifies the type of message displayed when an attack is made. Since it only changes the displayed message, feel free to set it to something arbitrary if you don’t have a preference.
+<li><span class="item">Recovery</span><br>
+　Specify the monster's recovery ability from -99999 to 99999.
+<li><span class="item">Spell Immunity</span><br>
+　Specify the monster's spell immunity rate from 0 to 999.
+<li><span class="item">Spells</span><br>
+　Specify which spells the monster can use, and at what levels for each magic type. Set to 0 if the monster cannot use them.
+<li><span class="item">Breath</span><br>
+　Specify the monster's breath attribute and range. <br>
+　Attributes include "None (does not breathe)", "Sleep", "Poison", "Paralysis", "Petrification", "Level Drain", "Instant Death", "Fire", "Ice", "Lightning", "Holy", "Non-Attribute". The breath attribute only affects resistance and does not apply any status effects (e.g., a poison breath will not poison adventurers).<br>
+　The range can be "Single Target", "Group", or "All". "Single Target" affects one adventurer, "Group" affects the front or back row of the adventurer party, and "All" affects the entire party.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorMonster02.png"><img src="img/editorMonster02.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Resistance, Weakness</span><br>
+　Set the monster's resistance and weakness attributes.
+	<ul>
+	<li><span class="item">Silence, Sleep, Poison, Paralysis, Petrification, Knockout, Critical, Instant Death Spells</span><br>
+	　If the monster has resistance to these effects, the resistance success rate becomes 100%, and if the monster has a weakness, the resistance success rate becomes 0%. In other words, it either does not affect them or affects them 100% of the time.<br>
+	　Breaths with these attributes will cause damage to be reduced or increased accordingly.
+	<li><span class="item">Fire, Ice, Lightning, Holy, Non-Attribute</span><br>
+	　If the monster has resistance to these, the damage from attack spells and breath attacks will be reduced, while if it has a weakness, the damage will increase. The exact calculation multiplies the damage value by the resistance or weakness modifier. Resistance checks are carried out as usual.
+	</ul>
+<li><span class="item">Call, Escape</span><br>
+　Specify whether the monster will perform the actions "Call for Allies" or "Escape".
+<li><span class="item">Friendly Response</span><br>
+　Set the probability that the monster will show a friendly response. If multiple monster groups appear, the first monster in the group will determine whether it shows a friendly response. If the setting "No Friendly Monsters Appear" is checked for the dungeon floor, this setting is ignored.
+<li><span class="item">Spawn Count</span><br>
+　Specify the number of monsters that appear in one group using a formula, and reference the trap level of treasure chests on each dungeon floor using trap.lv. You can have up to 9 monsters, but it will be restricted by the "Maximum Encounter Number (Monster Count)" setting for each dungeon floor.
+<li><span class="item">Subsequent Monster Spawn Rate</span><br>
+　Specify the probability that additional monsters will appear after the initial group. Up to 4 groups of monsters can appear, but this is limited by the "Maximum Encounter Number (Group Count)" for each dungeon floor.
+<li><span class="item">Subsequent Monsters</span><br>
+　Specify the monsters that will appear as subsequent encounters by their monster numbers. You can specify multiple monsters by using comma separation and range notation (e.g., 1,5,10-14,20), and one monster will be selected randomly from that list.
+<li><span class="item">Images, Uncertain Images</span><br>
+　Specify the images for the monster when it is certain or uncertain. Images should be specified without the file extension, with the "graphic/monster" directory as the root of Javardry. For details on image formats, refer to <a href="start.htm#graphic" target="_self">"Javardry Execution" -> "Images"</a>. <br>
+　If you set AutoDetect or if the specified image cannot be found during gameplay, the game will search for images corresponding to the monster number (monster0000 to monster9999, monster0000Undecided to monster9999Undecided). If no such image is found, the game will show an image based on the monster type. If this is also unavailable, it will show "none" (with uncertain images showing "noneUndecided").
+<p class="text" style="margin-left:10pt">
+type00 (type00Undecided): Warrior<br>
+type01 (type01Undecided): Wizard<br>
+type02 (type02Undecided): Cleric<br>
+type03 (type03Undecided): Thief<br>
+type04 (type04Undecided): Dwarf<br>
+type05 (type05Undecided): Giant<br>
+type06 (type06Undecided): Myth<br>
+type07 (type07Undecided): Dragon<br>
+type08 (type08Undecided): Animal<br>
+type09 (type09Undecided): Beastman<br>
+type10 (type10Undecided): Undead<br>
+type11 (type11Undecided): Demon<br>
+type12 (type12Undecided): Insect<br>
+type13 (type13Undecided): Magical Creature<br>
+type14 (type14Undecided): Mysterious Creature
+</p>
+
+<li><span class="item">Music</span><br>
+If you want to set a monster's unique battle music, check this box and enter the name set under the [Music] tab in the "Main" tab. If you don't want music to play, enter "none" or leave the field blank. If you don't want to change the music during battle (i.e., keep the travel music), enter "no change."<br>
+In battles where multiple monsters (or groups of monsters) have unique battle music, the battle music of the monster in the front row will take priority. If there are music settings for the "Guard Room" monsters or the event "Monster Encounter," those will take priority.<br>
+<li><span class="item">Do Not Display in Catalog</span><br>
+If you check this, the monster will not be displayed in the catalog.<br>
+<li><span class="item">Directly Obtain Items After Battle Victory</span><br>
+If you check this, (if this monster is the first in a group of multiple monsters), no treasure chest will appear after battle victory, and any items set in the following options will be obtained directly. Check this box if you want only certain monsters to not drop a chest. If you do not want any chests to appear, check the [Directly Obtain Items After Battle Victory] in the "Main" tab.<br>
+<li><span class="item">Items</span><br>
+Set the items that will be inside the treasure chests held by the monster. If multiple groups of monsters appear, the item of the first monster in the group is considered. You can set up to three items inside a chest. If the [Directly Obtain Items After Battle Victory] is checked in this tab or the "Main" tab, no treasure chest will appear, and the items will be obtained directly.<br>
+	<ul>
+	<li><span class="item">Item Drop Table</span><br>
+	Select an item drop table from the list of item drop tables. If none is selected, you can set discovery rates and other parameters.<br>
+	<li><span class="item">Discovery Rate</span><br>
+	Specify the percentage chance that an item will be found in the treasure chest.<br>
+	If an item drop table is selected, that setting will take precedence.<br>
+	<li><span class="item">Held Items</span><br>
+	Specify the items that may be in the treasure chest by number. You can specify multiple items using commas and hyphens for ranges (e.g., 1,5,10-14,20), and one item will be selected randomly from that list. To adjust the probability of each item appearing, modify the item settings. For example, specifying "1-4,1-4,10,11" means an 80% chance of an item from the range 1-4, 10% for item 10, and 10% for item 11.<br>
+	If an item drop table is selected, that setting will take precedence.<br>
+	<li><span class="item">Obtained Gold</span><br>
+	Specify the amount of gold that can be obtained from the treasure chest using a formula. If the [Directly Obtain Items After Battle Victory] is checked in this tab or the "Main" tab, the specified amount of gold will be directly obtained after battle.<br>
+	Check the checkbox to enable this. If an item drop table is selected, that setting will take precedence. If unchecked, the gold for each dungeon floor will be used.<br>
+	<li><span class="item">Trap</span><br>
+	Specify the trap level of the treasure chest and the trap numbers that may be set in it.<br>
+	The trap level is set from 0 to 9999, and this level determines the difficulty when attempting to disarm or investigate the trap.<br>
+	Trap numbers are specified using commas. -1 means no trap. You can adjust the probability of each trap by specifying the number of traps. For example, specifying "-1,-1,0,1" means a 50% chance of no trap, 25% for trap 0, and 25% for trap 1.<br>
+	Check the checkbox to enable this. If an item drop table is selected, that setting will take precedence. If unchecked, the trap settings for each dungeon floor will be used.<br>
+	</ul>
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorMonster03.png"><img src="img/editorMonster03.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Battle Messages</span><br>
+Set the messages that are displayed during the monster's actions in battle. Use this setting if you want to display something special or if the default messages are not sufficient.
+	<ul>
+	<li><span class="item">Attack</span><br>
+	Set the message displayed when the monster's action is "Attack." The string [name] will be replaced with the attacking monster's name, and [target] will be replaced with the name of the target (the adventurer being attacked). To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<b>Example</b><br>
+		<ul>
+		<li>[name] strikes [target] with a nail bat!<br>
+		<li>[name]'s tantrum punch!&lt;&gt;[name] lunges at [target] with a Lupin dive!
+		</ul>
+	<li><span class="item">Breath</span><br>
+	Set the message displayed when the monster's action is "Breath." The string [name] will be replaced with the monster's name. To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<b>Example</b><br>
+		<ul>
+		<li>[name] breathes fire from its mouth.<br>
+		<li>[name] spreads sulfuric acid!&lt;&gt;[name] attacks with a clone!
+		</ul>
+	<li><span class="item">Defend</span><br>
+	Normally, no message is displayed when the monster's action is "Defend," but if you set one here, it will be shown during the "Defend" action. The string [name] will be replaced with the monster's name. To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<b>Example</b><br>
+		<ul>
+		<li>[name] defends itself.<br>
+		<li>[name] orders sushi.&lt;&gt; "[name] is inviting you!"
+		</ul>
+	<li><span class="item">Flee</span><br>
+	Set the message displayed when the monster's action is "Flee." The string [name] will be replaced with the monster's name. To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<li><span class="item">Call</span><br>
+	Set the message displayed when the monster's action is "Call." The string [name] will be replaced with the monster's name. To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<li><span class="item">Spell</span><br>
+	Set the message displayed when the monster casts a spell. You can set a different message for each spell. Separate the spell number (checked under the "SpellList" tab in the "Spell" tab) and message with &lt;&gt;, and list them with line breaks for each corresponding spell.<br>
+	Spell numbers can be specified using commas and hyphens for ranges. The string [name] will be replaced with the monster's name, [spell] with the spell's name, and [target] will be replaced with the target's name (only for single-target spells). To insert a line break, use &lt;br&gt;. If you separate multiple messages with &lt;&gt;, one will be displayed randomly.<br>
+	<b>Example</b><br>
+		<ul>
+		<li>100-195&lt;&gt;[name] activates [spell] with the blessing of the gods.<br>
+		<li>0&lt;&gt;[name] shoots out [spell] from their butt!<br>
+		400,410,420-425&lt;&gt;[name] fires a beam from their eyes.&lt;&gt;[name]'s Magnum shoots fire!
+		</ul>
+	</ul>
+<li><span class="item">Description</span><br>
+Enter a description for the monster catalog. Clicking the check button will display a test version of the text with line breaks as it will actually appear. The display can show up to 54 half-width characters (including 2 characters for punctuation) per line, and up to 6 lines, though multiple pages are possible. To intentionally insert a page break, insert &lt;p&gt;.<br>
+If you are not using the monster catalog, this input has no effect.
+</ul>
+
+<div align="center" style="margin-top:50pt">
+<a href="img/editorMonster04.png"><img src="img/editorMonster04.png" width="600" height="563"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Behavior Patterns</span><br>
+Specify the behavior patterns for the monster.
+	<ul class="text">
+	<li>Normal Behavior<br>
+	In normal conditions (including healing spells), the monster will take an appropriate action.<br>
+	The monster first checks for a "flee" action. If it does not flee, it will check for the use of healing spells. If there is a monster with low HP or a status condition, and the monster can use healing spells, there is a certain probability that a healing spell will be used. If no healing spell is used, a few candidates will be selected, and one will be chosen randomly. The rough guidelines for the candidates are as follows:
+<table style="margin:5pt">
+<tr>
+<td class="text" style="border:1px solid white; border-collapse: collapse; padding:5pt">
+	If spells can be used, "Spell" is added to the candidates.<br>
+	If there are critical or special attacks, "Attack" is added.<br>
+	If no special attacks exist, "Attack" is added with a certain probability.<br>
+	If no spells can be used, "Attack" is added.<br>
+	<br>
+	If breath attacks can be used:<br>
+		If HP is high enough, "Breath" is added.<br>
+		If HP is low, there is a certain probability that "Breath" will be added.<br>
+	<br>
+	If calling allies is possible:<br>
+		If the monster's level is high enough compared to the adventurer's, a low probability of "Call" is added.<br>
+		If the monster's level is low, a high probability of "Call" is added.
+</td>
+</tr>
+</table>
+	After choosing one of these candidates randomly, there is still a low probability that the monster will defend itself. The probability of defending increases the further back in the group the monster is.<br>
+	If no action is determined here, the monster will "Attack" if possible, or "Defend" if not.<br>
+	Note that when using spells, the monster will use the highest level available among attack, support, and healing spells that it can cast.
+	<li>Behavior Designation<br>
+	In the case of behavior designation, you can set up to six action candidates, and the monster will choose one randomly after determining probabilities. If all candidates fail the probability check, the monster will "Attack" if possible, or "Defend" if not.
+		<ul>
+		<li><span class="item">Probability</span><br>
+		Specify the probability that the monster will take a certain action using a formula, referencing the monster itself as "monster," the adventurer party as "pt," and the number of turns as "turn."
+		<li><span class="item">Action</span><br>
+		Choose the monster's action, such as Attack, Breath, Defend, Call, Flee, Offensive Spell, Support Spell, Healing Spell, or Specific Spell. Specific Spell is used if you want the monster to use a particular spell not normally available.<br>
+		Note that actions that are impossible (those that the monster cannot take normally) will be ignored.
+		<li><span class="item">Spell</span><br>
+		If the action is set to Specific Spell, specify the spell the monster will cast by number. You can check the spell numbers under the "SpellList" tab in the "Spell" tab. If multiple spells are specified using commas, one will be chosen randomly.
+		</ul>
+	</ul>
+</ul>
+
+</body>
+</html>

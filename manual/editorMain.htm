@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Main]</h3>
+<p class="text">
+　In the "Main" tab, you will configure the scenario title and basic settings.
+</p>
+<div align="center">
+<a href="img/editorMain.png"><img src="img/editorMain.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Title</span><br>
+　Enter the scenario name. The title set here will be displayed on the title bar when Javardry is launched.
+<li><span class="item">Scenario Identification String</span><br>
+　Enter a string to identify each scenario. This string is also saved with the save data, and only scenarios with matching strings can load the save data.
+<li><span class="item">Title Image</span><br>
+　Specify the image to be displayed on the title screen, relative to the Javardry "graphic" directory, without the file extension. An image file with "_HR" added to the end of the file name will be recognized as a high-resolution image. Specify the size and position to resize and display the image when the screen size of Javardry is 300*300.
+<li><span class="item">Enable Debug Commands</span><br>
+　Check this option to enable the use of debug commands.
+<li><span class="item">[Title Text]</span><br>
+　This list allows you to set the text to be displayed on the title screen.
+	<ul>
+	<li><span class="item">（Text Area）</span><br>
+	　Enter the text to display. When you click the check button, the actual text with line breaks applied will be displayed for testing. The display is limited to 60 characters (including two half-width characters for forbidden word processing) * 25 lines.
+	<li><span class="item">left, center, right</span><br>
+	　Specify the alignment of the text: left, center, or right.
+	<li><span class="item">Display Line</span><br>
+	　Specify which line the text should start displaying from.
+	</ul>
+<li><span class="item">Music and Sound Effects</span><br>
+　The names and file names of the music and sound effects used in the scenario. This is a combo box, not a list, and items added via "add" are placed at the very end (at the bottom), and sorting is not allowed. The basic items initially set cannot be renamed or deleted (but the file name can be changed), and duplicate names cannot be added. The file names should be specified without the extension, with music files placed in the "music" directory and sound effects in the "sound" directory.
+<li><span class="item">Maximum Party Size</span><br>
+　Specify the maximum number of party members, from 1 to 6. The default is 6.
+<li><span class="item">Front Row Members</span><br>
+　Specify the number of members in the front row, from 1 to 6. The number of back row members is calculated by subtracting the front row number from the maximum party size. The default is 3.
+<li><span class="item">Auto-map Display with M Key</span><br>
+　When the M key is pressed (it can be changed in <a href="operation.htm#keyConfig" target="_self">Key Settings</a>), you can choose the map display from the following options: "None", "Current Floor Map", "Current Floor Map with Location", "Current Floor Map with Location and Direction", "All Floors Map", "All Floors Map with Location", "All Floors Map with Location and Direction". If auto-mapping is set to none (numeric display) on the title screen, coordinates and direction are shown in "Current Floor Map with Location and Direction" and "All Floors Map with Location and Direction".
+　Additionally, if "Trap Display" and "Event Display" are checked, the locations of traps and events are shown on the map. If "Cannot be seen in Dark Zones" is checked, the map will not be displayed even if the M key is pressed in a dark zone (this does not affect map display spells).
+　With "Items" and "Flags", conditions can be set for M key map display. If "None" is selected for map display, setting "Items" or "Flags" has no effect.
+　"Items" specify that the map will only be displayed if the party possesses the specified items. Items are listed by number and can be specified using commas and hyphen ranges (e.g., 1,5,10-14,20). If no items are specified (when you want the map to display regardless of owned items), leave it empty.
+　If "Flags" is checked, the map will only be displayed when the specified special <a href="editorStart.htm#flag" target="_self">Flag</a> (1) is true.
+　If both "Items" and "Flags" are set, the map will be displayed only when both conditions are met. The "Flags" option may not have many uses, but "Items" can be used for map-related items, such as magical maps.
+<li><span class="item">Other Settings</span>
+	<ul>
+	<li><span class="item">General</span>
+		<ul>
+		<li><span class="item">Show Help Comments</span><br>
+		　Displays help comments such as recovery values at inns and explanations of spells and items. It also allows viewing the detailed abilities of adventurers.
+		<li><span class="item">Item Catalog Available</span><br>
+		　If checked, you can view the catalog of identified items. Items that appear in the catalog are those that are not marked as "Do not display in catalog", those acquired in a confirmed state, those identified from an uncertain state, those sold to shops, and items initially owned by the PC.
+		　The descriptions in the catalog will be shown even if "Show Help Comments" is off.
+		<li><span class="item">Monster Catalog Available</span><br>
+		　If checked, you can view the catalog of confirmed encounter monsters.
+		　The descriptions of monsters will be shown even if "Show Help Comments" is off.
+		<li><span class="item">Do Not Show Modified Attribute Values</span><br>
+		　If checked, even if attribute values are modified by items or effects, the status screen will only show the original unmodified values.
+		<li><span class="item">Show Modified Attribute Values in Parentheses</span><br>
+		　If checked, modified attribute values will be displayed in parentheses along with the original values, as long as both values fit within two digits.
+		<li><span class="item">No Re-roll for Bonus Dice</span><br>
+		　If checked, re-rolling for bonus dice when creating a PC in the training hall will not be allowed.
+		<li><span class="item">Treat Attribute Value of 0 as Unset When Loading Play Data</span><br>
+		　<span class="boldWord">Normally, leave this unchecked.</span><br>
+		　In Javardry Ver.1.045 and Javardry HTML5 Ver.0.164, there was an issue where unset attribute values were saved as 0 instead of -1. If this option is checked, attribute values of 0 will be treated as unset and replaced with the initial values of the race.
+		</ul>
+	<li><span class="item">Facilities</span>
+		<ul>
+		<li><span class="item">Allow Any Alignment to Form Party at Tavern</span><br>
+		　Adventurers of any alignment can freely form parties. If unchecked, adventurers of opposite alignments cannot form parties at the tavern. This can be reversed using a special <a href="editorStart.htm#flag" target="_self">Flag</a> (0).
+		<li><span class="item">Do Not Show Sold Out in Shops</span><br>
+		　If checked, items out of stock in shops will not display as "Sold Out", and the shop list will compact without empty spaces.
+		<li><span class="item">Display Attack Range in Shop List</span><br>
+		　If checked, the attack range of each item will be displayed in the shop list.
+		</ul>
+	<li><span class="item">Spells</span>
+		<ul>
+		<li><span class="item">Retain Spell Effects When Resuming</span><br>
+		　When resuming a paused adventure, previously cast spell effects are retained. If unchecked, spell effects will be cleared.
+		<li><span class="item">Set Initial Teleport Cursor Position to (0,0) on Map</span><br>
+		　If unchecked, the cursor for teleport spells will initially position at the current location when auto-map is enabled, allowing confirmation of the coordinates. Checking this will set the initial cursor position to coordinates (0,0).
+		<li><span class="item">Group Spells Affect All PCs</span><br>
+		　If checked, group-targeting spells cast by monsters will affect all PCs in the party. If unchecked, front and back rows will be treated as separate groups.
+		<li><span class="item">Ensure at Least One Spell is Learned Upon Level Up</span><br>
+		　If a spell acquisition attempt fails during level-up, at least one spell from the available list will be learned.
+		<li><span class="item">Show Remaining Duration of Active Spells During Dungeon Travel</span><br>
+		　If checked, the remaining duration of active spells affecting the party or individual adventurers during dungeon travel will be displayed. Duration is shown in steps or as "floor" (modifiable in defaultMessage.txt).
+		<li><span class="item">Do Not Display Effects on Hidden Attributes</span><br>
+		　If checked, the effects of spells modifying hidden attributes will not be shown in battle messages, status displays during combat, or during camp status checks.
+		</ul>
+<li><span class="item">Item</span>
+	<ul>
+	<li><span class="item">Items are obtained in a confirmed state</span><br>
+	　When obtaining items in a dungeon, they will be obtained in a confirmed state. If unchecked, items will be obtained in an uncertain state.
+	<li><span class="item">Items are obtained in order starting from the first member</span><br>
+	　When checked, items will be obtained in order starting from the first member of the party. If unchecked, items will be randomly obtained from the members who have empty slots in their inventory. If you want to match the behavior of Wizardry, uncheck this option.
+	<li><span class="item">No curse on failed identification</span><br>
+	　When failing to identify a cursed item, it will no longer be cursed (although the panic state will still occur).<br>
+	　If unchecked, meaning the item is cursed on failed identification, items equipped by other party members that are unidentified cannot be identified.
+	<li><span class="item">Cursed items do not trigger critical hits or special attacks</span><br>
+	　When cursed, critical hits or other special attacks will not trigger.
+	<li><span class="item">Cursed items cannot be used</span><br>
+	　Items equipped with curses (in a cursed state) cannot trigger effects or use SP.
+	<li><span class="item">Items do not disappear when de-cursed at a shop</span><br>
+	　When a cursed item is de-cursed at a shop, it will not disappear but remain.
+	<li><span class="item">Show equipment requirements</span><br>
+	　When examining or using items in a tavern or during camp in a dungeon, equipment requirements (class and race) will be shown. However, this will only work if the general "Help comment display" option is checked.
+	</ul>
+<li><span class="item">Dungeon</span>
+	<ul>
+	<li><span class="item">Force use of auto-mapping</span><br>
+	　This will disable the option to choose auto-mapping and will force it to be enabled.
+	<li><span class="item">Force disable auto-mapping</span><br>
+	　This will disable the option to choose auto-mapping and will force it to be disabled.
+	<li><span class="item">Hidden door exploration command</span><br>
+	　This will force the hidden door exploration command to appear in the dungeon's sub-menu. Even if unchecked, the command will appear if any hidden doors are present in the dungeon with side story specifications, so it's usually fine to leave it unchecked.
+	<li><span class="item">Unlock command</span><br>
+	　This will force the unlock command to appear in the dungeon's sub-menu for locked doors. Even if unchecked, the command will appear if any locked doors are present in the dungeon, so it's usually fine to leave it unchecked.
+	<li><span class="item">Lost in stone</span><br>
+	　When teleporting incorrectly and getting stuck in a stone or floating in the air, the entire party will be lost. If unchecked, living adventurers will die, and their bodies will be transferred to the temple.
+	<li><span class="item">Do not open camp upon entering dungeon</span><br>
+	　When entering a dungeon, the game will not start from the camp screen but from the dungeon transition screen. However, regardless of this setting, when resuming the adventure, the game will start from the camp screen.<br>
+	　This setting can be useful when you don't want to skip over starting point events via teleportation.
+	<li><span class="item">Return party to the surface on total party wipe</span><br>
+	　If the party is wiped out in a dungeon, normally their bodies will remain on the spot, but if checked, their bodies will be transferred to the surface.
+	</ul>
+<li><span class="item">Combat</span>
+	<ul>
+	<li><span class="item">Cast spells on preemptive attack</span><br>
+	　You can cast spells when performing a preemptive attack. If the monsters perform the preemptive attack, they will also use spells. If unchecked, spells cannot be cast, but there are no restrictions on using breath attacks or items.
+	<li><span class="item">Attack the first monster in the group</span><br>
+	　When multiple PCs attack the same monster group with weapons, if checked, they will attack the first monster in the group (following the FC version of Wiz#1). If unchecked, the PCs will attack in order from the first monster in the group (following the FC version of Wiz#2).<br>
+	　This can be difficult to visualize, so I'll explain with images.
+	<div align="center">
+	<a href="img/attackTarget01.png"><img src="img/attackTarget01.png" width="150" height="300"></a>
+	</div>
+	<p>
+	　According to "Everything About Wizardry" by Benimatsu, in FC version Wiz#1, PCs attack the first monster in the group, and when checked, this behavior will be followed. If there are multiple monsters in the group and adventurers A to C attack the group, all three adventurers will attack the first monster A in the group.
+	</p>
+	<div align="center">
+	<a href="img/attackTarget02.png"><img src="img/attackTarget02.png" width="250" height="175"></a>
+	</div>
+	<p>
+	　In FC version Wiz#2, the PCs attack in order from the first monster in the group, and when unchecked, this behavior will be followed. If there are multiple monsters in the group and adventurers A to C attack the group, adventurer A will attack monster A, adventurer B will attack monster B, and adventurer C will attack monster C.
+	</p>
+	<div align="center">
+	<a href="img/attackTarget03.png"><img src="img/attackTarget03.png" width="200" height="200"></a>
+	</div>
+	<p>
+	　Now, in the FC version Wiz#2 specification, what happens if there are more adventurers attacking than monsters in the group? In that case, the attacking adventurers will go back to attacking from the first monster. If there are two monsters in the group and three adventurers attack, adventurer A will attack monster A, adventurer B will attack monster B, and adventurer C will attack monster A. If adventurer D also attacks, they will attack monster B.<br>
+	　Because of this specification, "Everything About Wizardry" concludes that placing the adventurer with the highest attack power in the second position is optimal in the FC version Wiz#2, but in Javardry, if the monster being attacked is already dead, the attacking adventurer will target the first surviving monster in the group, so this doesn't require much concern.<br>
+	　The FC version Wiz#2 specification imagines a front-line warrior keeping each monster in check, but at least in Javardry, the coordination with group attack spells can be beneficial, and it seems more like a romantic setting that might disadvantage adventurers.
+	</p>
+	<li><span class="item">Change attack target</span><br>
+	　If the target group has been wiped out during a PC's turn, the attack target will change to another group, and the action will continue. If unchecked, no action will occur.
+	<li><span class="item">Do not interrupt actions upon enemy wipe</span><br>
+	　Even if all enemies are wiped out, the PC's action (spells, item usage, etc.) during that turn will continue.
+	<li><span class="item">"Hide" available</span><br>
+	　During combat, adventurers with thief abilities will be able to use "Hide." If unchecked, ambushes (surprise attacks) will also be disabled.
+	<li><span class="item">Do not display healing effect messages</span><br>
+	　Healing effect messages (including persistent healing effects) will be hidden during combat. Check this if you want to conceal the healing abilities of monsters, for example.
+	<li><span class="item">Do not display modification messages for AC, etc.</span><br>
+	　Modification messages for AC, hit rate, spell nullification rate, spell resistance, breath resistance, spell sealing, breath barrier, stat modifications, additional damage modifications, temporary HP changes, attack count modifications, etc. will be hidden during combat.
+	<li><span class="item">Directly obtain items after combat victory</span><br>
+	　When victorious in combat, instead of a treasure chest appearing, you will directly obtain items or money. If you don't need to check for traps or disarm them, check this option.
+	<li><span class="item">No treasure chest if all monsters escape</span><br>
+	　When checked, if all monsters escape (without being defeated) during combat, no treasure chest will appear. Direct item acquisition and money will also be omitted.
+	<li><span class="item">Weapon switching available</span><br>
+	　When checked, weapons (and shields) can be changed during combat.
+	</ul>
+</ul>
+</ul>
+
+</body>
+</html>

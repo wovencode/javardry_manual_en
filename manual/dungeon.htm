@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Home Page</a></div>
+
+<h3 class="title1">Dungeon</h3>
+<p class="text">
+　The dungeon is displayed as a 3D dungeon-like environment using wireframe or image-based graphics. Some floors are naturally illuminated or have incoming light, while others are dark. Even in dark areas, adventurers always carry lanterns or similar items, ensuring basic visibility. For extended visibility, light spells or items must be used.
+</p>
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+<td class="text" align="center">Dark Floors</td>
+<td style="padding-left:30pt"></td>
+<td class="text" align="center">Bright Floors</td>
+</tr>
+<tr>
+<td><img src="img/dungeon01.gif" width="227" height="217"></td>
+<td style="padding-left:30pt"></td>
+<td><img src="img/dungeon02.gif" width="227" height="217"></td>
+</tr>
+<tr>
+<td><img src="img/dungeon03.jpg" width="227" height="217"></td>
+<td style="padding-left:30pt"></td>
+<td><img src="img/dungeon04.jpg" width="227" height="217"></td>
+</tr>
+</table>
+<p class="text">
+　Labyrinths typically consist of corridors, doors, stairs, and various rooms. Special chambers, known as sanctums, almost always house monsters guarding treasure chests. Once defeated, sanctum monsters do not respawn on the same floor unless the adventurer changes floors or resumes the adventure. Occasionally, wandering monsters are encountered in corridors.
+</p>
+
+<h4><a name="trap">Dungeon Traps and Hazards</a></h4>
+<p class="text">
+　The dungeon contains several traps and hazards.
+</p>
+<ul class="text">
+<li><span class="item">Hidden Doors</span><br>
+　There are two types of hidden doors. The first, from Wiz #1–#3, appears as a wall but can be revealed through successful movement checks or brute force. Spells or items increasing hidden door discovery rates reduce difficulty.<br>
+　The second type, from Wiz Gaiden #1–#3, cannot be opened without a search command, though successful movement checks may make them faintly visible. These, too, benefit from spells or items enhancing discovery rates.
+<li><span class="item">Locked Doors</span><br>
+　These doors cannot be opened without successful unlocking attempts. Unlocking spells or items reduce the difficulty of bypassing such doors.
+<li><span class="item">One-Way Doors</span><br>
+　These function as doors from one side but walls from the other, indistinguishable from regular doors or walls.
+<li><span class="item">Shutters</span><br>
+　Walls that allow passage from one side but not the other, indistinguishable from normal spaces or walls.
+<li><span class="item">Turntables</span><br>
+　Rotating floors that spin adventurers randomly upon stepping on them. They may be avoided using levitation spells.
+<li><span class="item">Pits</span><br>
+　Falling into pits causes damage unless successfully avoided. Types include visible pits, invisible pits, and unavoidable invisible pits with falling rocks. Levitation spells may prevent falls into visible or invisible pits.
+<li><span class="item">Chutes and Shafts</span><br>
+　Chutes force movement to a lower floor, while shafts move to an upper floor. Levitation spells may counteract these traps.
+<li><span class="item">Dark Zones</span><br>
+　Completely obscured areas where even light spells provide no visibility. In some settings, light spell effects are nullified within dark zones.
+<li><span class="item">Sliding Floors</span><br>
+　Forces movement to adjacent blocks in predetermined directions.
+<li><span class="item">Warp Zones</span><br>
+　Teleport adventurers to different locations instantly.
+<li><span class="item">Spell Seals</span><br>
+　Traps that seal spell usage, causing adventurers to enter a sealed status.
+<li><span class="item">Forced Return</span><br>
+　Forcibly transports adventurers to the surface.
+<li><span class="item">Teleport-Restricted Areas</span><br>
+　Zones where teleportation is impossible.
+<li><span class="item">Spell-Restricted Areas</span><br>
+　Zones prohibiting spell use. Variants include areas restricting items or both spells and items. In these zones, even combat usage is disabled. Monsters are similarly restricted. SP release is also unavailable in item-prohibited zones.
+</ul>
+
+<h4><a name="camp">Camping</h4>
+<p class="text">
+　In camping mode, adventurers can rearrange party order, check status, cast spells, equip items, use or transfer items (select the recipient using the <a href="operation.htm#shiftMoveKey" target="_self">left/right movement keys</a>), and appraise items.
+</p>
+
+<h4><a name="subMenu">Submenu</h4>
+<p class="text">
+　Additional actions available in the dungeon include:
+</p>
+<ul class="text">
+<li><span class="item">Search for Hidden Doors</span><br>
+　Examines walls for hidden doors. Availability depends on the scenario.
+<li><span class="item">Force Open Locks</span><br>
+　Attempts to unlock the door ahead. Availability depends on the scenario.
+<li><span class="item">Search for Allies</span><br>
+　Searches for adventurers in nearby parties. If space allows, discovered adventurers can join the party.<br>
+　The search range is six steps from the current position, bypassing locked doors, chutes, or warps.
+<li><span class="item">Remove Allies</span><br>
+　Reassign adventurers from the party to form separate groups.
+<li><span class="item">Suspend Adventure</span><br>
+　Halts the current party's actions and returns to the town. Suspended adventures can be resumed from the town outskirts.
+</ul>
+
+<h4><a name="annihilation">Party Annihilation</h4>
+<p class="text">
+　The party is considered annihilated if all members become incapacitated (e.g., paralyzed, petrified, dead, or ashed) with no natural recovery options. Their remains are left behind, and the scene shifts to the town. Recovery requires another party to retrieve the bodies.
+</p>
+
+<h4><a name="inRock">Encased in Stone</h4>
+<p class="text">
+　Teleport errors or random teleportation may materialize the party inside stone or midair outside the dungeon, leading to instantaneous annihilation. In such cases, the remains are transported to the temple by guards, unless the scenario dictates their permanent loss.
+</p>
+
+</body>
+</html>

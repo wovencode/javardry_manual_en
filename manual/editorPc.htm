@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [PC]</h3>
+<p class="text">
+  In the "PC" tab, you configure the adventurer.
+</p>
+<div align="center">
+<a href="img/editorPc.png"><img src="img/editorPc.png" width="600" height="550"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Maximum Value of Attributes</span><br>
+  The maximum value of attributes can be set by selecting from "Fixed Maximum Value", "Maximum Value + Initial Value", or "Maximum Value Set Individually".<br>
+  In the case of "Fixed Maximum Value", the maximum value set from 0 to 999 becomes the maximum value for all attributes. If you are following the specifications of Wiz #1, set the maximum value to 18.<br>
+  In the case of "Maximum Value + Initial Value", the maximum value set from 0 to 999 plus the initial attribute values of the race plus gender-based attribute modifiers will determine the maximum value of all attributes. If you are using the Gaiden specifications, set the maximum value to 10.<br>
+  In the case of "Maximum Value Set Individually", you can set the maximum value for each attribute individually in the [Attribute] section below.
+<li><span class="item">[Attributes]</span><br>
+  This is a list to set the attributes representing the adventurer's abilities. Up to 36 attributes can be set. However, from the 11th attribute onward (number 10 and above), they will be treated as hidden parameters (forced to "No Bonus" and "Do Not Display"). 
+	<ul>
+	<li><span class="item">Attribute Name</span><br>
+	  The name of each attribute. Up to 20 characters in half-width.
+	<li><span class="item">Abbreviation</span><br>
+	  The abbreviation for each attribute. Up to 6 characters in half-width.
+	<li><span class="item">Gender Modifier</span><br>
+	  When creating or changing jobs for an adventurer, a gender-based modifier is applied to the race's initial attribute values. For example, men may have higher strength but lower intelligence, or women may be faster. You can set a value between -999 and 999.
+	<li><span class="item">No Bonus</span><br>
+	  If you check this, the attribute will not receive bonus points during PC creation (i.e., no increase or decrease from bonuses). It may be used for skills that only increase or decrease due to events or items, without changing during level-ups.
+	<li><span class="item">Do Not Display</span><br>
+	  If you check this, the attribute will not be displayed. This is useful for hidden parameters. However, the very first attribute in the list cannot be hidden.<br>
+	  Attributes that are set to "Do Not Display" (including attributes number 10 and beyond) will not be displayed during PC creation, on the status screen, or during level-ups (when attribute values change). However, the values will still change during level-ups even if they are not displayed. If you do not want these values to change, set the change rate to 0 for each attribute in the "Level Up" tab under the "Facilities" tab. Also, when applying spell effects 64 and 65 to modify attributes, the effects will still be shown in battle messages, battle status displays, and camp status displays, even for hidden attributes. To prevent these from being displayed, check "Do not show modifications to hidden attributes" in the "Spells" section of the "Main" tab.
+	<li><span class="item">Individual Maximum Value</span><br>
+	  You can set the maximum value for each attribute using a formula. You can refer to the race (pc.Race[ ]), and the race’s initial attribute values (initialAbi) are available, but dice rolls cannot be used (<span class="boldWord">Dice roll operators are removed when calculating</span>). Valid results for the maximum value are between 0 and 999. This input is only possible if the "Maximum Value Set Individually" option is selected.<br>
+	  Typically, numbers like 18 or 22 will be used, but if you want to set the race’s maximum values independently of the initial values, a formula like pc.Race[0] * 10 + pc.Race[1] * 6 + 10 is effective. You can also use formulas like initialAbi + 10 to make specific attributes' (maximum values) dependent on initial values in individual settings.
+	<li><span class="item">+ Gender Modifier</span><br>
+	  If you check this, the individual maximum value + the gender modifier will be the maximum value for the attribute. This is useful when you want the gender modifier to be reflected in the maximum value, not just the initial value, when using individual maximum values.
+	<li><span class="item">No Aging Death at 0</span><br>
+	  If you check this option for an attribute, it will not cause death from old age even if the value reaches 0 due to level-up attribute decreases or the effect of spell 10. You can use this for hidden parameters where the value is intentionally set to 0.
+	</ul>
+<li><span class="item">[Gender]</span><br>
+  Input the name and abbreviation for the gender. The name can be up to 8 characters in half-width, and the abbreviation can be a single half-width character. The basic options are Male, Female, Bigender, and Neither, and you can toggle between them using radio buttons.
+<li><span class="item">[Personality]</span><br>
+  Input the name and abbreviation for the personality. The name can be up to 8 characters in half-width, and the abbreviation can be a single half-width character. The basic options are Good, Neutral, and Evil, and you can toggle between them using radio buttons.
+<li><span class="item">[Race]</span><br>
+  This is a list of races that can be chosen for adventurers. You can set up to 36 races.
+	<ul>
+	<li><span class="item">Race Name</span><br>
+	  The name of the race. Up to 20 characters in half-width.
+	<li><span class="item">Abbreviation</span><br>
+	  The abbreviation for the race. Up to 4 characters in half-width.
+	<li><span class="item">Gender</span><br>
+	  The genders that can be created for the race. Check the genders that apply to the race.<br>
+	  If gender settings are not necessary, change the combo box value to "No Internal Gender Setting". In this case, there will be no gender selection during adventurer registration, and the gender will not be displayed on the status screen. However, internal gender settings are still required if branching based on gender is needed in the scenario, so please specify it in the combo box.
+	<li><span class="item">Appearance Condition</span><br>
+	  Write the condition for the race's appearance as a conditional expression. Only races whose conditions evaluate to true will be shown during adventurer creation. However, at least one race must be visible, so the race at the top of the list is always displayed (its condition is ignored). This feature may be used for special races that become available after certain events, but in most cases, leaving the condition as true is fine.
+	<li><span class="item">Lifespan</span><br>
+	  The lifespan of the race, specified as a number between 1 and 9999999. If a character reaches this age during a stay at an inn, they will die from old age. For scenarios where characters do not age, setting it to around 100 should be sufficient.
+	<li><span class="item">Maximum Item Carrying Capacity</span><br>
+	  The number of items the race can carry, specified between 0 and 99. This value is added to the maximum item capacity for each job, and ultimately adjusted to a range of 1 to 99. If no distinction is needed by job, you can set a base value (for example, 8 for Wiz #1 to #3). Of course, you can also set this value to 0 and adjust it via the job.
+	<li><span class="item">Initial Attribute Values</span><br>
+	  The initial attribute values for the race, specified between 0 and 999. In practice, this value is combined with the gender modifier for each attribute. Clicking the set button will set all attribute values to match the first attribute's value.
+	<li><span class="item">AC</span><br>
+	  The race's base AC. For Wiz specifications, this is typically 10, with minor modifications based on race, though this may vary depending on how the attack hit calculation is set.
+	<li><span class="item">Recovery</span><br>
+	  The race's inherent recovery ability, specified between -99999 and 99999. The effects of items that restore health are added to this value, and it also counters poison damage.
+	<li><span class="item">Spell Immunity</span><br>
+	  The race's inherent spell immunity ability, specified between 0 and 999. This is the probability of nullifying spells, usually set between 0 and 100, but it is also possible to assign negative modifiers for immunity using items, so the value can be set up to 999.
+	<li><span class="item">Breath Ability Level</span><br>
+	  The level at which the race can use breath attacks, specified between 0 and 99999. If set to 0, they cannot use breath attacks. You can set different levels for single-target, group, and all-target breath attacks, but the level ranges do not narrow based on level progression (checks are made in the order of all-target, group, and single-target).
+		<ul>
+		<li><span class="item">5,0,0</span><br>
+		 5th level for single-target breath attacks.
+		<li><span class="item">1,13,50</span><br>
+		 Single-target from level 1, group from level 13, all-target from level 50.
+		<li><span class="item">0,0,10</span><br>
+		 All-target from level 10.
+		<li><span class="item">10,5,3</span><br>
+		 All-target from level 3, with no single-target or group breath even at levels 5 and 10.
+		</ul>
+	<li><span class="item">Breath Usage Count</span><br>
+	  The number of times breath attacks can be used per battle, specified using a formula. The adventurer's data can be referenced with pc. The maximum value is 99999. If the value is negative, there is no usage limit.
+	<li><span class="item">Breath Attribute</span><br>
+	  Specify the attribute of the breath attack.
+	<li><span class="item">Resistance</span><br>
+	  Various inherent resistances that the race has.
+		<ul>
+		<li><span class="item">Fire, Cold, Electric, Holy, Non-elemental Resistance</span><br>
+		 Reduces damage from attribute-based attack spells and breaths.
+		<li><span class="item">Silence</span><br>
+		 No effect from silence.
+		<li><span class="item">Sleep (Unconsciousness), Poison, Paralysis, Petrification, Level Drain, Instant Death Spells</span><br>
+		 No effect from these conditions, and reduced damage from associated breaths. However, sleep (unconsciousness) resistance does not prevent knockout-induced unconsciousness.
+		<li><span class="item">Critical, Knockout</span><br>
+		 No effect from critical hits or knockouts. However, knockout resistance does not prevent unconsciousness from knockout spells.
+		</ul>
+	<li><span class="item">Description</span><br>
+	  Enter a description for each race. Clicking the check button will display a test preview of the formatted text. The display is limited to up to 28 characters in half-width (including two characters for punctuation processing) * 10 lines.
+	</ul>
+</ul>
+
+</body>
+</html>

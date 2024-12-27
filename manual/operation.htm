@@ -1,0 +1,273 @@
+<html>
+<head>
+<title>Javardry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+<div class="topLink"><a href="../manual.htm" target="_top">Top page</a></div>
+<h3 class="title1">How to use Javardry</h3>
+<p class="text">
+Operation is done with a keyboard or gamepad. Mouse operation is also possible.
+</p>
+
+<h4><a name="controlKey">Control keys, buttons</a></h4>
+<p class="text">
+The default settings are as follows, but you can change the settings of the keyboard keys and gamepad buttons in the <a href="#keyConfig">Key Settings</a>.
+
+</p>
+<ul class="text">
+<li><span class="item">Up, Down, Left, Right Keys</span><br>
+Select options (move or skip the selection cursor), and move through the dungeon (forward, turn left or right, turn backward). <br>
+By default, these are set to the arrow keys on the keyboard, 2, 4, 6, and 8 on the numeric keypad, and the directional buttons on the gamepad.
+<li><span class="item"><a name="shiftMoveKey">Left and Right Movement Keys</a></span><br>
+Move left and right without changing direction when moving through the dungeon. This is known as crab walking. It also switches the display on the status screen, and switches the target when transferring items. It is intended to be assigned to the left and right buttons on a gamepad. <br>
+By default, it is set to Shift + left and right arrow keys on the keyboard, 7 and 9 on the numeric pad, and buttons 4 and 5 on the gamepad.
+<li><span class="item">Confirmation key</span><br>
+Confirms choices, executes commands, and advances when moving through dungeons (kicks open the door in front and advances). <br>
+By default, it is set to Enter, Space, Z on the keyboard, 5 on the numeric pad, and button 0 on the gamepad.
+<li><span class="item">Cancel key</span><br>
+Cancels commands, returns to the previous screen, and displays the camp when moving through dungeons. <br>
+By default, it is set to Escape, BackSpace, X on the keyboard, 0 on the numeric pad, and button 1 on the gamepad.
+<li><span class="item">Status Display Switch Key</span><br>
+Toggles the display of the status window when moving through dungeons, and displays spell effects and other status when selecting commands during battle (depending on the scenario settings). <br>
+By default, this is set to S on the keyboard, 3 on the numeric pad, and button 6 on the gamepad.
+<li><span class="item">Submenu Display Key</span><br>
+Displays the submenu when moving through dungeons. <br>
+By default, this is set to A on the keyboard, 1 on the numeric pad, and button 2 on the gamepad.
+<li><span class="item">Map Display Key</span><br>
+Displays the map, coordinates, etc. when moving through dungeons. However, this depends on the scenario settings. <br>
+By default, this is set to M, C on the keyboard, + on the numeric pad, and button 3 on the gamepad.
+<li><span class="item">Reset Key</span><br>
+Returns to the title screen. <br>
+By default, this is set to R on the keyboard.
+<li><span class="item">Debug Key</span><br>
+
+Displays a text field for entering commands for debugging. However, this depends on the scenario settings. <br>
+
+By default, it is set to P on the keyboard.
+
+</ul>
+
+<h4><a name="gamepadOperation">Gamepad Operation</a></h4>
+
+<p class="text">
+
+You can operate with a gamepad by turning on gamepad operation in the arguments at run time or in Options during execution. However, since pressing multiple buttons at the same time is not supported, you cannot move left and right with Shift + left and right keys (you can move left and right with one button). The button identification name differs depending on the gamepad and execution environment, so check the identification name with <a href="start.htm#keyTest">Key test</a> in Options and perform <a href="#keyConfig">key configuration</a>. <br>
+In the case of a Linux environment, you need to make the directory containing the native libraries (libjinput-linux.so, libjinput-linux64.so) recognized as a shared library through the path, and also change the permissions of /dev/input/* so that it can be read by anyone other than the owner. <br>
+If you want to use a gamepad without relying on Javardry's functions, please use free software such as JoyToKey (Windows) or QJoyPad (Linux) that converts input from a gamepad to keyboard input.
+</p>
+
+<h4><a name="mouseOperation">Mouse operation</a></h4>
+<p class="text">
+If you turn on mouse operation in the arguments at run time or in the Options during execution, you will be able to operate by clicking on the screen. <br>
+By left-clicking the range shown below, the corresponding key will be operated. Right-clicking is the cancel key operation. <br>
+When using touch operation, the action of pressing and releasing after a long press may be the right-click operation, so pressing and holding a button for multiple hits is not supported. Instead, by clicking HoldDown, you can hold down the key you just pressed. Pressing (clicking) any key next will release the hold. <br>
+<br>
+<img src="img/mouseOperation.png" width="300" height="300" hspace="40">
+</p>
+<h4><a name="keyConfig">Key Settings</a></h4>
+<p class="text">
+You can set the keyboard keys and gamepad buttons for operation in keyConfig.txt in the data directory. This will not be reflected during startup, so if you change keyConfig.txt, restart Javardry.
+
+<ul class="text">
+<li>Settings
+<ul class="text">
+<li><span class="item">KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT</span><br>
+Set the up, down, left and right operation keys.
+<li><span class="item">KEY_SHIFT</span><br>
+Sets the key equivalent to the Shift key used when moving left and right using Shift + left and right keys. Gamepad buttons cannot be set.
+<li><span class="item">KEY_SHIFT_RIGHT, KEY_SHIFT_LEFT</span><br>
+Sets the operation keys when moving left and right.
+<li><span class="item">KEY_ENTER, KEY_CANCEL</span><br>
+Sets the confirm key and cancel key.
+<li><span class="item">KEY_STATUS, KEY_SUBMENU, KEY_MAP</span><br>
+Sets the status display switching key, submenu display key, and map display key.
+<li><span class="item">KEY_RESET, KEY_DEBUG</span><br>
+Sets the reset key and debug key.
+</ul>
+</ul>
+<p class="text">
+By entering the following identifiers in the settings (multiple settings can be made by separating them with commas), you can set the corresponding keys and buttons. You can check the identifiers corresponding to keys and buttons with <a href="start.htm#keyTest">Key test</a> in Options. Please note that the settings for Enter, Escape, and Alt cannot be changed.
+</p>
+<ul class="text">
+<li>Keyboard
+<ul class="text">
+<li>up, down, right, left (arrow keys)
+<li>0-9, a-z, minus (-), circumflex (^), backslash (\), backspace, at (@), open bracket ([), semicolon (;), colon (:), close bracket (]), comma (,), period (.), slash (/)
+<li>space, control (Ctrl key), shift, scroll_lock, pause, insert, delete, home, end, page_up, page_down
+<li>numpad0-numpad9 (0-9 on the numeric keypad), divide (/ on the numeric keypad), multiply (* on the numeric keypad), subtract (- on the numeric keypad), add (+ on the numeric keypad), decimal (. on the numeric keypad)
+<li>f1-f24 (function keys)
+</ul>
+<li>Gamepad
+<ul class="text">
+<li>gamepad_up, gamepad_down, gamepad_right, gamepad_left (directional buttons)
+<li>gamepad_0 to gamepad_31
+<li>gamepad_a, gamepad_b, gamepad_c, gamepad_x, gamepad_y, gamepad_z
+<li>gamepad_zUp, gamepad_zDown
+<li>gamepad_base1, gamepad_base2, gamepad_base3, gamepad_base4, gamepad_base5, gamepad_base6
+<li>gamepad_thumb1, gamepad_thumb2, gamepad_rightThumb1, gamepad_rightThumb2, gamepad_rightThumb3, gamepad_leftThumb1, gamepad_leftThumb2, gamepad_leftThumb3
+<li>gamepad_top1, gamepad_top2
+<li>gamepad_trigger, gamepad_pinkie, gamepad_select
+</ul>
+</ul>
+<p class="text">
+If not set (setting item is left blank), the following default settings will be used.
+</p>
+<pre class="text">
+      KEY_UP = "up, numpad8, gamepad_up"
+      KEY_DOWN = "down, numpad2, gamepad_down"
+      KEY_RIGHT = "right, numpad6, gamepad_right"
+      KEY_LEFT = "left, numpad4, gamepad_left"
+      KEY_SHIFT = "shift"
+      KEY_SHIFT_RIGHT = "numpad9, gamepad_5, gamepad_zUp"
+      KEY_SHIFT_LEFT = "numpad7, gamepad_4, gamepad_zDown"
+      KEY_ENTER = "space, z, numpad5, gamepad_0"
+      KEY_CANCEL = "backspace, x, numpad0, gamepad_1"
+      KEY_STATUS = "s, numpad3, gamepad_6"
+      KEY_SUBMENU = "a, numpad1, gamepad_2"
+      KEY_MAP = "c, m, add, gamepad_3"
+      KEY_RESET = "r"
+      KEY_DEBUG = "p"
+</pre>
+
+
+<h4><a name="debug">Debug Commands</a></h4>
+
+<p class="text">
+If debug commands are allowed in the scenario data, you can use debug commands. Press the P key on the keyboard to display a text input field, then type the following command (without [ ]) and press Enter. Press Enter with the field blank or press ESC to make the input field disappear. <br>
+The execution results are displayed in the console (command prompt, terminal), so to use debug commands that display the results, you must start the command from the console (command prompt, terminal).
+
+<ul class="text">
+<li><span class="item">map [on, off]</span><br>
+
+Automap is fully open, with all unreached areas.
+<li><span class="item">flag [flagNum]</span><br>
+Displays the value of the flag. If the flag number is omitted, the numbers of the flags that are true will be displayed in the console (command prompt, terminal). If all are false, "none" will be displayed.
+<li><span class="item">flagS [flagNum]</span><br>
+Displays the value of the special flag. If the flag number is omitted, the numbers of the special flags that are true will be displayed in the console (command prompt, terminal). If all are false, "none" will be displayed.
+<li><span class="item">flagControl [flag]</span><br>
+Changes the value of the flag, special flag, wall existence flag, map traversal flag, hidden door flag, and locked door flag. For the format, see <a href="editorStart.htm#flagControl" target="_self">Flag operation</a>.
+<li><span class="item">monsterFlag [monsterNum] [value]</span><br>
+Changes the catalog registration flag for the specified monster number. If you set the monster number to all, you can change the flags for all monsters at once. The value is 0 for false, 1 for true, and 2 for inversion.
+<li><span class="item">itemFlag [itemNum] [value]</span><br>
+Changes the catalog registration flag for the specified item number. If you set the item number to all, you can change the flags for all items at once. The value is 0 for false, 1 for true, and 2 for inversion.
+<li><span class="item">raceList</span><br>
+Displays the race number, corresponding race name, and race abbreviation on the console (command prompt, terminal).
+<li><span class="item">classList</span><br>
+Displays the job number, corresponding job name, and job abbreviation on the console (command prompt, terminal).
+<li><span class="item">monsterList [monsterNum]-[monsterNum]</span><br>
+Displays the names of monsters in the range specified by the monster number on the console (command prompt, terminal). If the monster number is omitted, the names of all monsters are displayed.
+<li><span class="item">monsterFlagList [monsterNum]-[monsterNum]</span><br>
+Displays the names of cataloged monsters in the range specified by the monster number on the console (command prompt, terminal).
+<li><span class="item">itemList [itemNum]-[itemNum]</span><br>
+Displays the names of items in the range specified by the item number on the console (command prompt, terminal). If the item number is omitted, the names of all items are displayed.
+<li><span class="item">itemFlagList [itemNum]-[itemNum]</span><br>
+
+Displays the names of cataloged items in the range specified by item number on the console (command prompt, terminal).
+<li><span class="item">item [itemNum] [decided]</span><br>
+
+If the current party has room in their inventory, acquires the specified item (specified by item number). Decided is 0 for unappraised, 1 for appraised. If omitted, it will be appraised.
+<li><span class="item">stock [initialize/reset, full, 0-99] [itemNum]-[itemNum]</span><br>
+
+Operates the stock of the stores in the range specified by item number. Resets to the initial settings, sets no stock (infinite stock), or allows you to specify the number of items from 0 to 99. If the item number is omitted, it applies to the entire stock. It has no effect on items that are not originally set to be available in stores.
+<li><span class="item">healAll</span><br>
+
+Fully heals all adventurers (recovers status abnormalities, HP, and MP). It also cures poison and recovers (revives) from conditions of death or worse.
+<li><span class="item">spellClear</span><br>
+
+Clears spell effects on the current party and party members.
+<li><span class="item">musicClear</span><br>
+
+Clears music change effects on all floors of all dungeons and all parties.
+<li><span class="item">collect</span><br>
+
+Returns all parties other than the current party from the dungeon to the surface.
+</ul>
+<ul class="text">
+<li>The following is effective for a specified PC in the current party. PC is specified as a number from 0 to 5, with the first party number being 0. If omitted, it applies to the entire party.
+<ul>
+<li><span class="item">heal [pc]</span><br>
+Performs a full recovery (recovers status abnormalities, HP, and MP). It also cures poison, and will recover (revive) from conditions of death or worse.
+<li><span class="item">heal [hp, mp, state] [pc]</span><br>
+Recovers HP, MP, and status abnormalities. HP and MP recovery only applies to living PCs. Status recovery will also recover (revive) from poison and conditions of death or worse.
+<li><span class="item">hp [value] [pc]</span><br>
+Increases or decreases HP by the specified value. Maximum HP will not be exceeded.
+<li><span class="item">hpMax [value] [pc]</span><br>
+Increases or decreases maximum HP by the specified value.
+<li><span class="item">mp [value(,value)] [pc]</span><br>
+Increases or decreases MP by the specified value. Maximum MP will not be exceeded. If the specified value is only a single number, it applies to all levels of all systems, but by writing "(spell system 0-3) (spell level 0-9), change value", you can specify the system and level of the spell to apply. Here is an example. <br>
+9 (+9 MP for all levels of all systems)<br>
+0,1 (+1 MP for all levels of the first system)<br>
+21,-5 (-5 MP for level 2 of the third system)
+<li><span class="item">mpMax [value(,value)] [pc]</span><br>
+Increases or decreases maximum MP by the specified value. If you specify only one number, it applies to all levels of all spells, but you can specify the spell system and level to apply by writing "(spell system 0-3) (spell level 0-9), change value". Here are some examples: <br>
+-9 (-9 max MP for all levels of all spells) <br>
+3,2 (+2 max MP for all levels of the fourth system) <br>
+06,-6 (-6 max MP for level 7 of the first system)
+<li><span class="item">lv [value] [pc]</span><br>
+Increases or decreases the level by the specified value. Experience points also change according to the level.
+<li><span class="item">abi [value(,value)] [pc]</span><br>
+Increases or decreases the attribute value by the specified value. If you specify only one number, it applies to all attribute values, but you can specify individual attribute values ​​by writing "(attribute number 0-35), change value". By specifying max or min instead of a number (individual comma-separated values ​​are not possible in this case), you can set the maximum or minimum value for the species.
+<li><span class="item">abiView [pc]</span><br>
+Displays the attribute values ​​on the console (command prompt, terminal). abi0View displays the base attribute value, abi1View displays the base attribute value plus item modifications, and abiView displays the final value plus item modifications and spell effect modifications. <br>
+This can be used to check the values ​​of hidden parameters (attributes that are set not to be displayed).
+<li><span class="item">state [value] [pc]</span><br>
+Changes state. Values ​​range from 0 to 6 and specify the following states. <br>
+0: Normal 1: Panic 2: Paralysis 3: Petrification 4: Death 5: Ash 6: Vanish
+<li><span class="item">sleep [value] [pc]</span><br>
+During battle only, increases or decreases sleep depth by the specified value. However, if the specified value is 0, sleep depth will be forcibly set to 0. If sleep depth is a positive value, normal sleep state will occur, and if it is negative, unconscious state will occur.
+<li><span class="item">silence [value] [pc]</span><br>
+During battle only, increases or decreases silence intensity by the specified value. However, if the specified value is 0, silence intensity will be forcibly set to 0. If silence intensity is a positive value, normal silence state will occur, and if it is negative, silence state will not recover naturally.
+<li><span class="item">restraint [value] [pc]</span><br>
+Increases or decreases the restraint strength by the specified value during battle only. However, if the specified value is 0, the restraint strength will be forcibly set to 0. Only when the restraint strength is 1 or greater will the player be considered in a restrained state.
+<li><span class="item">poison [value] [pc]</span><br>
+Increases or decreases the poison damage value by the specified value. However, if the specified value is 0, the poison damage will be forcibly set to 0. Only when the poison damage value is 1 or greater will the player be considered in a poisoned state.
+<li><span class="item">gold [value] [pc]</span><br>
+Increases or decreases the amount of money held by the specified value.
+<li><span class="item">exp [value] [pc]</span><br>
+Increases experience points by the specified value. Cannot be decreased.
+<li><span class="item">age [value] [pc]</span><br>
+Increases or decreases the age by the specified value.
+<li><span class="item">race [value] [pc]</span><br>
+Changes the race. Race is specified by a race number between 0 and 14.
+<li><span class="item">class [value] [pc]</span><br>
+Changes the occupation. Occupation is specified by an occupation number between 0 and 14.
+<li><span class="item">sex [M, F, B, N] [pc]</span><br>
+Changes the gender. Regardless of the settings for each scenario data, specify M (male), F (female), B (bisexual), or N (asexual) here. Alternatively, 0 to 3 can be specified.
+<li><span class="item">ali [G, N, E] [pc]</span><br>
+Changes the personality. Regardless of the settings for each scenario data, you can specify G (good), N (neutral), or E (evil) here. You can also specify 0 to 2.
+<li><span class="item">rip [value] [pc]</span><br>
+Increases or decreases the number of deaths by the specified value.
+<li><span class="item">marks [value] [pc]</span><br>
+Increases or decreases the number of kills by the specified value.
+<li><span class="item">title [[value]] [pc]</span><br>
+
+Assigns a title. Titles are specified in brackets [ ]. (Example: title [], title [@1])
+<li><span class="item">dispell [pc]</span><br>
+
+Removes a curse. Cursed items will be unequipped.
+<li><span class="item">spell [value(,value)] [pc]</span><br>
+Learns or forgets a spell. A value of 1 will learn the spell, and a value of 0 will forget it. If the specified value is only a single number, it will apply to all spells of all levels of all schools, but you can specify the school, level, and spell of the spell to be applied by writing "(spell school 0-3) (spell level 0-9) (spell 0-6), (0 or 1)." An example is shown below. <br>
+1 (Learn all spells of all levels in all systems)<br>
+2,0 (Forget all spells of all levels in the third system)<br>
+05,1 (Learn all 6th level spells in the first system)<br>
+134,1 (Learn the 5th spell of the 4th level in the second system)
+</ul>
+</ul>
+<ul class="text">
+<li><span class="item">expGained [value]</span><br>
+Sets the EXP multiplier at the end of the battle, and displays the set value on the console. If no value is specified, the set value is displayed only. The startup value is 1.0 (normal).
+<li><span class="item">dropGained [value]</span><br>
+Sets the multiplier for the item acquisition probability (monster's item possession probability) at the end of the battle, and displays the set value on the console. If no value is specified, the set value is displayed only. The startup value is 1.0 (normal).
+<li><span class="item">view</span><br>
+After executing this command, the success probability of some judgments will be displayed on the console (command prompt, terminal). This is a command added by the creator (THU) for his own use, so it is not very user-friendly.
+<li><span class="item">cal [calculation formula]</span><br>
+The result of the calculation is displayed on the console (command prompt, terminal). Conditional expressions are supported, but reference values ​​such as adventurers cannot be used.
+</ul>
+</p>
+
+</body>
+</html>

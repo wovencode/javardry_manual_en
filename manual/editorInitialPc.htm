@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>JavardryEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel=stylesheet type="text/css" href="main.css">
+<link rel="icon" href="img/favicon_javardry.ico">
+</head>
+<body class="bodyMargin">
+
+<div class="topLink"><a href="../manual.htm" target="_top">Top Page</a></div>
+
+<h3 class="title1">Editor [Initial PC]</h3>
+<p class="text">
+   In the "Traps and Initial PC" tab, you can configure the list of initial PCs. Initial PCs are adventurers registered in the training grounds upon the first startup or initialization of Javardry, and up to 120 can be set (the maximum number of registrations in the training grounds can be set in the "PC Creation and Job Change" tab). Initial PC configurations might not be used frequently, so it is fine to leave them unset if it is too much trouble.<br>
+   When adding PCs through events, you will specify the PCs configured here.
+</p>
+<div align="center">
+<a href="img/editorInitialPc.png"><img src="img/editorInitialPc.png" width="600" height="289"></a>
+</div>
+
+<ul class="text">
+<li><span class="item">Do not place initially</span><br>
+   Checking this will prevent the PC from being placed during the first startup (initialization).
+<li><span class="item">PC Name</span><br>
+   The name of the adventurer. Up to 20 characters in half-width.
+<li><span class="item">Gender, Alignment, Race</span><br>
+   Select gender, alignment, and race. If the selected gender conflicts with the gender settings of the race, the race settings will take precedence, and the gender will be adjusted accordingly.
+<li><span class="item">Job</span><br>
+   Choose the adventurer's job from the job list. Please note that jobs can be set here regardless of gender or alignment requirements.
+<li><span class="item">Attributes</span><br>
+   Specify the adventurer's attributes with values between 0 and 999. Clicking the "set" button will apply the value of the first attribute to all attributes.
+<li><span class="item">Level</span><br>
+   Specify the adventurer's level using a formula.
+<li><span class="item">Experience Points</span><br>
+   Specify the adventurer's experience points between 0 and 999999999999. If the specified value is insufficient for the required experience points of the given level, it will be corrected. For simplicity, you can set it to 0.
+<li><span class="item">Gold</span><br>
+   Specify the amount of gold using a formula.
+<li><span class="item">Age</span><br>
+   Specify the adventurer's age between 1 and 9999999. If you want to determine the age using the same formula as PC creation, set it to 0.
+<li><span class="item">Title</span><br>
+   Specify the adventurer's title as a string of up to 6 half-width characters.
+<li><span class="item">Items</span><br>
+   Specify the items the adventurer possesses by their item numbers. Multiple items can be specified separated by commas, but any exceeding the maximum carry capacity determined by the race and job will be ignored.
+<li><span class="item">Equip</span><br>
+   Checking this will allow the adventurer to start with equippable items already equipped.
+</ul>
+
+</body>
+</html>
